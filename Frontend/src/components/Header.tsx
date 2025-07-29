@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
+import logo from "@/assets/logo.png";
 
 interface HeaderProps {
   alwaysShowBg?: boolean;
@@ -7,6 +8,7 @@ interface HeaderProps {
 
 const Header = ({ alwaysShowBg = false }: HeaderProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     if (alwaysShowBg) return;
@@ -20,41 +22,152 @@ const Header = ({ alwaysShowBg = false }: HeaderProps) => {
   const showBg = alwaysShowBg || isScrolled;
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
       showBg 
-        ? 'bg-[#3a006a] backdrop-blur-md border-b border-border/40 shadow-lg' 
+        ? 'bg-[#472160]/95 backdrop-blur-lg border-b border-[#7A7f83]/20 shadow-xl' 
         : 'bg-transparent'
     }`}>
-      <div className="container mx-auto px-6 py-4 flex items-center justify-between relative">
-        <div className="flex items-center space-x-3">
-          <div className="relative">
-            
+      <div className="max-w-7xl mx-auto px-6 py-2">
+        <div className="flex items-center justify-between relative">
+          {/* Logo */}
+          <div className="flex items-center group">
+            <img 
+              src={logo} 
+              alt="B1G Corporation Logo" 
+              className="h-10 w-auto transition-all duration-300 group-hover:scale-105 drop-shadow-lg" 
+            />
           </div>
-          <div>
-            <span className="text-2xl font-bold text-white">B1GCORPORATION</span>
-          </div>
+
+          {/* Desktop Navigation - Centered */}
+          <nav className="hidden lg:flex items-center space-x-1">
+            <a href="/" className={`px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-300 relative overflow-hidden ${
+              showBg 
+                ? 'text-[#F4FBFE] hover:text-[#FF9BFF]' 
+                : 'text-white hover:text-[#FF9BFF]'
+            }`}>
+              <span className="relative z-10">Home</span>
+              <div className={`absolute inset-0 rounded-xl transition-all duration-300 ${
+                showBg ? 'bg-[#FF9BFF]/10' : 'bg-white/10'
+              } opacity-0 hover:opacity-100`}></div>
+            </a>
+            <a href="/services" className={`px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-300 relative overflow-hidden ${
+              showBg 
+                ? 'text-[#F4FBFE] hover:text-[#FF9BFF]' 
+                : 'text-white hover:text-[#FF9BFF]'
+            }`}>
+              <span className="relative z-10">B1G Services</span>
+              <div className={`absolute inset-0 rounded-xl transition-all duration-300 ${
+                showBg ? 'bg-[#FF9BFF]/10' : 'bg-white/10'
+              } opacity-0 hover:opacity-100`}></div>
+            </a>
+            <a href="/about" className={`px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-300 relative overflow-hidden ${
+              showBg 
+                ? 'text-[#F4FBFE] hover:text-[#FF9BFF]' 
+                : 'text-white hover:text-[#FF9BFF]'
+            }`}>
+              <span className="relative z-10">Products</span>
+              <div className={`absolute inset-0 rounded-xl transition-all duration-300 ${
+                showBg ? 'bg-[#FF9BFF]/10' : 'bg-white/10'
+              } opacity-0 hover:opacity-100`}></div>
+            </a>
+            <a href="/portfolio" className={`px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-300 relative overflow-hidden ${
+              showBg 
+                ? 'text-[#F4FBFE] hover:text-[#FF9BFF]' 
+                : 'text-white hover:text-[#FF9BFF]'
+            }`}>
+              <span className="relative z-10">Support</span>
+              <div className={`absolute inset-0 rounded-xl transition-all duration-300 ${
+                showBg ? 'bg-[#FF9BFF]/10' : 'bg-white/10'
+              } opacity-0 hover:opacity-100`}></div>
+            </a>
+            <a href="/contact" className={`px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-300 relative overflow-hidden ${
+              showBg 
+                ? 'text-[#F4FBFE] hover:text-[#FF9BFF]' 
+                : 'text-white hover:text-[#FF9BFF]'
+            }`}>
+              <span className="relative z-10">Be Our Partner</span>
+              <div className={`absolute inset-0 rounded-xl transition-all duration-300 ${
+                showBg ? 'bg-[#FF9BFF]/10' : 'bg-white/10'
+              } opacity-0 hover:opacity-100`}></div>
+            </a>
+            <a href="/news" className={`px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-300 relative overflow-hidden ${
+              showBg 
+                ? 'text-[#F4FBFE] hover:text-[#FF9BFF]' 
+                : 'text-white hover:text-[#FF9BFF]'
+            }`}>
+              <span className="relative z-10">News</span>
+              <div className={`absolute inset-0 rounded-xl transition-all duration-300 ${
+                showBg ? 'bg-[#FF9BFF]/10' : 'bg-white/10'
+              } opacity-0 hover:opacity-100`}></div>
+            </a>
+          </nav>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="lg:hidden p-3 rounded-xl transition-all duration-300 hover:bg-white/10"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            <div className={`w-6 h-0.5 mb-1.5 transition-all duration-300 ${
+              showBg ? 'bg-[#F4FBFE]' : 'bg-white'
+            } ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></div>
+            <div className={`w-6 h-0.5 mb-1.5 transition-all duration-300 ${
+              showBg ? 'bg-[#F4FBFE]' : 'bg-white'
+            } ${isMobileMenuOpen ? 'opacity-0' : ''}`}></div>
+            <div className={`w-6 h-0.5 transition-all duration-300 ${
+              showBg ? 'bg-[#F4FBFE]' : 'bg-white'
+            } ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></div>
+          </button>
         </div>
-        {/* Centered Navigation */}
-        <nav className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center space-x-1">
-          <a href="/" className="px-4 py-2 rounded-lg text-sm font-medium text-white hover:text-white hover:bg-accent/50 transition-all duration-200">
-            Home
-          </a>
-          <a href="/services" className="px-4 py-2 rounded-lg text-sm font-medium text-white hover:text-white hover:bg-accent/50 transition-all duration-200">
-            B1G
-          </a>
-          <a href="/about" className="px-4 py-2 rounded-lg text-sm font-medium text-white hover:text-white hover:bg-accent/50 transition-all duration-200">
-            Products
-          </a>
-          <a href="/portfolio" className="px-4 py-2 rounded-lg text-sm font-medium text-white hover:text-white hover:bg-accent/50 transition-all duration-200">
-            Support
-          </a>
-          <a href="/contact" className="px-4 py-2 rounded-lg text-sm font-medium text-white hover:text-white hover:bg-accent/50 transition-all duration-200">
-            Be Our Partner
-          </a>
-          <a href="/news" className="px-4 py-2 rounded-lg text-sm font-medium text-white hover:text-white hover:bg-accent/50 transition-all duration-200">
-            News
-          </a>
-        </nav>
+
+        {/* Mobile Navigation */}
+        <div className={`lg:hidden transition-all duration-300 overflow-hidden ${
+          isMobileMenuOpen ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0'
+        }`}>
+          <nav className="flex flex-col space-y-2 pb-4">
+            <a href="/" className={`px-6 py-4 rounded-xl text-sm font-semibold transition-all duration-300 relative overflow-hidden ${
+              showBg 
+                ? 'text-[#F4FBFE] hover:text-[#FF9BFF] hover:bg-[#FF9BFF]/10' 
+                : 'text-white hover:text-[#FF9BFF] hover:bg-white/10'
+            }`}>
+              <span className="relative z-10">Home</span>
+            </a>
+            <a href="/services" className={`px-6 py-4 rounded-xl text-sm font-semibold transition-all duration-300 relative overflow-hidden ${
+              showBg 
+                ? 'text-[#F4FBFE] hover:text-[#FF9BFF] hover:bg-[#FF9BFF]/10' 
+                : 'text-white hover:text-[#FF9BFF] hover:bg-white/10'
+            }`}>
+              <span className="relative z-10">B1G Services</span>
+            </a>
+            <a href="/about" className={`px-6 py-4 rounded-xl text-sm font-semibold transition-all duration-300 relative overflow-hidden ${
+              showBg 
+                ? 'text-[#F4FBFE] hover:text-[#FF9BFF] hover:bg-[#FF9BFF]/10' 
+                : 'text-white hover:text-[#FF9BFF] hover:bg-white/10'
+            }`}>
+              <span className="relative z-10">Products</span>
+            </a>
+            <a href="/portfolio" className={`px-6 py-4 rounded-xl text-sm font-semibold transition-all duration-300 relative overflow-hidden ${
+              showBg 
+                ? 'text-[#F4FBFE] hover:text-[#FF9BFF] hover:bg-[#FF9BFF]/10' 
+                : 'text-white hover:text-[#FF9BFF] hover:bg-white/10'
+            }`}>
+              <span className="relative z-10">Support</span>
+            </a>
+            <a href="/contact" className={`px-6 py-4 rounded-xl text-sm font-semibold transition-all duration-300 relative overflow-hidden ${
+              showBg 
+                ? 'text-[#F4FBFE] hover:text-[#FF9BFF] hover:bg-[#FF9BFF]/10' 
+                : 'text-white hover:text-[#FF9BFF] hover:bg-white/10'
+            }`}>
+              <span className="relative z-10">Be Our Partner</span>
+            </a>
+            <a href="/news" className={`px-6 py-4 rounded-xl text-sm font-semibold transition-all duration-300 relative overflow-hidden ${
+              showBg 
+                ? 'text-[#F4FBFE] hover:text-[#FF9BFF] hover:bg-[#FF9BFF]/10' 
+                : 'text-white hover:text-[#FF9BFF] hover:bg-white/10'
+            }`}>
+              <span className="relative z-10">News</span>
+            </a>
+          </nav>
+        </div>
       </div>
     </header>
   );
