@@ -17,7 +17,7 @@ const News = () => {
       category: "Product Launch",
       date: "2024-01-15",
       readTime: "5 min read",
-      image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=800&q=80",
+      image: "https://scontent.fmnl17-5.fna.fbcdn.net/v/t39.30808-6/508229341_122139444416792390_4777512534657603681_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=hooCz_LwaOIQ7kNvwGUfl_P&_nc_oc=AdlsA38uUctoamFfuCWqorRNiXq6aZAGL3F75cvcjpd7wSfzUo3lROGjA88Bklu9nI4&_nc_zt=23&_nc_ht=scontent.fmnl17-5.fna&_nc_gid=pHDUeUB8Sb3Kc3uZuVtFwA&oh=00_AfQ4NmOMCRufpa7s7EuVivdDbL5dqfcXbdnHoJykC4zZCw&oe=688E6522",
       featured: true,
       author: "B1G Editorial Team",
       tags: ["Innovation", "Technology", "Product Launch", "X-Forge"]
@@ -114,8 +114,8 @@ const News = () => {
       <main className="pt-10">
         {/* Hero Section */}
         <section className="relative py-32 overflow-hidden">
-          {/* Background with gradient and pattern */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#000204] via-[#472160]/80 to-[#F4FBFE]"></div>
+          {/* Background with deep purple */}
+          <div className="absolute inset-0 bg-[#472160]"></div>
           <div className="absolute inset-0 opacity-50">
             <div className="absolute inset-0 bg-gradient-to-br from-[#000204] via-[#472160]/80 to-[#F4FBFE]"></div>
             <div className="absolute inset-0" style={{
