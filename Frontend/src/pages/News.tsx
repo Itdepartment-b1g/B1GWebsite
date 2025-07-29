@@ -17,7 +17,7 @@ const News = () => {
       category: "Product Launch",
       date: "2024-01-15",
       readTime: "5 min read",
-      image: "https://scontent.fmnl17-1.fna.fbcdn.net/v/t39.30808-6/508434903_122139464918792390_4176012342918639878_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=5jFJ-qmN-u4Q7kNvwFrQm9r&_nc_oc=Adkozl46YP46RcoNS5Qx2s49P6w1KYXo7kvdD-Oz7DsXH2gmYD_tdFVjleyuBzN2joo&_nc_zt=23&_nc_ht=scontent.fmnl17-1.fna&_nc_gid=_sqWZqoZmj1Rs4YAfbibdQ&oh=00_AfS1sP6cIeHyFFe3gcgBwJ_km3TL4X8L_UT_YqADVZO7hw&oe=688E437C",
+      image: "https://scontent.fmnl17-5.fna.fbcdn.net/v/t39.30808-6/508229341_122139444416792390_4777512534657603681_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=hooCz_LwaOIQ7kNvwGUfl_P&_nc_oc=AdlsA38uUctoamFfuCWqorRNiXq6aZAGL3F75cvcjpd7wSfzUo3lROGjA88Bklu9nI4&_nc_zt=23&_nc_ht=scontent.fmnl17-5.fna&_nc_gid=pHDUeUB8Sb3Kc3uZuVtFwA&oh=00_AfQ4NmOMCRufpa7s7EuVivdDbL5dqfcXbdnHoJykC4zZCw&oe=688E6522",
       featured: true,
       author: "B1G Editorial Team",
       tags: ["Innovation", "Technology", "Product Launch", "X-Forge"]
@@ -114,8 +114,8 @@ const News = () => {
       <main className="pt-10">
         {/* Hero Section */}
         <section className="relative py-32 overflow-hidden">
-          {/* Background with gradient and pattern */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#000204] via-[#472160]/80 to-[#F4FBFE]"></div>
+          {/* Background with deep purple */}
+          <div className="absolute inset-0 bg-[#472160]"></div>
           <div className="absolute inset-0 opacity-50">
             <div className="absolute inset-0 bg-gradient-to-br from-[#000204] via-[#472160]/80 to-[#F4FBFE]"></div>
             <div className="absolute inset-0" style={{
