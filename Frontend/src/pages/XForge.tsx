@@ -177,7 +177,7 @@ const XForgeProduct = () => {
                     NEXT-GEN VAPING
                   </div>
                   <h1 className="text-6xl md:text-8xl font-black bg-gradient-to-r from-white via-cyan-200 to-cyan-400 bg-clip-text text-transparent">
-                    X-FORGE
+                    FORGE
                   </h1>
                   <p className="text-2xl font-light text-cyan-200">
                     The Future of Vaping Technology

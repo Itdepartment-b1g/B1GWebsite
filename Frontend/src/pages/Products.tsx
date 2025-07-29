@@ -9,7 +9,7 @@ const Products = () => {
   const products = [
     {
       id: 1,
-      name: "X-FORGE",
+      name: "FORGE",
       tagline: "Forge Your Experience",
       description: "Our flagship AI-powered platform that transforms business processes through advanced machine learning and intelligent automation. Built for enterprises seeking to optimize operations and drive innovation.",
       features: [
@@ -51,10 +51,10 @@ const Products = () => {
 
   const heroSlides = [
     {
-      title: "X-FORGE",
-      subtitle: "Forge Your Experience",
+      title: "",
+      subtitle: "",
       description: "",
-      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80",
+      image: "https://scontent.fmnl17-8.fna.fbcdn.net/v/t39.30808-6/485157766_122118285134792390_5323419709097863985_n.png?stp=dst-jpg_tt6&_nc_cat=104&ccb=1-7&_nc_sid=86c6b0&_nc_ohc=QVwWuFVHYEwQ7kNvwGk_fQq&_nc_oc=AdnqxWSANU12-QK1S3iQBzu3chZhXDvlszh2XT3dS9r8qQset6F7P_jc71w7rE1PdK8&_nc_zt=23&_nc_ht=scontent.fmnl17-8.fna&_nc_gid=254_yzALI7ohE73p_XSCNw&oh=00_AfRgPMagVre7vghNa78G-ptymjoAafOfN-jmZW-ovFDXiw&oe=688E5BC6",
       gradient: "from-cyan-600/90 to-lightblue-700/90"
     },
     {
@@ -69,7 +69,7 @@ const Products = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-    }, 5000);
+    }, 8000);
     return () => clearInterval(timer);
   }, [heroSlides.length]);
 
@@ -212,7 +212,7 @@ const Products = () => {
 
                     {/* Learn More Button */}
                     {product.id === 1 ? (
-                      <Link to="/XForge" className={`inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r ${product.primaryColor} text-white rounded-lg font-medium hover:shadow-lg transition-all duration-300 hover:scale-105`}>
+                      <Link to="/xforge" className={`inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r ${product.primaryColor} text-white rounded-lg font-medium hover:shadow-lg transition-all duration-300 hover:scale-105`}>
                         Learn More
                         <ArrowRight size={16} />
                       </Link>
