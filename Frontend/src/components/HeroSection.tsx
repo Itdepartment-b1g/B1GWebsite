@@ -17,21 +17,7 @@ const HeroSection = () => {
       {/* Enhanced animated overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#472160]/30 via-[#472160]/20 to-[#FF9BFF]/5"></div>
 
-      {/* Floating particles effect */}
-      <div className="absolute inset-0">
-        {[...Array(12)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-2 h-2 bg-[#FF9BFF]/40 rounded-full animate-pulse"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${i * 0.2}s`,
-              animationDuration: `${3 + Math.random() * 2}s`,
-            }}
-          />
-        ))}
-      </div>
+      
 
       <div className="relative z-10 text-center max-w-6xl mx-auto px-6">
         {/* Main Logo - The Star of the Show */}
@@ -72,7 +58,7 @@ const HeroSection = () => {
           className="w-full h-full"
           preserveAspectRatio="none"
         >
-          <polygon points="0,0 100,100 0,100" fill="#F4FBFE" opacity="0.95" />
+          <polygon points="0,0 100,100 0,100" fill="#F4FBFE" opacity="1" />
         </svg>
       </div>
       <div
@@ -84,7 +70,7 @@ const HeroSection = () => {
           className="w-full h-full"
           preserveAspectRatio="none"
         >
-          <polygon points="100,0 100,100 0,100" fill="#F4FBFE" opacity="0.95" />
+          <polygon points="100,0 100,100 0,100" fill="#F4FBFE" opacity="1" />
         </svg>
       </div>
     </section>
