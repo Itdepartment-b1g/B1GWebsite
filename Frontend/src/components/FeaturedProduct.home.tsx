@@ -38,7 +38,7 @@ const FeaturedProduct = () => {
   };
 
   return (
-    <section className="py-24 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #F4FBFE 0%, #ffffff 50%, #F4FBFE 100%)' }}>
+    <section className="py-24 relative overflow-hidden"style={{ backgroundColor: '#F4FBFE' }}>
       {/* Background Accent */}
       <div className="absolute top-0 right-0 w-96 h-96 rounded-full opacity-5" style={{ background: 'radial-gradient(circle, #472160 0%, transparent 70%)' }}></div>
       
