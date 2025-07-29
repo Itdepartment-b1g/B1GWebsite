@@ -13,18 +13,18 @@ const XForgeProduct = () => {
     {
       name: "Midnight Black",
       color: "bg-gradient-to-br from-gray-900 to-black",
-      accent: "from-cyan-400 to-cyan-600",
+      accent: "from-[#02ECCF] to-[#02ECCF]",
       image: "https://images.unsplash.com/photo-1607721296229-d13fdc20fb2e?auto=format&fit=crop&w=600&q=80"
     },
     {
       name: "Arctic White",
       color: "bg-gradient-to-br from-gray-100 to-white",
-      accent: "from-cyan-400 to-cyan-600",
+      accent: "from-[#02ECCF] to-[#02ECCF]",
       image: "https://images.unsplash.com/photo-1582625165235-c4f5c6b96a1b?auto=format&fit=crop&w=600&q=80"
     },
     {
       name: "Cyber Cyan",
-      color: "bg-gradient-to-br from-cyan-400 to-cyan-600",
+      color: "bg-gradient-to-br from-[#02ECCF] to-[#02ECCF]",
       accent: "from-white to-gray-100",
       image: "https://images.unsplash.com/photo-1607721296229-d13fdc20fb2e?auto=format&fit=crop&w=600&q=80"
     }
@@ -34,7 +34,7 @@ const XForgeProduct = () => {
     {
       name: "Arctic Mint",
       description: "A refreshing blast of cool mint with icy undertones that awakens your senses",
-      color: "from-cyan-300 to-blue-400",
+      color: "from-[#02ECCF] to-blue-400",
       strength: "50mg",
       puffs: "2000+",
       image: "https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=400&q=80"
@@ -142,8 +142,8 @@ const XForgeProduct = () => {
       <style>
         {`
           @keyframes glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(6, 182, 212, 0.3); }
-            50% { box-shadow: 0 0 40px rgba(6, 182, 212, 0.6); }
+            0%, 100% { box-shadow: 0 0 20px rgba(2, 236, 207, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(2, 236, 207, 0.6); }
           }
           @keyframes float {
             0%, 100% { transform: translateY(0px); }
@@ -157,29 +157,29 @@ const XForgeProduct = () => {
           }
           .cyber-grid {
             background-image: 
-              linear-gradient(rgba(6, 182, 212, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(6, 182, 212, 0.1) 1px, transparent 1px);
+              linear-gradient(rgba(2, 236, 207, 0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(2, 236, 207, 0.1) 1px, transparent 1px);
             background-size: 50px 50px;
           }
         `}
       </style>
       
-      <main className="pt-20">
+      <main className="pt-16">
         {/* Hero Section */}
         <section className="relative py-20 overflow-hidden cyber-grid">
-          <div className="absolute inset-0 bg-gradient-to-br from-cyan-900/20 to-black/80"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-[#02ECCF]/0 to-black/70"></div>
           <div className="container mx-auto max-w-7xl px-6 relative z-10">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               {/* Product Info */}
               <div className="space-y-8">
                 <div className="space-y-4">
-                  <div className="inline-block px-4 py-2 bg-gradient-to-r from-cyan-400 to-cyan-600 text-black rounded-full text-sm font-bold tracking-wider">
+                  <div className="inline-block px-4 py-2 bg-[#02ECCF] text-black rounded-full text-sm font-bold tracking-wider">
                     NEXT-GEN VAPING
                   </div>
-                  <h1 className="text-6xl md:text-8xl font-black bg-gradient-to-r from-white via-cyan-200 to-cyan-400 bg-clip-text text-transparent">
+                  <h1 className="text-6xl md:text-8xl font-black bg-gradient-to-r from-white via-[#02ECCF] to-[#02ECCF] bg-clip-text text-transparent">
                     FORGE
                   </h1>
-                  <p className="text-2xl font-light text-cyan-200">
+                  <p className="text-2xl font-light text-[#02ECCF]">
                     The Future of Vaping Technology
                   </p>
                 </div>
@@ -192,9 +192,9 @@ const XForgeProduct = () => {
                 {/* Specifications */}
                 <div className="grid grid-cols-2 gap-4">
                   {specifications.map((spec, index) => (
-                    <div key={index} className="bg-gray-900/50 backdrop-blur-sm border border-cyan-500/30 rounded-lg p-4">
+                    <div key={index} className="bg-gray-900/50 backdrop-blur-sm border border-[#02ECCF]/30 rounded-lg p-4">
                       <div className="flex items-center space-x-3">
-                        <div className="w-8 h-8 bg-gradient-to-r from-cyan-400 to-cyan-600 rounded-lg flex items-center justify-center">
+                        <div className="w-8 h-8 bg-[#02ECCF] rounded-lg flex items-center justify-center">
                           <spec.icon size={16} className="text-black" />
                         </div>
                         <div>
@@ -207,7 +207,7 @@ const XForgeProduct = () => {
                 </div>
 
                 {/* User Manual Button */}
-                <button className="inline-flex items-center space-x-3 bg-gradient-to-r from-cyan-400 to-cyan-600 text-black px-8 py-4 rounded-lg font-bold hover:shadow-lg hover:shadow-cyan-400/50 transition-all duration-300 glow-animation">
+                <button className="inline-flex items-center space-x-3 bg-[#02ECCF] text-black px-8 py-4 rounded-lg font-bold hover:shadow-lg hover:shadow-[#02ECCF]/50 transition-all duration-300 glow-animation">
                   <Download size={20} />
                   <span>Download User Manual</span>
                 </button>
@@ -223,8 +223,8 @@ const XForgeProduct = () => {
                   />
                 </div>
                 {/* Glowing effects */}
-                <div className="absolute inset-0 bg-gradient-radial from-cyan-400/20 to-transparent blur-3xl"></div>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-400/10 rounded-full blur-3xl"></div>
+                <div className="absolute inset-0 bg-gradient-radial from-[#02ECCF]/10 to-transparent blur-3xl"></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#02ECCF]/5 rounded-full blur-3xl"></div>
               </div>
             </div>
           </div>
@@ -235,7 +235,7 @@ const XForgeProduct = () => {
           <div className="container mx-auto max-w-6xl px-6">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                Choose Your <span className="text-cyan-400">Style</span>
+                Choose Your <span className="text-[#02ECCF]">Style</span>
               </h2>
               <p className="text-gray-400 text-lg">Three distinct colorways for your unique personality</p>
             </div>
@@ -250,7 +250,7 @@ const XForgeProduct = () => {
                   }`}
                 >
                   <div className={`bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border-2 transition-all duration-300 ${
-                    selectedColor === index ? 'border-cyan-400 shadow-lg shadow-cyan-400/25' : 'border-gray-700 hover:border-cyan-500/50'
+                    selectedColor === index ? 'border-[#02ECCF] shadow-lg shadow-[#02ECCF]/25' : 'border-gray-700 hover:border-[#02ECCF]/50'
                   }`}>
                     <div className="relative mb-6">
                       <img
@@ -263,7 +263,7 @@ const XForgeProduct = () => {
                     <h3 className="text-xl font-bold text-white mb-2">{color.name}</h3>
                     <div className={`w-full h-3 rounded-full ${color.color} mb-4`}></div>
                     {selectedColor === index && (
-                      <div className="flex items-center space-x-2 text-cyan-400">
+                      <div className="flex items-center space-x-2 text-[#02ECCF]">
                         <Star size={16} fill="currentColor" />
                         <span className="text-sm font-semibold">Selected</span>
                       </div>
@@ -280,11 +280,11 @@ const XForgeProduct = () => {
           <div className="container mx-auto max-w-7xl px-6">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                Premium <span className="text-cyan-400">Flavors</span>
+                Premium <span className="text-[#02ECCF]">Flavors</span>
               </h2>
               <p className="text-gray-400 text-lg mb-8">Crafted for the ultimate taste experience</p>
               <div className="flex items-center justify-center space-x-4">
-                <span className="text-cyan-400 font-semibold">
+                <span className="text-[#02ECCF] font-semibold">
                   {currentFlavorIndex + 1}-{Math.min(currentFlavorIndex + 4, podFlavors.length)} of {podFlavors.length} flavors
                 </span>
               </div>
@@ -294,7 +294,7 @@ const XForgeProduct = () => {
             <div className="flex justify-center items-center mb-12">
               <button
                 onClick={prevFlavors}
-                className="w-12 h-12 bg-gray-800/50 backdrop-blur-sm border border-cyan-500/30 rounded-full flex items-center justify-center text-cyan-400 hover:bg-cyan-400/20 transition-all duration-300 mr-6"
+                className="w-12 h-12 bg-gray-800/50 backdrop-blur-sm border border-[#02ECCF]/30 rounded-full flex items-center justify-center text-[#02ECCF] hover:bg-[#02ECCF]/20 transition-all duration-300 mr-6"
               >
                 <ChevronLeft size={20} />
               </button>
@@ -305,7 +305,7 @@ const XForgeProduct = () => {
                     key={index}
                     onClick={() => setCurrentFlavorIndex(index * 4)}
                     className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                      Math.floor(currentFlavorIndex / 4) === index ? 'bg-cyan-400' : 'bg-gray-600'
+                      Math.floor(currentFlavorIndex / 4) === index ? 'bg-[#02ECCF]' : 'bg-gray-600'
                     }`}
                   />
                 ))}
@@ -313,7 +313,7 @@ const XForgeProduct = () => {
 
               <button
                 onClick={nextFlavors}
-                className="w-12 h-12 bg-gray-800/50 backdrop-blur-sm border border-cyan-500/30 rounded-full flex items-center justify-center text-cyan-400 hover:bg-cyan-400/20 transition-all duration-300 ml-6"
+                className="w-12 h-12 bg-gray-800/50 backdrop-blur-sm border border-[#02ECCF]/30 rounded-full flex items-center justify-center text-[#02ECCF] hover:bg-[#02ECCF]/20 transition-all duration-300 ml-6"
               >
                 <ChevronRight size={20} />
               </button>
@@ -331,7 +331,7 @@ const XForgeProduct = () => {
                     }`}
                   >
                     <div className={`bg-gray-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border-2 transition-all duration-300 ${
-                      selectedFlavor === actualIndex ? 'border-cyan-400 shadow-lg shadow-cyan-400/25' : 'border-gray-700 hover:border-cyan-500/50'
+                      selectedFlavor === actualIndex ? 'border-[#02ECCF] shadow-lg shadow-[#02ECCF]/25' : 'border-gray-700 hover:border-[#02ECCF]/50'
                     }`}>
                       <div className="relative h-48">
                         <img
@@ -344,16 +344,16 @@ const XForgeProduct = () => {
                           <span className="text-xs font-bold text-white">{flavor.strength}</span>
                         </div>
                         <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-sm rounded-full px-2 py-1">
-                          <span className="text-xs font-bold text-cyan-400">#{actualIndex + 1}</span>
+                          <span className="text-xs font-bold text-[#02ECCF]">#{actualIndex + 1}</span>
                         </div>
                       </div>
                       <div className="p-6">
                         <h3 className="text-xl font-bold text-white mb-2">{flavor.name}</h3>
                         <p className="text-gray-400 text-sm mb-4 leading-relaxed">{flavor.description}</p>
                         <div className="flex justify-between items-center">
-                          <span className="text-cyan-400 font-semibold">{flavor.puffs} Puffs</span>
+                          <span className="text-[#02ECCF] font-semibold">{flavor.puffs} Puffs</span>
                           {selectedFlavor === actualIndex && (
-                            <div className="flex items-center space-x-1 text-cyan-400">
+                            <div className="flex items-center space-x-1 text-[#02ECCF]">
                               <Star size={14} fill="currentColor" />
                               <span className="text-xs font-semibold">Selected</span>
                             </div>
@@ -368,19 +368,19 @@ const XForgeProduct = () => {
 
             {/* Flavor Summary */}
             <div className="mt-12 text-center">
-              <div className="bg-gray-800/30 backdrop-blur-sm border border-cyan-500/30 rounded-2xl p-6 max-w-2xl mx-auto">
+              <div className="bg-gray-800/30 backdrop-blur-sm border border-[#02ECCF]/30 rounded-2xl p-6 max-w-2xl mx-auto">
                 <h3 className="text-2xl font-bold text-white mb-4">
-                  Currently Selected: <span className="text-cyan-400">{podFlavors[selectedFlavor].name}</span>
+                  Currently Selected: <span className="text-[#02ECCF]">{podFlavors[selectedFlavor].name}</span>
                 </h3>
                 <p className="text-gray-300 mb-4">{podFlavors[selectedFlavor].description}</p>
                 <div className="flex justify-center space-x-8">
                   <div className="text-center">
                     <p className="text-gray-400 text-sm">Strength</p>
-                    <p className="text-cyan-400 font-bold">{podFlavors[selectedFlavor].strength}</p>
+                    <p className="text-[#02ECCF] font-bold">{podFlavors[selectedFlavor].strength}</p>
                   </div>
                   <div className="text-center">
                     <p className="text-gray-400 text-sm">Puffs</p>
-                    <p className="text-cyan-400 font-bold">{podFlavors[selectedFlavor].puffs}</p>
+                    <p className="text-[#02ECCF] font-bold">{podFlavors[selectedFlavor].puffs}</p>
                   </div>
                 </div>
               </div>
@@ -389,19 +389,19 @@ const XForgeProduct = () => {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-r from-cyan-900/30 via-black to-cyan-900/30 cyber-grid">
+        <section className="py-20 bg-gradient-to-r from-[#02ECCF]/30 via-black to-[#02ECCF]/30 cyber-grid">
           <div className="container mx-auto max-w-4xl px-6 text-center">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Ready to Experience the <span className="text-cyan-400">Future</span>?
+              Ready to Experience the <span className="text-[#02ECCF]">Future</span>?
             </h2>
             <p className="text-xl text-gray-300 mb-10 leading-relaxed">
               Join thousands of satisfied users who have already upgraded to X-Forge technology.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="px-8 py-4 bg-gradient-to-r from-cyan-400 to-cyan-600 text-black rounded-lg font-bold hover:shadow-lg hover:shadow-cyan-400/50 transition-all duration-300">
+              <button className="px-8 py-4 bg-[#02ECCF] text-black rounded-lg font-bold hover:shadow-lg hover:shadow-[#02ECCF]/50 transition-all duration-300">
                 Find Retailers
               </button>
-              <button className="px-8 py-4 border-2 border-cyan-400 text-cyan-400 rounded-lg font-bold hover:bg-cyan-400 hover:text-black transition-all duration-300">
+              <button className="px-8 py-4 border-2 border-[#02ECCF] text-[#02ECCF] rounded-lg font-bold hover:bg-[#02ECCF] hover:text-black transition-all duration-300">
                 Learn More
               </button>
             </div>
