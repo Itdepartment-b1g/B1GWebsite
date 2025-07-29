@@ -176,9 +176,9 @@ const XForgeProduct = () => {
                   <div className="inline-block px-4 py-2 bg-[#02ECCF] text-[#292929] rounded-full text-sm font-bold tracking-wider">
                     PREMIUM TECHNOLOGY
                   </div>
-                  <h1 className="text-6xl md:text-8xl font-black bg-gradient-to-r from-[#D6D6D6] via-[#02ECCF] to-[#02ECCF] bg-clip-text text-transparent">
-                    FORGE
-                  </h1>
+                                  <h1 className="text-6xl md:text-8xl font-black text-[#02ECCF] [text-shadow:none] [-webkit-text-stroke:0] [text-stroke:0]">
+                  FORGE
+                </h1>
                   <p className="text-2xl font-light text-[#A8A8A8]">
                     Where Innovation Meets Elegance
                   </p>
@@ -235,7 +235,7 @@ const XForgeProduct = () => {
           <div className="container mx-auto max-w-6xl px-6">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-[#D6D6D6] mb-4">
-                Choose Your <span className="text-[#02ECCF]">Prestige</span>
+                Choose Your <span className="text-[#02ECCF] [text-shadow:none] [-webkit-text-stroke:0] [text-stroke:0]">Prestige</span>
               </h2>
               <p className="text-[#A8A8A8] text-lg">Three distinct finishes for the discerning connoisseur</p>
             </div>
@@ -263,7 +263,7 @@ const XForgeProduct = () => {
                     <h3 className="text-xl font-bold text-[#D6D6D6] mb-2">{color.name}</h3>
                     <div className={`w-full h-3 rounded-full ${color.color} mb-4`}></div>
                     {selectedColor === index && (
-                      <div className="flex items-center space-x-2 text-[#02ECCF]">
+                      <div className="flex items-center space-x-2 text-[#02ECCF] [text-shadow:none] [-webkit-text-stroke:0] [text-stroke:0]">
                         <Star size={16} fill="currentColor" />
                         <span className="text-sm font-semibold">Selected</span>
                       </div>
@@ -280,11 +280,11 @@ const XForgeProduct = () => {
           <div className="container mx-auto max-w-7xl px-6">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-[#D6D6D6] mb-4">
-                Versatile <span className="text-[#02ECCF]">Experiences</span>
+                Versatile <span className="text-[#02ECCF] [text-shadow:none] [-webkit-text-stroke:0] [text-stroke:0]">Experiences</span>
               </h2>
               <p className="text-[#A8A8A8] text-lg mb-8">Crafted for every occasion and preference</p>
               <div className="flex items-center justify-center space-x-4">
-                <span className="text-[#02ECCF] font-semibold">
+                <span className="text-[#02ECCF] font-semibold [text-shadow:none] [-webkit-text-stroke:0] [text-stroke:0]">
                   {currentFlavorIndex + 1}-{Math.min(currentFlavorIndex + 4, podFlavors.length)} of {podFlavors.length} flavors
                 </span>
               </div>
@@ -344,14 +344,14 @@ const XForgeProduct = () => {
                           <span className="text-xs font-bold text-[#D6D6D6]">{flavor.strength}</span>
                         </div>
                         <div className="absolute top-4 left-4 bg-[#292929]/70 backdrop-blur-sm rounded-full px-2 py-1">
-                          <span className="text-xs font-bold text-[#02ECCF]">#{actualIndex + 1}</span>
+                          <span className="text-xs font-bold text-[#02ECCF] [text-shadow:none] [-webkit-text-stroke:0] [text-stroke:0]">#{actualIndex + 1}</span>
                         </div>
                       </div>
                       <div className="p-6">
                         <h3 className="text-xl font-bold text-[#D6D6D6] mb-2">{flavor.name}</h3>
                         <p className="text-[#A8A8A8] text-sm mb-4 leading-relaxed">{flavor.description}</p>
                         <div className="flex justify-between items-center">
-                          <span className="text-[#02ECCF] font-semibold">{flavor.puffs} Puffs</span>
+                          <span className="text-[#02ECCF] font-semibold [text-shadow:none] [-webkit-text-stroke:0] [text-stroke:0]">{flavor.puffs} Puffs</span>
                           {selectedFlavor === actualIndex && (
                             <div className="flex items-center space-x-1 text-[#02ECCF]">
                               <Star size={14} fill="currentColor" />
@@ -370,17 +370,17 @@ const XForgeProduct = () => {
             <div className="mt-12 text-center">
               <div className="bg-[#1a1a1a]/30 backdrop-blur-sm border border-[#D6D6D6]/20 rounded-2xl p-6 max-w-2xl mx-auto">
                 <h3 className="text-2xl font-bold text-[#D6D6D6] mb-4">
-                  Currently Selected: <span className="text-[#02ECCF]">{podFlavors[selectedFlavor].name}</span>
+                  Currently Selected: <span className="text-[#02ECCF] [text-shadow:none] [-webkit-text-stroke:0] [text-stroke:0]">{podFlavors[selectedFlavor].name}</span>
                 </h3>
                 <p className="text-[#A8A8A8] mb-4">{podFlavors[selectedFlavor].description}</p>
                 <div className="flex justify-center space-x-8">
                                       <div className="text-center">
                       <p className="text-[#A8A8A8] text-sm">Strength</p>
-                      <p className="text-[#02ECCF] font-bold">{podFlavors[selectedFlavor].strength}</p>
+                      <p className="text-[#02ECCF] font-bold [text-shadow:none] [-webkit-text-stroke:0] [text-stroke:0]">{podFlavors[selectedFlavor].strength}</p>
                     </div>
                     <div className="text-center">
                       <p className="text-[#A8A8A8] text-sm">Puffs</p>
-                      <p className="text-[#02ECCF] font-bold">{podFlavors[selectedFlavor].puffs}</p>
+                      <p className="text-[#02ECCF] font-bold [text-shadow:none] [-webkit-text-stroke:0] [text-stroke:0]">{podFlavors[selectedFlavor].puffs}</p>
                     </div>
                 </div>
               </div>
@@ -392,7 +392,7 @@ const XForgeProduct = () => {
         <section className="py-20 bg-gradient-to-r from-[#02ECCF]/30 via-[#292929] to-[#02ECCF]/30 cyber-grid">
           <div className="container mx-auto max-w-4xl px-6 text-center">
             <h2 className="text-4xl md:text-5xl font-bold text-[#D6D6D6] mb-6">
-              Ready to Experience <span className="text-[#02ECCF]">Prestige</span>?
+                              Ready to Experience <span className="text-[#02ECCF] [text-shadow:none] [-webkit-text-stroke:0] [text-stroke:0]">Prestige</span>?
             </h2>
             <p className="text-xl text-[#A8A8A8] mb-10 leading-relaxed">
               Join discerning connoisseurs who have already elevated their experience with X-Forge.
