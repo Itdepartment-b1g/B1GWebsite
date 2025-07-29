@@ -134,7 +134,7 @@ const News = () => {
                 </div>
                 
                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight">
-                  News & <span className="text-[#FF9BFF] [text-shadow:none] [-webkit-text-stroke:0] [text-stroke:0]">EVENTS</span>
+                  News & EVENTS
                 </h1>
                 
                 <p className="text-xl text-white/80 leading-relaxed mb-8 max-w-lg">

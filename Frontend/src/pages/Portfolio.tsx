@@ -65,10 +65,10 @@ const Support = () => {
 
   const contactMethods = [
     {
-      title: "Live Chat",
-      description: "Get instant help from our support team",
+      title: "Location",
+      description: "Visit our corporate headquarters",
       icon: MessageCircle,
-      action: "Start Chat",
+      action: "View Map",
       color: "bg-[#FF9BFF] text-[#472160]"
     },
     {
@@ -80,17 +80,10 @@ const Support = () => {
     },
     {
       title: "Email Support",
-      description: "Send us a detailed message",
+      description: "Contact us via email",
       icon: Mail,
-      action: "Send Email",
+      action: "b1gcorporationofficial@gmail.com",
       color: "bg-[#FF9BFF] text-[#472160]"
-    },
-    {
-      title: "Knowledge Base",
-      description: "Browse our comprehensive guides",
-      icon: FileText,
-      action: "Browse Articles",
-      color: "bg-[#472160] text-white"
     }
   ];
 
@@ -115,7 +108,7 @@ const Support = () => {
               </div>
               
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight">
-                Support & <span className="text-[#FF9BFF] [text-shadow:none] [-webkit-text-stroke:0] [text-stroke:0]">Assistance</span>
+                Support & Assistance
               </h1>
               
               <p className="text-xl text-white/80 leading-relaxed mb-8 max-w-lg">
@@ -169,7 +162,7 @@ const Support = () => {
             <div className="w-20 h-1 bg-[#FF9BFF]"></div>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-3 gap-6">
             {contactMethods.map((method, index) => (
               <Card key={index} className="bg-white shadow-lg border border-[#7A7f83]/20 rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 group transform hover:-translate-y-2">
                 <CardHeader className="text-center pb-4">

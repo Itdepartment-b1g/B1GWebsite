@@ -3,10 +3,6 @@ import Footer from "@/components/Footer";
 import { Download, Zap, Battery, Droplets, Shield, Star, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import xforgeImage from "@/assets/image.png";
-import graphiteGrayImage from "@/assets/GraphiteGray.png";
-import obsidianBlackImage from "@/assets/ObsidianBlack.png";
-import vividCyanImage from "@/assets/VividCyan.png";
 
 const XForgeProduct = () => {
   const [selectedColor, setSelectedColor] = useState(0);
@@ -15,22 +11,22 @@ const XForgeProduct = () => {
 
   const deviceColors = [
     {
-      name: "Obsidian Black",
+      name: "Prestige Charcoal",
       color: "bg-gradient-to-br from-[#292929] to-[#1a1a1a]",
       accent: "from-[#02ECCF] to-[#02ECCF]",
-      image: obsidianBlackImage
+      image: "https://images.unsplash.com/photo-1607721296229-d13fdc20fb2e?auto=format&fit=crop&w=600&q=80"
     },
     {
-      name: "Graphite Gray",
+      name: "Modern Silver",
       color: "bg-gradient-to-br from-[#D6D6D6] to-[#A8A8A8]",
       accent: "from-[#02ECCF] to-[#02ECCF]",
-      image: graphiteGrayImage
+      image: "https://images.unsplash.com/photo-1582625165235-c4f5c6b96a1b?auto=format&fit=crop&w=600&q=80"
     },
     {
-      name: "Vivid Cyan",
+      name: "Cyber Aqua",
       color: "bg-gradient-to-br from-[#02ECCF] to-[#00B8A9]",
       accent: "from-[#292929] to-[#1a1a1a]",
-      image: vividCyanImage
+      image: "https://images.unsplash.com/photo-1607721296229-d13fdc20fb2e?auto=format&fit=crop&w=600&q=80"
     }
   ];
 
@@ -221,9 +217,9 @@ const XForgeProduct = () => {
               <div className="relative">
                 <div className="float-animation">
                   <img
-                    src={xforgeImage}
+                    src={deviceColors[selectedColor].image}
                     alt="X-Forge Device"
-                    className="w-full max-w-md mx-auto drop-shadow-2xl filter brightness-110 contrast-110 object-contain"
+                    className="w-full max-w-md mx-auto drop-shadow-2xl filter brightness-110 contrast-110"
                   />
                 </div>
                 {/* Glowing effects */}
@@ -260,7 +256,7 @@ const XForgeProduct = () => {
                       <img
                         src={color.image}
                         alt={color.name}
-                        className="w-full h-48 object-contain rounded-lg"
+                        className="w-full h-48 object-cover rounded-lg"
                       />
                       <div className={`absolute inset-0 ${color.color} opacity-20 rounded-lg`}></div>
                     </div>
