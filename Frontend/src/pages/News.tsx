@@ -17,7 +17,7 @@ const News = () => {
       category: "Product Launch",
       date: "2024-01-15",
       readTime: "5 min read",
-      image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=800&q=80",
+      image: "https://scontent.fmnl17-1.fna.fbcdn.net/v/t39.30808-6/508434903_122139464918792390_4176012342918639878_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=5jFJ-qmN-u4Q7kNvwFrQm9r&_nc_oc=Adkozl46YP46RcoNS5Qx2s49P6w1KYXo7kvdD-Oz7DsXH2gmYD_tdFVjleyuBzN2joo&_nc_zt=23&_nc_ht=scontent.fmnl17-1.fna&_nc_gid=_sqWZqoZmj1Rs4YAfbibdQ&oh=00_AfS1sP6cIeHyFFe3gcgBwJ_km3TL4X8L_UT_YqADVZO7hw&oe=688E437C",
       featured: true,
       author: "B1G Editorial Team",
       tags: ["Innovation", "Technology", "Product Launch", "X-Forge"]
@@ -134,7 +134,7 @@ const News = () => {
                 </div>
                 
                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight">
-                  News & <span className="text-[#FF9BFF] [text-shadow:none] [-webkit-text-stroke:0] [text-stroke:0]">EVENTS</span>
+                  News & EVENTS
                 </h1>
                 
                 <p className="text-xl text-white/80 leading-relaxed mb-8 max-w-lg">
