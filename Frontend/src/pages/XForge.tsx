@@ -137,7 +137,7 @@ const XForgeProduct = () => {
   ];
 
   return (
-          <div className="min-h-screen bg-[#292929] text-[#D6D6D6]">
+          <div className="min-h-screen bg-[#292929] text-[#D6D6D6] font-montserrat-regular">
       <Header alwaysShowBg={true} />
       <style>
         {`
@@ -176,15 +176,15 @@ const XForgeProduct = () => {
                   <div className="inline-block px-4 py-2 bg-[#02ECCF] text-[#292929] rounded-full text-sm font-bold tracking-wider">
                     PREMIUM TECHNOLOGY
                   </div>
-                  <h1 className="text-6xl md:text-8xl font-black bg-gradient-to-r from-[#D6D6D6] via-[#02ECCF] to-[#02ECCF] bg-clip-text text-transparent">
+                  <h1 className="text-6xl md:text-8xl font-montserrat-bold text-[#02ECCF]">
                     FORGE
                   </h1>
-                  <p className="text-2xl font-light text-[#A8A8A8]">
+                  <p className="text-2xl font-montserrat-light text-[#A8A8A8]">
                     Where Innovation Meets Elegance
                   </p>
                 </div>
 
-                <p className="text-lg text-[#A8A8A8] leading-relaxed max-w-lg">
+                <p className="text-lg text-[#A8A8A8] leading-relaxed max-w-lg font-montserrat-regular">
                   Experience the pinnacle of craftsmanship with X-Forge. Engineered with precision, 
                   designed for versatility, and crafted for the ultimate premium experience.
                 </p>
@@ -207,7 +207,7 @@ const XForgeProduct = () => {
                 </div>
 
                 {/* User Manual Button */}
-                <button className="inline-flex items-center space-x-3 bg-[#02ECCF] text-[#292929] px-8 py-4 rounded-lg font-bold hover:shadow-lg hover:shadow-[#02ECCF]/50 transition-all duration-300 glow-animation">
+                <button className="inline-flex items-center space-x-3 bg-[#02ECCF] text-[#292929] px-8 py-4 rounded-lg font-montserrat-bold hover:shadow-lg hover:shadow-[#02ECCF]/50 transition-all duration-300 glow-animation">
                   <Download size={20} />
                   <span>Download User Manual</span>
                 </button>
@@ -234,10 +234,10 @@ const XForgeProduct = () => {
         <section className="py-20 bg-gradient-to-b from-[#292929] to-[#1a1a1a]">
           <div className="container mx-auto max-w-6xl px-6">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-[#D6D6D6] mb-4">
+              <h2 className="text-4xl md:text-5xl font-montserrat-bold text-[#D6D6D6] mb-4">
                 Choose Your <span className="text-[#02ECCF]">Prestige</span>
               </h2>
-              <p className="text-[#A8A8A8] text-lg">Three distinct finishes for the discerning connoisseur</p>
+              <p className="text-[#A8A8A8] text-lg font-montserrat-regular">Three distinct finishes for the discerning connoisseur</p>
             </div>
 
             <div className="grid md:grid-cols-3 gap-8">
@@ -260,7 +260,7 @@ const XForgeProduct = () => {
                       />
                       <div className={`absolute inset-0 ${color.color} opacity-20 rounded-lg`}></div>
                     </div>
-                    <h3 className="text-xl font-bold text-[#D6D6D6] mb-2">{color.name}</h3>
+                    <h3 className="text-xl font-montserrat-bold text-[#D6D6D6] mb-2">{color.name}</h3>
                     <div className={`w-full h-3 rounded-full ${color.color} mb-4`}></div>
                     {selectedColor === index && (
                       <div className="flex items-center space-x-2 text-[#02ECCF]">
@@ -279,10 +279,10 @@ const XForgeProduct = () => {
         <section className="py-20 bg-gradient-to-b from-[#1a1a1a] to-[#292929]">
           <div className="container mx-auto max-w-7xl px-6">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-[#D6D6D6] mb-4">
+              <h2 className="text-4xl md:text-5xl font-montserrat-bold text-[#D6D6D6] mb-4">
                 Versatile <span className="text-[#02ECCF]">Experiences</span>
               </h2>
-              <p className="text-[#A8A8A8] text-lg mb-8">Crafted for every occasion and preference</p>
+              <p className="text-[#A8A8A8] text-lg mb-8 font-montserrat-regular">Crafted for every occasion and preference</p>
               <div className="flex items-center justify-center space-x-4">
                 <span className="text-[#02ECCF] font-semibold">
                   {currentFlavorIndex + 1}-{Math.min(currentFlavorIndex + 4, podFlavors.length)} of {podFlavors.length} flavors
@@ -348,8 +348,8 @@ const XForgeProduct = () => {
                         </div>
                       </div>
                       <div className="p-6">
-                        <h3 className="text-xl font-bold text-[#D6D6D6] mb-2">{flavor.name}</h3>
-                        <p className="text-[#A8A8A8] text-sm mb-4 leading-relaxed">{flavor.description}</p>
+                        <h3 className="text-xl font-montserrat-bold text-[#D6D6D6] mb-2">{flavor.name}</h3>
+                        <p className="text-[#A8A8A8] text-sm mb-4 leading-relaxed font-montserrat-regular">{flavor.description}</p>
                         <div className="flex justify-between items-center">
                           <span className="text-[#02ECCF] font-semibold">{flavor.puffs} Puffs</span>
                           {selectedFlavor === actualIndex && (
@@ -369,10 +369,10 @@ const XForgeProduct = () => {
             {/* Flavor Summary */}
             <div className="mt-12 text-center">
               <div className="bg-[#1a1a1a]/30 backdrop-blur-sm border border-[#D6D6D6]/20 rounded-2xl p-6 max-w-2xl mx-auto">
-                <h3 className="text-2xl font-bold text-[#D6D6D6] mb-4">
+                <h3 className="text-2xl font-montserrat-bold text-[#D6D6D6] mb-4">
                   Currently Selected: <span className="text-[#02ECCF]">{podFlavors[selectedFlavor].name}</span>
                 </h3>
-                <p className="text-[#A8A8A8] mb-4">{podFlavors[selectedFlavor].description}</p>
+                <p className="text-[#A8A8A8] mb-4 font-montserrat-regular">{podFlavors[selectedFlavor].description}</p>
                 <div className="flex justify-center space-x-8">
                                       <div className="text-center">
                       <p className="text-[#A8A8A8] text-sm">Strength</p>
@@ -391,17 +391,17 @@ const XForgeProduct = () => {
         {/* CTA Section */}
         <section className="py-20 bg-gradient-to-r from-[#02ECCF]/30 via-[#292929] to-[#02ECCF]/30 cyber-grid">
           <div className="container mx-auto max-w-4xl px-6 text-center">
-            <h2 className="text-4xl md:text-5xl font-bold text-[#D6D6D6] mb-6">
+            <h2 className="text-4xl md:text-5xl font-montserrat-bold text-[#D6D6D6] mb-6">
               Ready to Experience <span className="text-[#02ECCF]">Prestige</span>?
             </h2>
-            <p className="text-xl text-[#A8A8A8] mb-10 leading-relaxed">
+            <p className="text-xl text-[#A8A8A8] mb-10 leading-relaxed font-montserrat-regular">
               Join discerning connoisseurs who have already elevated their experience with X-Forge.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="px-8 py-4 bg-[#02ECCF] text-[#292929] rounded-lg font-bold hover:shadow-lg hover:shadow-[#02ECCF]/50 transition-all duration-300">
+              <button className="px-8 py-4 bg-[#02ECCF] text-[#292929] rounded-lg font-montserrat-bold hover:shadow-lg hover:shadow-[#02ECCF]/50 transition-all duration-300">
                 Find Retailers
               </button>
-              <button className="px-8 py-4 border-2 border-[#02ECCF] text-[#02ECCF] rounded-lg font-bold hover:bg-[#02ECCF] hover:text-[#292929] transition-all duration-300">
+              <button className="px-8 py-4 border-2 border-[#02ECCF] text-[#02ECCF] rounded-lg font-montserrat-bold hover:bg-[#02ECCF] hover:text-[#292929] transition-all duration-300">
                 Learn More
               </button>
             </div>

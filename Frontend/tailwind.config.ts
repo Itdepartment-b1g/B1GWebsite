@@ -24,6 +24,10 @@ export default {
 				'now-thin': ['Now', 'sans-serif'],
 				'now-light': ['Now', 'sans-serif'],
 				'now-medium': ['Now', 'sans-serif'],
+				'montserrat': ['Montserrat', 'sans-serif'],
+				'montserrat-light': ['Montserrat', 'sans-serif'],
+				'montserrat-regular': ['Montserrat', 'sans-serif'],
+				'montserrat-bold': ['Montserrat', 'sans-serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
