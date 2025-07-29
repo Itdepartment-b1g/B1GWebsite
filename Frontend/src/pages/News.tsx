@@ -113,19 +113,71 @@ const News = () => {
       
       <main className="pt-10">
         {/* Hero Section */}
-        <section className="relative py-20 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#000204] to-[#F4FBFE]"></div>
+        <section className="relative py-32 overflow-hidden">
+          {/* Background with gradient and pattern */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[#000204] via-[#472160]/80 to-[#F4FBFE]"></div>
+          <div className="absolute inset-0 opacity-50">
+            <div className="absolute inset-0 bg-gradient-to-br from-[#000204] via-[#472160]/80 to-[#F4FBFE]"></div>
+            <div className="absolute inset-0" style={{
+              backgroundImage: `radial-gradient(circle at 25% 25%, rgba(255, 155, 255, 0.1) 0%, transparent 50%),
+                               radial-gradient(circle at 75% 75%, rgba(255, 155, 255, 0.05) 0%, transparent 50%)`
+            }}></div>
+          </div>
+          
           <div className="container mx-auto max-w-7xl px-6 relative z-10">
-            <div className="text-center max-w-4xl mx-auto">
-              <div className="inline-block px-4 py-2 bg-[#FF9BFF] text-[#472160] rounded-full text-sm font-bold tracking-wider mb-6">
-                LATEST UPDATES
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+              {/* Content */}
+              <div className="text-left">
+                <div className="inline-flex items-center space-x-2 px-4 py-2 bg-[#FF9BFF]/20 border border-[#FF9BFF]/30 rounded-full text-sm font-semibold text-[#FF9BFF] mb-8">
+                  <div className="w-2 h-2 bg-[#FF9BFF] rounded-full animate-pulse"></div>
+                  <span>LATEST UPDATES</span>
+                </div>
+                
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight">
+                  News & <span className="text-[#FF9BFF] [text-shadow:none] [-webkit-text-stroke:0] [text-stroke:0]">EVENTS</span>
+                </h1>
+                
+                <p className="text-xl text-white/80 leading-relaxed mb-8 max-w-lg">
+                  Stay informed about the latest innovations, company milestones, and industry developments from B1G Corporation.
+                </p>
+                
+                <div className="flex flex-wrap gap-4">
+                  <div className="flex items-center space-x-2 text-white/70">
+                    <div className="w-2 h-2 bg-[#FF9BFF] rounded-full"></div>
+                    <span className="text-sm">Latest Articles</span>
+                  </div>
+                  <div className="flex items-center space-x-2 text-white/70">
+                    <div className="w-2 h-2 bg-[#FF9BFF] rounded-full"></div>
+                    <span className="text-sm">Industry Updates</span>
+                  </div>
+                  <div className="flex items-center space-x-2 text-white/70">
+                    <div className="w-2 h-2 bg-[#FF9BFF] rounded-full"></div>
+                    <span className="text-sm">Company News</span>
+                  </div>
+                </div>
               </div>
-              <h1 className="text-5xl md:text-7xl font-black text-white mb-6">
-                News & Insights
-              </h1>
-              <p className="text-xl text-[#7A7f83] leading-relaxed">
-                Stay informed about the latest innovations, company milestones, and industry developments from B1G Corporation.
-              </p>
+              
+              {/* Visual Element */}
+              <div className="relative">
+                <div className="relative z-10">
+                  <div className="w-full h-80 bg-gradient-to-br from-[#FF9BFF]/20 to-[#472160]/20 rounded-2xl border border-[#FF9BFF]/20 backdrop-blur-sm flex items-center justify-center">
+                    <div className="text-center">
+                      <div className="w-16 h-16 bg-[#FF9BFF]/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg className="w-8 h-8 text-[#FF9BFF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                        </svg>
+                      </div>
+                      <h3 className="text-white font-semibold mb-2">Stay Updated</h3>
+                      <p className="text-white/60 text-sm">Discover our latest stories</p>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Floating elements */}
+                <div className="absolute -top-4 -right-4 w-8 h-8 bg-[#FF9BFF]/30 rounded-full animate-bounce"></div>
+                <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-[#FF9BFF]/20 rounded-full animate-pulse"></div>
+                <div className="absolute top-1/2 -right-8 w-4 h-4 bg-[#FF9BFF]/40 rounded-full animate-ping"></div>
+              </div>
             </div>
           </div>
         </section>

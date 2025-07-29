@@ -267,7 +267,7 @@ const XForgeProduct = () => {
                     <h3 className="text-xl font-montserrat-bold text-[#D6D6D6] mb-2">{color.name}</h3>
                     <div className={`w-full h-3 rounded-full ${color.color} mb-4`}></div>
                     {selectedColor === index && (
-                      <div className="flex items-center space-x-2 text-[#02ECCF]">
+                      <div className="flex items-center space-x-2 text-[#02ECCF] [text-shadow:none] [-webkit-text-stroke:0] [text-stroke:0]">
                         <Star size={16} fill="currentColor" />
                         <span className="text-sm font-semibold">Selected</span>
                       </div>
@@ -288,7 +288,7 @@ const XForgeProduct = () => {
               </h2>
               <p className="text-[#A8A8A8] text-lg mb-8 font-montserrat-regular">Crafted for every occasion and preference</p>
               <div className="flex items-center justify-center space-x-4">
-                <span className="text-[#02ECCF] font-semibold">
+                <span className="text-[#02ECCF] font-semibold [text-shadow:none] [-webkit-text-stroke:0] [text-stroke:0]">
                   {currentFlavorIndex + 1}-{Math.min(currentFlavorIndex + 4, podFlavors.length)} of {podFlavors.length} flavors
                 </span>
               </div>
@@ -348,14 +348,14 @@ const XForgeProduct = () => {
                           <span className="text-xs font-bold text-[#D6D6D6]">{flavor.strength}</span>
                         </div>
                         <div className="absolute top-4 left-4 bg-[#292929]/70 backdrop-blur-sm rounded-full px-2 py-1">
-                          <span className="text-xs font-bold text-[#02ECCF]">#{actualIndex + 1}</span>
+                          <span className="text-xs font-bold text-[#02ECCF] [text-shadow:none] [-webkit-text-stroke:0] [text-stroke:0]">#{actualIndex + 1}</span>
                         </div>
                       </div>
                       <div className="p-6">
                         <h3 className="text-xl font-montserrat-bold text-[#D6D6D6] mb-2">{flavor.name}</h3>
                         <p className="text-[#A8A8A8] text-sm mb-4 leading-relaxed font-montserrat-regular">{flavor.description}</p>
                         <div className="flex justify-between items-center">
-                          <span className="text-[#02ECCF] font-semibold">{flavor.puffs} Puffs</span>
+                          <span className="text-[#02ECCF] font-semibold [text-shadow:none] [-webkit-text-stroke:0] [text-stroke:0]">{flavor.puffs} Puffs</span>
                           {selectedFlavor === actualIndex && (
                             <div className="flex items-center space-x-1 text-[#02ECCF]">
                               <Star size={14} fill="currentColor" />
@@ -380,11 +380,11 @@ const XForgeProduct = () => {
                 <div className="flex justify-center space-x-8">
                                       <div className="text-center">
                       <p className="text-[#A8A8A8] text-sm">Strength</p>
-                      <p className="text-[#02ECCF] font-bold">{podFlavors[selectedFlavor].strength}</p>
+                      <p className="text-[#02ECCF] font-bold [text-shadow:none] [-webkit-text-stroke:0] [text-stroke:0]">{podFlavors[selectedFlavor].strength}</p>
                     </div>
                     <div className="text-center">
                       <p className="text-[#A8A8A8] text-sm">Puffs</p>
-                      <p className="text-[#02ECCF] font-bold">{podFlavors[selectedFlavor].puffs}</p>
+                      <p className="text-[#02ECCF] font-bold [text-shadow:none] [-webkit-text-stroke:0] [text-stroke:0]">{podFlavors[selectedFlavor].puffs}</p>
                     </div>
                 </div>
               </div>

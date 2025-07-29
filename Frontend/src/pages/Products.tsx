@@ -69,7 +69,7 @@ const Products = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-    }, 8);
+    }, 8000); // Changed to 8000ms (8 seconds)
     return () => clearInterval(timer);
   }, [heroSlides.length]);
 
@@ -102,30 +102,32 @@ const Products = () => {
             {heroSlides.map((slide, index) => (
               <div
                 key={index}
-                className={`absolute inset-0 transition-opacity duration-1000 ${
-                  index === currentSlide ? 'opacity-100' : 'opacity-0'
+                className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
+                  index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'
                 }`}
+                style={{
+                  backgroundImage: `url(${slide.image})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat'
+                }}
               >
-                <div
-                  className="absolute inset-0 bg-cover bg-center"
-                  style={{ backgroundImage: `url(${slide.image})` }}
-                />
                 <div className={`absolute inset-0 bg-gradient-to-r ${slide.gradient}`} />
               </div>
             ))}
           </div>
 
           {/* Slideshow Content */}
-          <div className="relative z-10 h-full flex items-center">
+          <div className="relative z-20 h-full flex items-center">
             <div className="container mx-auto max-w-6xl px-6">
               <div className="text-center text-white space-y-6">
-                <h1 className="text-6xl md:text-8xl font-bold mb-4 animate-fade-in">
+                <h1 className="text-6xl md:text-8xl font-bold mb-4 transition-all duration-1000 ease-in-out">
                   {heroSlides[currentSlide].title}
                 </h1>
-                <p className="text-2xl md:text-3xl font-light mb-6 animate-fade-in">
+                <p className="text-2xl md:text-3xl font-light mb-6 transition-all duration-1000 ease-in-out">
                   {heroSlides[currentSlide].subtitle}
                 </p>
-                <p className="text-lg md:text-xl max-w-2xl mx-auto animate-fade-in">
+                <p className="text-lg md:text-xl max-w-2xl mx-auto transition-all duration-1000 ease-in-out">
                   {heroSlides[currentSlide].description}
                 </p>
               </div>
@@ -135,19 +137,19 @@ const Products = () => {
           {/* Navigation Arrows */}
           <button
             onClick={prevSlide}
-            className="absolute left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all duration-300"
+            className="absolute left-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all duration-300"
           >
             <ChevronLeft size={20} />
           </button>
           <button
             onClick={nextSlide}
-            className="absolute right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all duration-300"
+            className="absolute right-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all duration-300"
           >
             <ChevronRight size={20} />
           </button>
 
           {/* Slide Indicators */}
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex space-x-3">
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex space-x-3">
             {heroSlides.map((_, index) => (
               <button
                 key={index}
@@ -160,7 +162,7 @@ const Products = () => {
           </div>
 
           {/* Scroll indicator */}
-          <div className="absolute bottom-8 right-8 z-20 text-white/70 text-sm animate-bounce">
+          <div className="absolute bottom-8 right-8 z-30 text-white/70 text-sm animate-bounce">
             <div className="flex flex-col items-center space-y-2">
               <span>Scroll to explore</span>
               <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">

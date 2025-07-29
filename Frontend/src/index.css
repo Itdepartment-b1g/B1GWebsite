@@ -7,6 +7,8 @@
   font-weight: 100;
   font-style: normal;
   font-display: swap;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 @font-face {
@@ -15,6 +17,8 @@
   font-weight: 100;
   font-style: normal;
   font-display: swap;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 @font-face {
@@ -153,6 +157,26 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  /* Remove text stroke/border effects from all colored text */
+  .text-\[#FF9BFF\], .text-\[#02ECCF\], .text-\[#472160\] {
+    text-shadow: none !important;
+    -webkit-text-stroke: 0 !important;
+    text-stroke: 0 !important;
+  }
+  
+  /* Remove all text stroke effects globally */
+  * {
+    -webkit-text-stroke: 0 !important;
+    text-stroke: 0 !important;
+  }
+  
+  /* Specifically target all text elements */
+  h1, h2, h3, h4, h5, h6, p, span, div, button, a {
+    -webkit-text-stroke: 0 !important;
+    text-stroke: 0 !important;
+    text-shadow: none !important;
   }
 
   /* Global paragraph styling */
