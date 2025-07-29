@@ -1,47 +1,7 @@
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import Footer from "@/components/Footer";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselPrevious,
-  CarouselNext,
-} from "@/components/ui/carousel";
-import { Button } from "@/components/ui/button";
-
-const placeholderProducts = [
-  {
-    name: "Premium Vape Devices",
-    description: "High-quality vaping devices with advanced technology and sleek designs for the modern consumer.",
-    image: "https://via.placeholder.com/400x300/472160/FFFFFF?text=Premium+Vape+Devices",
-    category: "Hardware"
-  },
-  {
-    name: "E-Liquid Collection",
-    description: "Premium e-liquids with unique flavors and nicotine options for every preference.",
-    image: "https://via.placeholder.com/400x300/FF9BFF/472160?text=E-Liquid+Collection",
-    category: "Liquids"
-  },
-  {
-    name: "Accessories & Parts",
-    description: "Essential accessories and replacement parts to enhance your vaping experience.",
-    image: "https://via.placeholder.com/400x300/7A7f83/FFFFFF?text=Accessories+%26+Parts",
-    category: "Accessories"
-  },
-  {
-    name: "Disposable Vapes",
-    description: "Convenient and portable disposable vaping solutions for on-the-go use.",
-    image: "https://via.placeholder.com/400x300/F4FBFE/472160?text=Disposable+Vapes",
-    category: "Disposables"
-  },
-  {
-    name: "Wholesale Solutions",
-    description: "Bulk purchasing options and wholesale packages for retailers and distributors.",
-    image: "https://via.placeholder.com/400x300/472160/FFFFFF?text=Wholesale+Solutions",
-    category: "Wholesale"
-  }
-];
+import FeaturedProduct from "@/components/FeaturedProduct.home";
 
 const placeholderNews = [
   {
@@ -95,50 +55,15 @@ const Index = () => {
     <div className="min-h-screen">
       <Header />
       <HeroSection />
-      
 
       {/* Product Carousel */}
-      <section className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-[#472160] mb-6">Featured Products</h2>
-            <div className="w-24 h-1 bg-[#FF9BFF] mx-auto mb-8"></div>
-            <p className="text-xl text-[#7A7f83] max-w-3xl mx-auto">
-              Explore our comprehensive range of premium vaping products, from high-quality devices to exclusive e-liquids, 
-              designed to meet the diverse needs of vaping enthusiasts and retailers worldwide.
-            </p>
-          </div>
-          
-          <Carousel className="relative max-w-4xl mx-auto">
-            <CarouselContent>
-              {placeholderProducts.map((product, idx) => (
-                <CarouselItem key={idx} className="flex justify-center">
-                  <div className="relative group">
-                    <img src={product.image} alt={product.name} className="rounded-2xl shadow-xl w-full h-80 object-cover transition-all duration-300 group-hover:scale-105" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#472160]/80 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-end">
-                      <div className="p-6 text-white">
-                        <h3 className="text-xl font-semibold mb-2">{product.name}</h3>
-                        <p className="text-sm opacity-90">{product.description}</p>
-                      </div>
-                    </div>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="bg-[#472160] text-white hover:bg-[#472160]/90" />
-            <CarouselNext className="bg-[#472160] text-white hover:bg-[#472160]/90" />
-          </Carousel>
-        </div>
-      </section>
-
-              
-      
+      <FeaturedProduct />
 
       {/* News Section */}
       <section className="py-20 bg-[#F4FBFE]">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-[#472160] mb-6">Latest News</h2>
+            <h2 className="text-4xl md:text-4.5xl font-bold text-[#000204] mb-6">Latest News</h2>
             <div className="w-24 h-1 bg-[#FF9BFF] mx-auto mb-8"></div>
             <p className="text-xl text-[#7A7f83] max-w-3xl mx-auto">
               Stay updated with our latest innovations, partnerships, and industry insights.
@@ -157,9 +82,9 @@ const Index = () => {
                 <div className="p-6">
                   <h3 className="text-xl font-semibold mb-3 text-[#472160] leading-tight">{news.title}</h3>
                   <p className="text-[#7A7f83] mb-6 leading-relaxed">{news.summary}</p>
-                  <Button className="w-full bg-[#472160] text-white hover:bg-[#472160]/90 transition-all duration-300">
+                  <button className="w-full bg-[#472160] text-white hover:bg-[#472160]/90 transition-all duration-300 px-4 py-2 rounded-lg">
                     Read More
-                  </Button>
+                  </button>
                 </div>
               </div>
             ))}
@@ -171,7 +96,7 @@ const Index = () => {
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-[#472160] mb-6">Frequently Asked Questions</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#000204] mb-6">Frequently Asked Questions</h2>
             <div className="w-24 h-1 bg-[#FF9BFF] mx-auto mb-8"></div>
             <p className="text-xl text-[#7A7f83] max-w-3xl mx-auto">
               Find answers to common questions about our services and how we can help transform your business.
@@ -188,8 +113,6 @@ const Index = () => {
           </div>
         </div>
       </section>
-
-      
 
       <Footer />
     </div>

@@ -18,6 +18,13 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				'designer': ['Designer', 'sans-serif'],
+				'now': ['Now', 'sans-serif'],
+				'now-thin': ['Now', 'sans-serif'],
+				'now-light': ['Now', 'sans-serif'],
+				'now-medium': ['Now', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
