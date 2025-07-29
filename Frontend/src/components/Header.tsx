@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import logo from "@/assets/logo.png";
 
 interface HeaderProps {
@@ -40,7 +41,7 @@ const Header = ({ alwaysShowBg = false }: HeaderProps) => {
 
           {/* Desktop Navigation - Centered */}
           <nav className="hidden lg:flex items-center space-x-1">
-            <a href="/" className={`px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-300 relative overflow-hidden ${
+            <Link to="/" className={`px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-300 relative overflow-hidden ${
               showBg 
                 ? 'text-[#F4FBFE] hover:text-[#FF9BFF]' 
                 : 'text-white hover:text-[#FF9BFF]'
@@ -49,8 +50,8 @@ const Header = ({ alwaysShowBg = false }: HeaderProps) => {
               <div className={`absolute inset-0 rounded-xl transition-all duration-300 ${
                 showBg ? 'bg-[#FF9BFF]/10' : 'bg-white/10'
               } opacity-0 hover:opacity-100`}></div>
-            </a>
-            <a href="/services" className={`px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-300 relative overflow-hidden ${
+            </Link>
+            <Link to="/services" className={`px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-300 relative overflow-hidden ${
               showBg 
                 ? 'text-[#F4FBFE] hover:text-[#FF9BFF]' 
                 : 'text-white hover:text-[#FF9BFF]'
@@ -59,8 +60,8 @@ const Header = ({ alwaysShowBg = false }: HeaderProps) => {
               <div className={`absolute inset-0 rounded-xl transition-all duration-300 ${
                 showBg ? 'bg-[#FF9BFF]/10' : 'bg-white/10'
               } opacity-0 hover:opacity-100`}></div>
-            </a>
-            <a href="/about" className={`px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-300 relative overflow-hidden ${
+            </Link>
+            <Link to="/about" className={`px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-300 relative overflow-hidden ${
               showBg 
                 ? 'text-[#F4FBFE] hover:text-[#FF9BFF]' 
                 : 'text-white hover:text-[#FF9BFF]'
@@ -69,8 +70,8 @@ const Header = ({ alwaysShowBg = false }: HeaderProps) => {
               <div className={`absolute inset-0 rounded-xl transition-all duration-300 ${
                 showBg ? 'bg-[#FF9BFF]/10' : 'bg-white/10'
               } opacity-0 hover:opacity-100`}></div>
-            </a>
-            <a href="/portfolio" className={`px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-300 relative overflow-hidden ${
+            </Link>
+            <Link to="/portfolio" className={`px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-300 relative overflow-hidden ${
               showBg 
                 ? 'text-[#F4FBFE] hover:text-[#FF9BFF]' 
                 : 'text-white hover:text-[#FF9BFF]'
@@ -79,8 +80,8 @@ const Header = ({ alwaysShowBg = false }: HeaderProps) => {
               <div className={`absolute inset-0 rounded-xl transition-all duration-300 ${
                 showBg ? 'bg-[#FF9BFF]/10' : 'bg-white/10'
               } opacity-0 hover:opacity-100`}></div>
-            </a>
-            <a href="/contact" className={`px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-300 relative overflow-hidden ${
+            </Link>
+            <Link to="/contact" className={`px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-300 relative overflow-hidden ${
               showBg 
                 ? 'text-[#F4FBFE] hover:text-[#FF9BFF]' 
                 : 'text-white hover:text-[#FF9BFF]'
@@ -89,8 +90,8 @@ const Header = ({ alwaysShowBg = false }: HeaderProps) => {
               <div className={`absolute inset-0 rounded-xl transition-all duration-300 ${
                 showBg ? 'bg-[#FF9BFF]/10' : 'bg-white/10'
               } opacity-0 hover:opacity-100`}></div>
-            </a>
-            <a href="/news" className={`px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-300 relative overflow-hidden ${
+            </Link>
+            <Link to="/news" className={`px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-300 relative overflow-hidden ${
               showBg 
                 ? 'text-[#F4FBFE] hover:text-[#FF9BFF]' 
                 : 'text-white hover:text-[#FF9BFF]'
@@ -99,7 +100,7 @@ const Header = ({ alwaysShowBg = false }: HeaderProps) => {
               <div className={`absolute inset-0 rounded-xl transition-all duration-300 ${
                 showBg ? 'bg-[#FF9BFF]/10' : 'bg-white/10'
               } opacity-0 hover:opacity-100`}></div>
-            </a>
+            </Link>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -124,48 +125,48 @@ const Header = ({ alwaysShowBg = false }: HeaderProps) => {
           isMobileMenuOpen ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0'
         }`}>
           <nav className="flex flex-col space-y-2 pb-4">
-            <a href="/" className={`px-6 py-4 rounded-xl text-sm font-semibold transition-all duration-300 relative overflow-hidden ${
+            <Link to="/" className={`px-6 py-4 rounded-xl text-sm font-semibold transition-all duration-300 relative overflow-hidden ${
               showBg 
                 ? 'text-[#F4FBFE] hover:text-[#FF9BFF] hover:bg-[#FF9BFF]/10' 
                 : 'text-white hover:text-[#FF9BFF] hover:bg-white/10'
             }`}>
               <span className="relative z-10">Home</span>
-            </a>
-            <a href="/services" className={`px-6 py-4 rounded-xl text-sm font-semibold transition-all duration-300 relative overflow-hidden ${
+            </Link>
+            <Link to="/services" className={`px-6 py-4 rounded-xl text-sm font-semibold transition-all duration-300 relative overflow-hidden ${
               showBg 
                 ? 'text-[#F4FBFE] hover:text-[#FF9BFF] hover:bg-[#FF9BFF]/10' 
                 : 'text-white hover:text-[#FF9BFF] hover:bg-white/10'
             }`}>
               <span className="relative z-10">B1G Services</span>
-            </a>
-            <a href="/about" className={`px-6 py-4 rounded-xl text-sm font-semibold transition-all duration-300 relative overflow-hidden ${
+            </Link>
+            <Link to="/about" className={`px-6 py-4 rounded-xl text-sm font-semibold transition-all duration-300 relative overflow-hidden ${
               showBg 
                 ? 'text-[#F4FBFE] hover:text-[#FF9BFF] hover:bg-[#FF9BFF]/10' 
                 : 'text-white hover:text-[#FF9BFF] hover:bg-white/10'
             }`}>
               <span className="relative z-10">Products</span>
-            </a>
-            <a href="/portfolio" className={`px-6 py-4 rounded-xl text-sm font-semibold transition-all duration-300 relative overflow-hidden ${
+            </Link>
+            <Link to="/portfolio" className={`px-6 py-4 rounded-xl text-sm font-semibold transition-all duration-300 relative overflow-hidden ${
               showBg 
                 ? 'text-[#F4FBFE] hover:text-[#FF9BFF] hover:bg-[#FF9BFF]/10' 
                 : 'text-white hover:text-[#FF9BFF] hover:bg-white/10'
             }`}>
               <span className="relative z-10">Support</span>
-            </a>
-            <a href="/contact" className={`px-6 py-4 rounded-xl text-sm font-semibold transition-all duration-300 relative overflow-hidden ${
+            </Link>
+            <Link to="/contact" className={`px-6 py-4 rounded-xl text-sm font-semibold transition-all duration-300 relative overflow-hidden ${
               showBg 
                 ? 'text-[#F4FBFE] hover:text-[#FF9BFF] hover:bg-[#FF9BFF]/10' 
                 : 'text-white hover:text-[#FF9BFF] hover:bg-white/10'
             }`}>
               <span className="relative z-10">Be Our Partner</span>
-            </a>
-            <a href="/news" className={`px-6 py-4 rounded-xl text-sm font-semibold transition-all duration-300 relative overflow-hidden ${
+            </Link>
+            <Link to="/news" className={`px-6 py-4 rounded-xl text-sm font-semibold transition-all duration-300 relative overflow-hidden ${
               showBg 
                 ? 'text-[#F4FBFE] hover:text-[#FF9BFF] hover:bg-[#FF9BFF]/10' 
                 : 'text-white hover:text-[#FF9BFF] hover:bg-white/10'
             }`}>
               <span className="relative z-10">News</span>
-            </a>
+            </Link>
           </nav>
         </div>
       </div>
