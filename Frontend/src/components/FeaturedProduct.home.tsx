@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ChevronLeft, ChevronRight, Star, ArrowRight } from 'lucide-react';
+import { Link } from "react-router-dom";
 
 const placeholderProducts = [
   {
@@ -150,10 +151,12 @@ const FeaturedProduct = () => {
 
         {/* Bottom CTA */}
         <div className="text-center mt-16">
-          <button className="group inline-flex items-center gap-3 px-10 py-4 rounded-full font-medium transition-all duration-300 hover:scale-105 hover:shadow-xl" style={{ backgroundColor: 'transparent', color: '#472160', border: '2px solid #472160' }}>
-            View Complete Collection
-            <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
-          </button>
+          <Link to="/about">
+            <button className="group inline-flex items-center gap-3 px-10 py-4 rounded-full font-medium transition-all duration-300 hover:scale-105 hover:shadow-xl" style={{ backgroundColor: 'transparent', color: '#472160', border: '2px solid #472160' }}>
+              View Complete Collection
+              <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
+            </button>
+          </Link>
         </div>
       </div>
     </section>
