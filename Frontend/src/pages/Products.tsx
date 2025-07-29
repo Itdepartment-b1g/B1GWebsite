@@ -69,7 +69,7 @@ const Products = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-    }, 8000);
+    }, 8);
     return () => clearInterval(timer);
   }, [heroSlides.length]);
 
