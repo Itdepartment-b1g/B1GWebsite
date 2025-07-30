@@ -5,7 +5,8 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Products = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 2;
   const products = [
     {
       id: 1,
@@ -46,8 +47,53 @@ const Products = () => {
       primaryColor: "from-emerald-600 to-teal-700",
       accentColor: "bg-emerald-50 border-emerald-200",
       image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80"
-    }
+    },
+    {
+      id: 3,
+      name: "X-SlimBar",
+      tagline: "Forge Your Experience",
+      description: "Our flagship AI-powered platform that transforms business processes through advanced machine learning and intelligent automation. Built for enterprises seeking to optimize operations and drive innovation.",
+      features: [
+        "Advanced AI algorithms for predictive analytics",
+        "Seamless integration with existing systems", 
+        "Real-time data processing and insights",
+        "Scalable cloud-native architecture"
+      ],
+      capabilities: [
+        { icon: Brain, label: "Machine Learning", desc: "Advanced ML models" },
+        { icon: Zap, label: "Automation", desc: "Process optimization" },
+        { icon: BarChart3, label: "Analytics", desc: "Real-time insights" }
+      ],
+      primaryColor: "from-purple-600 to-indigo-700",
+      accentColor: "bg-white-50 border-blue-200",
+      image: "https://mcwinternationaltrading.com/cdn/shop/files/X4_1080x.jpg?v=1747153609"
+    },
+    {
+      id: 4,
+      name: "Forge Alpha",
+      tagline: "Unified Digital Infrastructure",
+      description: "A comprehensive cloud management solution designed for large-scale enterprises. Streamline your digital infrastructure with advanced security, monitoring, and collaboration tools.",
+      features: [
+        "Multi-cloud environment management",
+        "Enterprise-grade security protocols",
+        "Advanced monitoring and alerting",
+        "Collaborative workspace integration"
+      ],
+      capabilities: [
+        { icon: Cloud, label: "Cloud Management", desc: "Multi-cloud support" },
+        { icon: Shield, label: "Security", desc: "Enterprise protection" },
+        { icon: Users, label: "Collaboration", desc: "Team integration" }
+      ],
+      primaryColor: "from-emerald-600 to-teal-700",
+      accentColor: "bg-emerald-50 border-emerald-200",
+      image: "https://scontent.fmnl9-3.fna.fbcdn.net/v/t39.30808-6/509752842_122140628432792390_8217079412808562189_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_ohc=Ke8G0mXdZdQQ7kNvwFJW7Eh&_nc_oc=Adlfn5XvrUFcixorr91xvzhnJAmDZEGWXMxj8GwdhbeN9qbIW432tAIe76lrFDcvXdI&_nc_zt=23&_nc_ht=scontent.fmnl9-3.fna&_nc_gid=3ue72sWxSqiBT49YDWXK1g&oh=00_AfSmupKumbxwXzo1DmhxuDfxA-Z1Z7WpW8_EP_hkH8Hpdw&oe=688F578A"
+    },
   ];
+
+  const totalPages = Math.ceil(products.length / productsPerPage);
+  const startIndex = (currentPage - 1) * productsPerPage;
+  const endIndex = startIndex + productsPerPage;
+  const currentProducts = products.slice(startIndex, endIndex);
 
   const heroSlides = [
     {
@@ -55,14 +101,35 @@ const Products = () => {
       subtitle: "",
       description: "",
       image: "https://scontent.fmnl17-8.fna.fbcdn.net/v/t39.30808-6/485157766_122118285134792390_5323419709097863985_n.png?stp=dst-jpg_tt6&_nc_cat=104&ccb=1-7&_nc_sid=86c6b0&_nc_ohc=QVwWuFVHYEwQ7kNvwGk_fQq&_nc_oc=AdnqxWSANU12-QK1S3iQBzu3chZhXDvlszh2XT3dS9r8qQset6F7P_jc71w7rE1PdK8&_nc_zt=23&_nc_ht=scontent.fmnl17-8.fna&_nc_gid=254_yzALI7ohE73p_XSCNw&oh=00_AfRgPMagVre7vghNa78G-ptymjoAafOfN-jmZW-ovFDXiw&oe=688E5BC6",
-      gradient: "from-cyan-600/90 to-lightblue-700/90"
+      gradient: "from-cyan-600/30 to-lightblue-700/0"
     },
     {
-      title: "CloudSync Enterprise",
-      subtitle: "Unified Digital Infrastructure",
-      description: "Streamline your digital ecosystem with enterprise-grade solutions",
-      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80",
-      gradient: "from-emerald-600/90 to-teal-700/90"
+      title: "",
+      subtitle: "",
+      description: "",
+      image: "https://www.b1gcorporation.com/AmzBanner.png",
+      gradient: "from-purple-600/10 to-red-700/0"
+    },
+    {
+      title: "",
+      subtitle: "",
+      description: "",
+      image: "https://www-x-xvape-x-cc.img.addlink.cn/Templates/default/proImages/X-SLIMBAR-sub-brand.png",
+      gradient: "from-purple-600/10 to-red-700/0"
+    },
+    {
+      title: "",
+      subtitle: "",
+      description: "",
+      image: "https://scontent.fmnl9-5.fna.fbcdn.net/v/t39.30808-6/514349765_122141814572792390_2518771843664850296_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=NueLDDP4bDEQ7kNvwEtEt8g&_nc_oc=Admb63wNy_8bkWODvBnpj-qYfW_vMT-pNwmboEPDZD6s4-sMsAsjBnq2nReBH0vYUT4&_nc_zt=23&_nc_ht=scontent.fmnl9-5.fna&_nc_gid=BnQ3LDhkEvaNAQkJxSsvKA&oh=00_AfSfhisgJBvnUGfbjZ9Axq1TIigek1LhCBICUgz9p49ecQ&oe=688F4680",
+      gradient: "from-purple-600/10 to-red-700/0"
+    },
+    {
+      title: "",
+      subtitle: "",
+      description: "",
+      image: "https://www-x-xvape-x-cc.img.addlink.cn/Templates/default/proImages/X-ULTRA-sub-brand.png",
+      gradient: "from-purple-600/10 to-red-700/0"
     }
   ];
 
@@ -80,6 +147,8 @@ const Products = () => {
   const prevSlide = () => {
     setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
   };
+
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-gray-100">
@@ -176,7 +245,7 @@ const Products = () => {
         <section className="py-16 px-6">
           <div className="container mx-auto max-w-7xl">
             <div className="space-y-32">
-              {products.map((product, index) => (
+              {currentProducts.map((product, index) => (
                 <div 
                   key={product.id} 
                   className={`flex flex-col ${index % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-16 items-center`}
@@ -244,29 +313,61 @@ const Products = () => {
                 </div>
               ))}
             </div>
-          </div>
-        </section>
 
-        {/* CTA Section */}
-        <section className="py-24 px-6 bg-gradient-to-r from-slate-900 to-slate-800">
-          <div className="container mx-auto max-w-4xl text-center">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Ready to Transform Your Business?
-            </h2>
-            <p className="text-xl text-slate-300 mb-10 leading-relaxed">
-              Discover how our innovative solutions can drive your organization forward. 
-              Connect with our experts to explore the perfect fit for your needs.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="px-8 py-4 bg-white text-slate-900 rounded-lg font-semibold hover:bg-slate-100 transition-colors duration-300">
-                Schedule Consultation
-              </button>
-              <button className="px-8 py-4 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-slate-900 transition-all duration-300">
-                View Documentation
-              </button>
+            {/* Pagination */}
+            <div className="flex justify-center items-center mt-16">
+              <div className="flex items-center bg-white rounded-xl shadow-lg border border-slate-200 p-2">
+                <button
+                  onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+                  disabled={currentPage === 1}
+                  className={`p-2 rounded-lg transition-all duration-300 ${
+                    currentPage === 1 
+                      ? 'text-slate-300 cursor-not-allowed' 
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                  }`}
+                >
+                  <ChevronLeft size={20} />
+                </button>
+                
+                <div className="flex items-center mx-4">
+                  <span className="text-slate-500 font-medium mr-2">Page</span>
+                  <div className="relative">
+                    <select
+                      value={currentPage}
+                      onChange={(e) => setCurrentPage(Number(e.target.value))}
+                      className="appearance-none bg-gradient-to-r from-slate-800 to-slate-900 text-white font-bold rounded-lg px-4 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-slate-500 cursor-pointer min-w-[60px] text-center"
+                    >
+                      {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+                        <option key={page} value={page} className="bg-white text-slate-900">
+                          {page}
+                        </option>
+                      ))}
+                    </select>
+                    <ChevronRight 
+                      size={16} 
+                      className="absolute right-2 top-1/2 -translate-y-1/2 text-white pointer-events-none transform rotate-90" 
+                    />
+                  </div>
+                  <span className="text-slate-500 font-medium ml-2">of {totalPages}</span>
+                </div>
+                
+                <button
+                  onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+                  disabled={currentPage === totalPages}
+                  className={`p-2 rounded-lg transition-all duration-300 ${
+                    currentPage === totalPages 
+                      ? 'text-slate-300 cursor-not-allowed' 
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                  }`}
+                >
+                  <ChevronRight size={20} />
+                </button>
+              </div>
             </div>
           </div>
         </section>
+
+        
       </main>
       <Footer />
     </div>
