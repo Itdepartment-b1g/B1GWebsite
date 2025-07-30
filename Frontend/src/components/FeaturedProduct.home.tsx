@@ -28,14 +28,14 @@ const placeholderProducts = [
     id: 4,
     name: "X-Slimbar",
     description: "Designed to impress, Crafted to Last",
-    image: "https://wvphvs.com/cdn/shop/files/slimbar_shopee.jpg?v=1749195708",
+    image: "https://scontent.fmnl17-1.fna.fbcdn.net/v/t39.30808-6/516336560_122133870188741916_865665765343978951_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=6yg9MzpjEwwQ7kNvwHZnvt6&_nc_oc=Adl_gXjQDNESD8Ap-9YIx5CGME5atL_AAY7MUkolwtZXnPZZOY7bHVUiecFwKZP1YGU&_nc_zt=23&_nc_ht=scontent.fmnl17-1.fna&_nc_gid=XaVMpbv_q7spuvZ7M6TvlA&oh=00_AfQBpFRvG_C8YdPGAMEsyKNlNWzXibsf3RjdNoCqbtSzUQ&oe=688F5754",
     category: "Vape",
   },
   {
     id: 5,
     name: "X-Ultra",
     description: "Explore your passion, Explore your taste",
-    image: "https://wvphvs.com/cdn/shop/files/xvapexultra-x-vapex-ultra-xvapenearme.jpg?v=1739278391&width=533",
+    image: "https://scontent.fmnl17-3.fna.fbcdn.net/v/t39.30808-6/487791627_122117625074741916_4382918048910865605_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=OxZcprK9lRYQ7kNvwG7YmZr&_nc_oc=AdkSC0ctirJz45brQ9Y_Ba9KvTe9n1noOz3tdW2FfEmJa0VHS-PdvS1CX8zGKpHgjB0&_nc_zt=23&_nc_ht=scontent.fmnl17-3.fna&_nc_gid=h7qClb7EUzo-k2__c0dCTQ&oh=00_AfTVXLqoo8pK7OGYWc0EgDA7Vj9k_qq8ALt9pkpUhyTxEg&oe=688F5C6A",
     category: "Vape",
   }
 ];
