@@ -6,7 +6,7 @@ const Contact = () => {
   return (
     <div className="min-h-screen">
       <Header alwaysShowBg={true} />
-      <main className="pt-12">
+      <main className="pt-16">
         <section className="py-20 px-6">
           <div className="container mx-auto text-center mb-16">
             <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-8">

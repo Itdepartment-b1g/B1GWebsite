@@ -8,7 +8,7 @@ const HeroSection = () => {
       id="home"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
       style={{
-        backgroundImage: `linear-gradient(135deg, rgba(71, 33, 96, 0.85) 0%, rgba(71, 33, 96, 0.7) 50%, rgba(255, 155, 255, 0.2) 100%), url(${heroBackground})`,
+        backgroundImage: `linear-gradient(135deg, rgba(71, 33, 96, 0.85) 0%, rgba(71, 33, 96, 0.6) 50%, rgba(255, 155, 255, 0.2) 100%), url(https://i.pinimg.com/1200x/82/88/98/82889811f2b5c1e0e3e113b73247a724.jpg)`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundAttachment: "fixed",
