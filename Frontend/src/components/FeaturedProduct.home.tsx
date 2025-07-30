@@ -12,9 +12,30 @@ const placeholderProducts = [
   },
   {
     id: 2,
+    name: "ALPHA",
+    description: "The Alpha of all v1",
+    image: "https://scontent.fmnl9-3.fna.fbcdn.net/v/t39.30808-6/509752842_122140628432792390_8217079412808562189_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_ohc=Ke8G0mXdZdQQ7kNvwFJW7Eh&_nc_oc=Adlfn5XvrUFcixorr91xvzhnJAmDZEGWXMxj8GwdhbeN9qbIW432tAIe76lrFDcvXdI&_nc_zt=23&_nc_ht=scontent.fmnl9-3.fna&_nc_gid=3ue72sWxSqiBT49YDWXK1g&oh=00_AfSmupKumbxwXzo1DmhxuDfxA-Z1Z7WpW8_EP_hkH8Hpdw&oe=688F578A",
+    category: "Vape",
+  },
+  {
+    id: 3,
     name: "AMZ",
     description: "Amazing Vape, Amazing Life",
     image: "https://scontent.fmnl17-4.fna.fbcdn.net/v/t39.30808-6/486667704_661021166292964_8960477590410985636_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=NwxZuIXK9tQQ7kNvwHTzILU&_nc_oc=AdkYho9Mpdmv4LxLoGcGveUNLT4q9L57aYP1OXTuSlIqJXMszhKO-yGArfevtMS4teA&_nc_zt=23&_nc_ht=scontent.fmnl17-4.fna&_nc_gid=962rsxJnpPLGKXeX4nODmw&oh=00_AfTPgUKNrf0tPklYum3TdpIO2HdZOBPgp1fbS9Nxu9PURQ&oe=688E298F",
+    category: "Vape",
+  },
+  {
+    id: 4,
+    name: "X-Slimbar",
+    description: "Designed to impress, Crafted to Last",
+    image: "https://wvphvs.com/cdn/shop/files/slimbar_shopee.jpg?v=1749195708",
+    category: "Vape",
+  },
+  {
+    id: 5,
+    name: "X-Ultra",
+    description: "Explore your passion, Explore your taste",
+    image: "https://wvphvs.com/cdn/shop/files/xvapexultra-x-vapex-ultra-xvapenearme.jpg?v=1739278391&width=533",
     category: "Vape",
   }
 ];
