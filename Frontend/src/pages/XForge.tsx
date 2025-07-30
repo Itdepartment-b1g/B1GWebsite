@@ -40,7 +40,6 @@ const XForgeProduct = () => {
       description: "A refreshing blast of cool mint with icy undertones that awakens your senses",
       color: "from-[#02ECCF] to-blue-400",
       strength: "50mg",
-      puffs: "2000+",
       image: "https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=400&q=80"
     },
     {
@@ -48,7 +47,6 @@ const XForgeProduct = () => {
       description: "Electric fusion of mixed berries with a vibrant, tangy finish",
       color: "from-purple-400 to-pink-500",
       strength: "35mg",
-      puffs: "2000+",
       image: "https://images.unsplash.com/photo-1599534351692-e4da5d46e8c9?auto=format&fit=crop&w=400&q=80"
     },
     {
@@ -56,7 +54,6 @@ const XForgeProduct = () => {
       description: "Smooth vanilla cream with futuristic notes of sophistication",
       color: "from-amber-300 to-orange-400",
       strength: "25mg",
-      puffs: "2000+",
       image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=400&q=80"
     },
     {
@@ -64,7 +61,6 @@ const XForgeProduct = () => {
       description: "Deep grape essence with molecular precision and lasting impact",
       color: "from-violet-400 to-purple-600",
       strength: "50mg",
-      puffs: "2000+",
       image: "https://images.unsplash.com/photo-1537640538966-79f369143f8f?auto=format&fit=crop&w=400&q=80"
     },
     {
@@ -72,7 +68,6 @@ const XForgeProduct = () => {
       description: "Tropical mango enhanced with futuristic sweetness and exotic appeal",
       color: "from-yellow-400 to-orange-500",
       strength: "35mg",
-      puffs: "2000+",
       image: "https://images.unsplash.com/photo-1605027990121-cbae9d0e0ce7?auto=format&fit=crop&w=400&q=80"
     },
     {
@@ -80,7 +75,6 @@ const XForgeProduct = () => {
       description: "Charged strawberry flavor with high-voltage intensity and sweetness",
       color: "from-red-400 to-pink-500",
       strength: "50mg",
-      puffs: "2000+",
       image: "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=400&q=80"
     },
     {
@@ -88,23 +82,20 @@ const XForgeProduct = () => {
       description: "Code-cracked watermelon with refreshing digital matrix flavor profile",
       color: "from-green-400 to-emerald-500",
       strength: "25mg",
-      puffs: "2000+",
       image: "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?auto=format&fit=crop&w=400&q=80"
     },
     {
       name: "Neural Cherry",
       description: "Brain-stimulating cherry flavor with neural network complexity",
       color: "from-red-500 to-rose-600",
-      strength: "50mg",
-      puffs: "2000+",
+      strength: "50mg", 
       image: "https://images.unsplash.com/photo-1528821154947-1aa3d1b74941?auto=format&fit=crop&w=400&q=80"
     },
     {
       name: "Hologram Apple",
       description: "3D apple experience with holographic taste dimensions and crisp finish",
       color: "from-green-500 to-lime-400",
-      strength: "35mg",
-      puffs: "2000+",
+      strength: "35mg",   
       image: "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?auto=format&fit=crop&w=400&q=80"
     },
     {
@@ -112,7 +103,6 @@ const XForgeProduct = () => {
       description: "High-energy peach flavor charged with plasma-level intensity",
       color: "from-orange-400 to-yellow-500",
       strength: "25mg",
-      puffs: "2000+",
       image: "https://images.unsplash.com/photo-1629828874514-d78b9d75c2a0?auto=format&fit=crop&w=400&q=80"
     }
   ];
@@ -382,10 +372,7 @@ const XForgeProduct = () => {
                       <p className="text-[#A8A8A8] text-sm">Strength</p>
                       <p className="text-[#02ECCF] font-bold [text-shadow:none] [-webkit-text-stroke:0] [text-stroke:0]">{podFlavors[selectedFlavor].strength}</p>
                     </div>
-                    <div className="text-center">
-                      <p className="text-[#A8A8A8] text-sm">Puffs</p>
-                      <p className="text-[#02ECCF] font-bold [text-shadow:none] [-webkit-text-stroke:0] [text-stroke:0]">{podFlavors[selectedFlavor].puffs}</p>
-                    </div>
+                    
                 </div>
               </div>
             </div>

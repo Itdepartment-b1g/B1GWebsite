@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Products from "./pages/Products";
 import XForge from "./pages/XForge";
+import Alpha from "./pages/Alpha";
 import Services from "./pages/Services";
 import Portfolio from "./pages/Portfolio";
 import Contact from "./pages/Contact";
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/products" element={<Products />} />
           <Route path="/about" element={<Products />} />
           <Route path="/XForge" element={<XForge />} />
+          <Route path="/alpha" element={<Alpha />} />
           <Route path="/services" element={<Services />} />
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/contact" element={<Contact />} />

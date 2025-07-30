@@ -143,6 +143,29 @@ All colors MUST be HSL.
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+
+  /* Alpha.tsx specific styles - XForge theme */
+  .alpha-theme {
+    --background: 0 0% 16%;
+    --foreground: 0 0% 95%;
+    --card: 0 0% 20%;
+    --card-foreground: 0 0% 95%;
+    --popover: 0 0% 16%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 174 97% 47%;
+    --primary-foreground: 0 0% 16%;
+    --secondary: 0 0% 84%;
+    --secondary-foreground: 0 0% 16%;
+    --muted: 0 0% 66%;
+    --muted-foreground: 0 0% 84%;
+    --accent: 174 97% 47%;
+    --accent-foreground: 0 0% 16%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 30%;
+    --input: 0 0% 30%;
+    --ring: 174 97% 47%;
+  }
 }
 
 @layer base {
@@ -195,6 +218,50 @@ All colors MUST be HSL.
   }
   h3 {
     @apply font-designer;
+  }
+
+  /* Alpha.tsx specific utility classes */
+  .container {
+    @apply px-4 mx-auto max-w-7xl;
+  }
+
+  .btn {
+    @apply px-6 py-2 font-medium transition-all duration-300 rounded-md;
+  }
+
+  .btn-primary {
+    @apply bg-xforge-teal text-xforge-dark hover:brightness-110;
+  }
+
+  .btn-outline {
+    @apply border border-xforge-teal text-xforge-teal hover:bg-xforge-teal hover:text-xforge-dark;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-2 bg-opacity-20 border rounded-md outline-none bg-xforge-dark border-xforge-lightgray focus:border-xforge-teal transition-all duration-300;
+  }
+
+  .nav-link {
+    @apply relative text-xforge-gray hover:text-xforge-teal transition-colors duration-300 after:absolute after:w-0 after:h-0.5 after:bg-xforge-teal after:left-0 after:bottom-0 after:transition-all after:duration-300 hover:after:w-full;
+  }
+
+  .section {
+    @apply py-16 md:py-24;
+  }
+
+  .backdrop-blur {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  /* Alpha.tsx body styling override */
+  .alpha-page body {
+    @apply bg-xforge-dark text-xforge-gray;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .alpha-page h1, .alpha-page h2, .alpha-page h3, .alpha-page h4, .alpha-page h5, .alpha-page h6 {
+    @apply font-bold;
   }
   
   /* Custom scrollbar */
