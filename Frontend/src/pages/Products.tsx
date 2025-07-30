@@ -30,8 +30,8 @@ const Products = () => {
     },
     {
       id: 2,
-      name: "AMZ",
-      tagline: "Unified Digital Infrastructure",
+      name: "ALPHA",
+      tagline: "The Alpha of all v1",
       description: "A comprehensive cloud management solution designed for large-scale enterprises. Streamline your digital infrastructure with advanced security, monitoring, and collaboration tools.",
       features: [
         "Multi-cloud environment management",
@@ -46,7 +46,7 @@ const Products = () => {
       ],
       primaryColor: "from-emerald-600 to-teal-700",
       accentColor: "bg-emerald-50 border-emerald-200",
-      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80"
+      image: "https://scontent.fmnl9-3.fna.fbcdn.net/v/t39.30808-6/509752842_122140628432792390_8217079412808562189_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_ohc=Ke8G0mXdZdQQ7kNvwFJW7Eh&_nc_oc=Adlfn5XvrUFcixorr91xvzhnJAmDZEGWXMxj8GwdhbeN9qbIW432tAIe76lrFDcvXdI&_nc_zt=23&_nc_ht=scontent.fmnl9-3.fna&_nc_gid=3ue72sWxSqiBT49YDWXK1g&oh=00_AfSmupKumbxwXzo1DmhxuDfxA-Z1Z7WpW8_EP_hkH8Hpdw&oe=688F578A"
     },
     {
       id: 3,
@@ -70,8 +70,8 @@ const Products = () => {
     },
     {
       id: 4,
-      name: "Forge Alpha",
-      tagline: "Unified Digital Infrastructure",
+      name: "X-Ultra",
+      tagline: "Designed to impress, Crafted to Last",
       description: "A comprehensive cloud management solution designed for large-scale enterprises. Streamline your digital infrastructure with advanced security, monitoring, and collaboration tools.",
       features: [
         "Multi-cloud environment management",
@@ -86,7 +86,27 @@ const Products = () => {
       ],
       primaryColor: "from-emerald-600 to-teal-700",
       accentColor: "bg-emerald-50 border-emerald-200",
-      image: "https://scontent.fmnl9-3.fna.fbcdn.net/v/t39.30808-6/509752842_122140628432792390_8217079412808562189_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_ohc=Ke8G0mXdZdQQ7kNvwFJW7Eh&_nc_oc=Adlfn5XvrUFcixorr91xvzhnJAmDZEGWXMxj8GwdhbeN9qbIW432tAIe76lrFDcvXdI&_nc_zt=23&_nc_ht=scontent.fmnl9-3.fna&_nc_gid=3ue72sWxSqiBT49YDWXK1g&oh=00_AfSmupKumbxwXzo1DmhxuDfxA-Z1Z7WpW8_EP_hkH8Hpdw&oe=688F578A"
+      image: "https://scontent.fmnl17-3.fna.fbcdn.net/v/t39.30808-6/487791627_122117625074741916_4382918048910865605_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=OxZcprK9lRYQ7kNvwG7YmZr&_nc_oc=AdkSC0ctirJz45brQ9Y_Ba9KvTe9n1noOz3tdW2FfEmJa0VHS-PdvS1CX8zGKpHgjB0&_nc_zt=23&_nc_ht=scontent.fmnl17-3.fna&_nc_gid=h7qClb7EUzo-k2__c0dCTQ&oh=00_AfTVXLqoo8pK7OGYWc0EgDA7Vj9k_qq8ALt9pkpUhyTxEg&oe=688F5C6A"
+    },
+    {
+      id: 5,
+      name: "AMZ",
+      tagline: "Amazing Vape, Amazing Life",
+      description: "A comprehensive cloud management solution designed for large-scale enterprises. Streamline your digital infrastructure with advanced security, monitoring, and collaboration tools.",
+      features: [
+        "Multi-cloud environment management",
+        "Enterprise-grade security protocols",
+        "Advanced monitoring and alerting",
+        "Collaborative workspace integration"
+      ],
+      capabilities: [
+        { icon: Cloud, label: "Cloud Management", desc: "Multi-cloud support" },
+        { icon: Shield, label: "Security", desc: "Enterprise protection" },
+        { icon: Users, label: "Collaboration", desc: "Team integration" }
+      ],
+      primaryColor: "from-emerald-600 to-teal-700",
+      accentColor: "bg-emerald-50 border-emerald-200",
+      image: "https://scontent.fmnl17-4.fna.fbcdn.net/v/t39.30808-6/486667704_661021166292964_8960477590410985636_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=NwxZuIXK9tQQ7kNvwHTzILU&_nc_oc=AdkYho9Mpdmv4LxLoGcGveUNLT4q9L57aYP1OXTuSlIqJXMszhKO-yGArfevtMS4teA&_nc_zt=23&_nc_ht=scontent.fmnl17-4.fna&_nc_gid=962rsxJnpPLGKXeX4nODmw&oh=00_AfTPgUKNrf0tPklYum3TdpIO2HdZOBPgp1fbS9Nxu9PURQ&oe=688E298F"
     },
   ];
 
@@ -301,13 +321,8 @@ const Products = () => {
                       <img
                         src={product.image}
                         alt={product.name}
-                        className="w-full h-[500px] object-cover rounded-2xl"
+                        className="w-full h-[500px] object-contain rounded-2xl"
                       />
-                      {/* Image Overlay - Removed for cleaner look */}
-                      
-                      {/* Capability Cards Overlay - Removed for cleaner look */}
-                      
-                      {/* Decorative Elements - Removed for cleaner look */}
                     </div>
                   </div>
                 </div>
