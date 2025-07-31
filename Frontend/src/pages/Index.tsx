@@ -24,12 +24,7 @@ const placeholderNews = [
   }
 ];
 
-const placeholderStats = [
-  { label: "Years in Business", value: "4+", icon: "🏢" },
-  { label: "Projects Completed", value: "120+", icon: "✅" },
-  { label: "Clients Served", value: "80+", icon: "🤝" },
-  { label: "Awards Won", value: "6", icon: "🏆" },
-];
+
 
 const placeholderFAQs = [
   {
