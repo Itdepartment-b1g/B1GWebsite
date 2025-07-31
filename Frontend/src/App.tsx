@@ -9,6 +9,7 @@ import XForge from "./pages/XForge";
 import XSlimbar from "./pages/XSlimbar";
 import Amz from "./pages/Amz";
 import Alpha from "./pages/Alpha";
+import XUltra from "./pages/XUltra";
 import Services from "./pages/Services";
 import Portfolio from "./pages/Portfolio";
 import Contact from "./pages/Contact";
@@ -31,6 +32,7 @@ const App = () => (
           <Route path="/XSlimbar" element={<XSlimbar />} />
           <Route path="/amz" element={<Amz />} />
           <Route path="/alpha" element={<Alpha />} />
+          <Route path="/xultra" element={<XUltra />} />
           <Route path="/services" element={<Services />} />
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/contact" element={<Contact />} />
