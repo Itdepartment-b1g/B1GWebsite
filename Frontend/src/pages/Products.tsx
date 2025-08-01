@@ -307,6 +307,26 @@ const Products = () => {
                         Learn More
                         <ArrowRight size={16} />
                       </Link>
+                    ) : product.id === 2 ? (
+                      <button className={`inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r ${product.primaryColor} text-white rounded-lg font-medium hover:shadow-lg transition-all duration-300 hover:scale-105 opacity-50 cursor-not-allowed`} disabled>
+                        Coming Soon
+                        <ArrowRight size={16} />
+                      </button>
+                    ) : product.id === 3 ? (
+                      <Link to="/xslimbar" className={`inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r ${product.primaryColor} text-white rounded-lg font-medium hover:shadow-lg transition-all duration-300 hover:scale-105`}>
+                        Learn More
+                        <ArrowRight size={16} />
+                      </Link>
+                    ) : product.id === 4 ? (
+                      <Link to="/xultra" className={`inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r ${product.primaryColor} text-white rounded-lg font-medium hover:shadow-lg transition-all duration-300 hover:scale-105`}>
+                        Learn More
+                        <ArrowRight size={16} />
+                      </Link>
+                    ) : product.id === 5 ? (
+                      <Link to="/amz" className={`inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r ${product.primaryColor} text-white rounded-lg font-medium hover:shadow-lg transition-all duration-300 hover:scale-105`}>
+                        Learn More
+                        <ArrowRight size={16} />
+                      </Link>
                     ) : (
                       <button className={`inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r ${product.primaryColor} text-white rounded-lg font-medium hover:shadow-lg transition-all duration-300 hover:scale-105`}>
                         Learn More
