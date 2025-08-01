@@ -280,4 +280,153 @@ All colors MUST be HSL.
   ::-webkit-scrollbar-thumb:hover {
     @apply bg-primary/80;
   }
+
+  /* Hide scrollbar utility */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Enhanced animations for ForgeAlpha */
+  @keyframes pulse-subtle {
+    0%, 100% {
+      opacity: 0.6;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.8;
+      transform: scale(1.05);
+    }
+  }
+
+  .animate-pulse-subtle {
+    animation: pulse-subtle 4s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.8s ease-out;
+  }
+
+  /* Light animations */
+  @keyframes float-light {
+    0%, 100% {
+      transform: translateY(0px) translateX(0px);
+      opacity: 0.8;
+    }
+    25% {
+      transform: translateY(-15px) translateX(5px);
+      opacity: 1;
+    }
+    50% {
+      transform: translateY(-20px) translateX(-5px);
+      opacity: 0.6;
+    }
+    75% {
+      transform: translateY(-10px) translateX(3px);
+      opacity: 0.9;
+    }
+  }
+
+  .animate-float-light {
+    animation: float-light 8s ease-in-out infinite;
+  }
+
+  @keyframes light-streak {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+  }
+
+  .animate-light-streak {
+    animation: light-streak 6s ease-in-out infinite;
+  }
+
+  @keyframes light-beam {
+    0%, 100% {
+      opacity: 0.3;
+      transform: scaleY(1);
+    }
+    50% {
+      opacity: 0.7;
+      transform: scaleY(1.1);
+    }
+  }
+
+  .animate-light-beam {
+    animation: light-beam 4s ease-in-out infinite;
+  }
+
+  @keyframes border-light {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .animate-border-light {
+    animation: border-light 3s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%) skewX(-12deg);
+    }
+    100% {
+      transform: translateX(200%) skewX(-12deg);
+    }
+  }
+
+  .animate-shimmer {
+    animation: shimmer 1.5s ease-out;
+  }
+
+  /* Line clamp utility */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 }
