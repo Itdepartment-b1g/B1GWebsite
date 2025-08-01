@@ -1,99 +1,143 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Battery, Droplets, Shield, Zap, Award, CheckCircle2 } from 'lucide-react';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 const XUltra = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
 
-  // Mock product data with colors for gradient backgrounds
+  // Enhanced product data
   const products = [
     {
       id: 1,
       name: "Tropical Mango",
       image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvQ5g16qeibhOYIqWMPGNK20kgHwuQ5x8w7w&s",
-      color: "#FF6B35", // Orange-red for mango
-      description: "Exotic tropical mango flavor with a smooth finish"
+      color: "#FF6B35",
+      description: "Exotic tropical mango with natural sweetness and smooth finish",
+      intensity: "Medium",
+      type: "Fruity"
     },
     {
       id: 2,
       name: "Cool Mint",
       image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvQ5g16qeibhOYIqWMPGNK20kgHwuQ5x8w7w&s",
-      color: "#00B4A6", // Teal for mint
-      description: "Refreshing mint with a cooling sensation"
+      color: "#00B4A6",
+      description: "Refreshing mint with an icy cooling sensation",
+      intensity: "Strong",
+      type: "Menthol"
     },
     {
       id: 3,
       name: "Berry Blast",
       image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvQ5g16qeibhOYIqWMPGNK20kgHwuQ5x8w7w&s",
-      color: "#8E44AD", // Purple for berry
-      description: "Mixed berry explosion with natural sweetness"
+      color: "#8E44AD",
+      description: "Mixed berry explosion with natural sweetness",
+      intensity: "Medium",
+      type: "Fruity"
     },
     {
       id: 4,
       name: "Vanilla Dream",
       image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvQ5g16qeibhOYIqWMPGNK20kgHwuQ5x8w7w&s",
-      color: "#F39C12", // Golden for vanilla
-      description: "Creamy vanilla with hints of caramel"
+      color: "#F39C12",
+      description: "Creamy vanilla with hints of caramel",
+      intensity: "Mild",
+      type: "Dessert"
     }
   ];
 
+  const specifications = [
+    { icon: Battery, title: "Battery Capacity", value: "650mAh", description: "Long-lasting power with fast charging" },
+    { icon: Droplets, title: "Pod Capacity", value: "2ml", description: "Pre-filled pods with leak-proof design" },
+    { icon: Shield, title: "Safety Features", value: "Multi-Protection", description: "Short-circuit and over-discharge protection" },
+    { icon: Zap, title: "Coil Technology", value: "Mesh Coil", description: "Enhanced flavor delivery system" }
+  ];
+
   const nextSlide = () => {
-    if (currentSlide < products.length - 1) {
-      setCurrentSlide(currentSlide + 1);
+    if (!isAnimating) {
+      setIsAnimating(true);
+      setCurrentSlide((prev) => (prev + 1) % products.length);
+      setTimeout(() => setIsAnimating(false), 600);
     }
   };
 
   const prevSlide = () => {
-    if (currentSlide > 0) {
-      setCurrentSlide(currentSlide - 1);
+    if (!isAnimating) {
+      setIsAnimating(true);
+      setCurrentSlide((prev) => (prev - 1 + products.length) % products.length);
+      setTimeout(() => setIsAnimating(false), 600);
     }
   };
 
   const goToSlide = (index) => {
-    setCurrentSlide(index);
+    if (!isAnimating && index !== currentSlide) {
+      setIsAnimating(true);
+      setCurrentSlide(index);
+      setTimeout(() => setIsAnimating(false), 600);
+    }
   };
 
-  // Generate gradient based on current product color
-  const currentGradient = `linear-gradient(135deg, ${products[currentSlide].color}30, ${products[currentSlide].color}10, #1a1a1a)`;
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (!isAnimating) {
+        setCurrentSlide((prev) => (prev + 1) % products.length);
+      }
+    }, 8000);
+    return () => clearInterval(interval);
+  }, [isAnimating]);
+
+  const currentProduct = products[currentSlide];
 
   return (
     <div className="min-h-screen bg-white">
       <Header alwaysShowBg={true} />
       
-      {/* Hero Section */}
-              <section
-          className="relative min-h-screen flex items-center overflow-hidden bg-white"
-        >
-                  {/* Big Circle at Bottom Right */}
-          <div className="absolute bottom-0 right-0 w-[1200px] h-[1200px] bg-gray-800 rounded-full transform translate-x-1/2 translate-y-1/2"></div>
-        
-        <div className="container mx-auto px-4 flex items-center justify-between">
-          {/* Left Side - Product Info */}
-          <div className="flex-1 max-w-xl">
-            <h1 className="text-6xl font-bold text-gray-900 mb-6 leading-tight">
-              XULTRA
-              <span className="block text-4xl font-light text-gray-600">Premium Pod System</span>
-            </h1>
-            <p className="text-xl text-gray-700 mb-8 leading-relaxed">
-              Experience the ultimate in vaping technology with our revolutionary pod system. 
-              Designed for flavor enthusiasts who demand perfection in every puff.
-            </p>
-            <div className="flex space-x-4">
-              <button className="bg-black text-white px-8 py-3 rounded-full font-semibold hover:bg-gray-800 transition-all duration-300 transform hover:scale-105">
-                User Manual
-              </button>
-              <button className="border-2 border-black text-black px-8 py-3 rounded-full font-semibold hover:bg-black hover:text-white transition-all duration-300">
-                Learn More
+      {/* Hero Section - Simple & Professional */}
+      <section className="pt-24 pb-16 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Left Side - Content */}
+            <div className="space-y-8">
+              <div className="space-y-6">
+                <div className="inline-block px-4 py-2 bg-gray-100 rounded-lg">
+                  <span className="text-sm font-semibold text-gray-700 uppercase tracking-wide">Professional Series</span>
+                </div>
+                
+                <h1 className="text-6xl font-bold text-gray-900">
+                  XULTRA
+                </h1>
+                
+                <p className="text-xl text-gray-600 leading-relaxed max-w-lg">
+                  Professional-grade vaping technology designed for excellence and reliability.
+                </p>
+              </div>
+
+              {/* Key Stats */}
+              <div className="grid grid-cols-3 gap-8 py-8 border-t border-gray-200">
+                <div>
+                  <div className="text-3xl font-bold text-gray-900">650mAh</div>
+                  <div className="text-sm text-gray-600">Battery Capacity</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-gray-900">2ml</div>
+                  <div className="text-sm text-gray-600">Pod Volume</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-gray-900">4</div>
+                  <div className="text-sm text-gray-600">Flavor Options</div>
+                </div>
+              </div>
+
+              {/* CTA Button */}
+              <button className="bg-gray-900 text-white px-8 py-4 font-semibold hover:bg-gray-800 transition-colors duration-300">
+                View Product Details
               </button>
             </div>
-          </div>
 
-          {/* Right Side - Product Image */}
-          <div className="relative flex-1 flex justify-end">
-            <div className="relative w-96 h-96">
-              {/* Floating Product Image */}
-              <div className="absolute -top-4 -right-4 transform hover:scale-110 transition-transform duration-500">
+            {/* Right Side - Product Image */}
+            <div className="flex justify-center">
+              <div className="relative">
                 <img
                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvQ5g16qeibhOYIqWMPGNK20kgHwuQ5x8w7w&s"
                   alt="XUltra Product"
@@ -105,133 +149,119 @@ const XUltra = () => {
         </div>
       </section>
 
-      {/* Product Information Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between">
-            {/* Left Side - Image */}
-            <div className="flex-1 flex justify-center">
-              <div className="w-80 h-80 bg-gray-200 rounded-3xl shadow-lg flex items-center justify-center">
-                <span className="text-gray-600 font-semibold text-lg">Product Detail Image</span>
-              </div>
-            </div>
+      {/* Specifications Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Specifications</h2>
+            <p className="text-lg text-gray-600">Professional-grade components for optimal performance</p>
+          </div>
 
-            {/* Right Side - Specifications */}
-            <div className="flex-1 pl-16">
-              <h2 className="text-4xl font-bold text-gray-900 mb-8">Product Information</h2>
-              
-              <div className="space-y-6">
-                <div className="border-b border-gray-200 pb-4">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Battery Capacity</h3>
-                  <p className="text-gray-700">650mAh long-lasting battery with fast charging</p>
-                </div>
-                
-                <div className="border-b border-gray-200 pb-4">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Pod Capacity</h3>
-                  <p className="text-gray-700">2ml pre-filled pods with leak-proof design</p>
-                </div>
-                
-                <div className="border-b border-gray-200 pb-4">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Coil Technology</h3>
-                  <p className="text-gray-700">Mesh coil system for enhanced flavor delivery</p>
-                </div>
-                
-                <div className="border-b border-gray-200 pb-4">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Design</h3>
-                  <p className="text-gray-700">Ergonomic design with premium aluminum finish</p>
-                </div>
-                
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Safety Features</h3>
-                  <p className="text-gray-700">Short-circuit protection and over-discharge protection</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {specifications.map((spec, index) => (
+              <div key={index} className="bg-white p-8 shadow-sm border border-gray-200">
+                <div className="text-center space-y-4">
+                  <div className="w-12 h-12 mx-auto bg-gray-900 flex items-center justify-center">
+                    <spec.icon className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900">{spec.title}</h3>
+                  <div className="text-2xl font-bold text-gray-700">{spec.value}</div>
+                  <p className="text-sm text-gray-600">{spec.description}</p>
                 </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-             {/* Product Carousel Section */}
-       <section 
-         className="pt-10 pb-20 relative overflow-hidden transition-all duration-700 ease-in-out min-h-screen flex items-center"
-         style={{ background: currentGradient }}
-       >
-
-
-        <div className="container mx-auto px-4 relative z-10">
-          {/* Flavor Title */}
-          <div className="text-center mb-32">
-            <h2 className="text-4xl font-bold text-black mb-4">Pod Flavors</h2>
-            <p className="text-xl text-black text-opacity-80">Discover our premium flavor collection</p>
+      {/* Flavors Section - Simple Carousel */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Available Flavors</h2>
+            <p className="text-lg text-gray-600">Choose from our premium flavor collection</p>
           </div>
 
-          {/* Carousel Container - Full Width */}
-           <div className="relative w-full h-96 overflow-visible">
-            {/* Left Arrow */}
-            <button 
-              onClick={prevSlide}
-              className="absolute -left-6 top-1/2 transform -translate-y-1/2 z-20 w-12 h-12 bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
-            >
-              <ChevronLeft className="w-6 h-6 text-gray-800" />
-            </button>
+          {/* Simple Carousel */}
+          <div className="relative max-w-3xl mx-auto">
+            <div className="overflow-hidden rounded-lg">
+              <div 
+                className="flex transition-transform duration-600 ease-in-out"
+                style={{ 
+                  transform: `translateX(-${currentSlide * 100}%)`
+                }}
+              >
+                {products.map((product) => (
+                  <div 
+                    key={product.id}
+                    className="w-full flex-shrink-0"
+                  >
+                    <div className="bg-gray-50 rounded-lg p-8 mx-4">
+                      <div className="text-center space-y-6">
+                        {/* Product Image */}
+                        <div className="flex justify-center">
+                          <img
+                            src={product.image}
+                            alt={product.name}
+                            className="w-40 h-40 object-contain"
+                          />
+                        </div>
 
-            {/* Carousel Track - No margins, full container width */}
-             <div 
-               className="flex transition-transform duration-700 ease-in-out h-full w-full overflow-visible"
-               style={{ 
-                 transform: `translateX(-${currentSlide * 100}%)`
-               }}
-             >
-              {products.map((product, index) => (
-                <div
-                  key={product.id}
-                  className="flex items-center justify-center h-full relative w-full flex-shrink-0"
-                >
-                  {/* Main Product - Centered like the coffee cup */}
-                  <div className="text-center">
-                    {/* Large Product Image - Centered */}
-                    <div className="w-80 h-80 mb-8 hover:scale-105 transition-all duration-500 mx-auto">
-                      <img
-                        src={product.image}
-                        alt={product.name}
-                        className="w-full h-full object-contain"
-                      />
+                        {/* Product Info */}
+                        <div>
+                          <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                            {product.name}
+                          </h3>
+                          <p className="text-gray-600 mb-4">
+                            {product.description}
+                          </p>
+                          
+                          <div className="flex justify-center gap-6 text-sm">
+                            <span className="text-gray-500">
+                              <strong>Type:</strong> {product.type}
+                            </span>
+                            <span className="text-gray-500">
+                              <strong>Intensity:</strong> {product.intensity}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    
-                    {/* Product Info Below */}
-                    <h3 className="text-4xl font-bold text-black mb-4">{product.name}</h3>
-                    <p className="text-black text-opacity-80 max-w-md mx-auto text-lg">{product.description}</p>
-                    
-
                   </div>
-
-
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
 
-            {/* Right Arrow */}
-            <button 
-              onClick={nextSlide}
-              className="absolute -right-6 top-1/2 transform -translate-y-1/2 z-20 w-12 h-12 bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
-            >
-              <ChevronRight className="w-6 h-6 text-gray-800" />
-            </button>
-          </div>
+            {/* Simple Navigation */}
+            <div className="flex justify-center items-center mt-8 gap-6">
+              <button 
+                onClick={prevSlide}
+                disabled={isAnimating}
+                className="p-2 bg-gray-200 hover:bg-gray-300 rounded-full disabled:opacity-50"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
 
-                     {/* Pagination Dots */}
-           <div className="flex justify-center space-x-3 mt-12 pt-8">
-            {products.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToSlide(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === currentSlide 
-                    ? 'bg-white scale-125' 
-                    : 'bg-white bg-opacity-50 hover:bg-opacity-80'
-                }`}
-              />
-            ))}
+              <div className="flex gap-2">
+                {products.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => goToSlide(index)}
+                    className={`w-3 h-3 rounded-full transition-colors ${
+                      index === currentSlide ? 'bg-gray-900' : 'bg-gray-300'
+                    }`}
+                  />
+                ))}
+              </div>
+
+              <button 
+                onClick={nextSlide}
+                disabled={isAnimating}
+                className="p-2 bg-gray-200 hover:bg-gray-300 rounded-full disabled:opacity-50"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
           </div>
         </div>
       </section>
