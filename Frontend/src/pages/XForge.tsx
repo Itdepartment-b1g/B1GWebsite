@@ -201,10 +201,15 @@ const XForgeProduct = () => {
                 </div>
 
                 {/* User Manual Button */}
-                <button className="inline-flex items-center space-x-3 bg-[#02ECCF] text-[#292929] px-8 py-4 rounded-lg font-montserrat-bold hover:shadow-lg hover:shadow-[#02ECCF]/50 transition-all duration-300 glow-animation">
+                <a 
+                  href="/X FORGE POD MANUAL(Not final. Missing shelf life only)_1.pdf" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center space-x-3 bg-[#02ECCF] text-[#292929] px-8 py-4 rounded-lg font-montserrat-bold hover:shadow-lg hover:shadow-[#02ECCF]/50 transition-all duration-300 glow-animation"
+                >
                   <Download size={20} />
-                  <span>Download User Manual</span>
-                </button>
+                  <span>View User Manual</span>
+                </a>
               </div>
 
               {/* Product Image */}
