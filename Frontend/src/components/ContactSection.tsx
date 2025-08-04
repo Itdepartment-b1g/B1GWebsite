@@ -33,7 +33,7 @@ const ContactSection = () => {
       
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         {/* Enhanced Header - Responsive */}
-        <div className="text-center mb-8 md:mb-16">
+        <div className="text-center mb-8 md:mb-16 pt-8 md:pt-16">
           <div className="inline-block p-4 md:p-6 rounded-2xl md:rounded-3xl bg-gradient-to-r from-[#FF9BFF]/10 to-transparent border border-[#FF9BFF]/20 backdrop-blur-sm mb-6 md:mb-8">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-white via-[#FF9BFF] to-white bg-clip-text text-transparent">
               Get In Touch
