@@ -3,6 +3,18 @@ import { ChevronLeft, ChevronRight, Battery, Zap, Shield, Clock, Cpu, Wifi, Play
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
+// Import AMZ pod images
+import E31383 from "@/assets/E3.1383.png";
+import E31384 from "@/assets/E3.1384.png";
+import E31385 from "@/assets/E3.1385.png";
+import E31386 from "@/assets/E3.1386.png";
+import E31387 from "@/assets/E3.1387.png";
+import E31388 from "@/assets/E3.1388.png";
+import E31389 from "@/assets/E3.1389.png";
+import E31390 from "@/assets/E3.1390.png";
+import E31391 from "@/assets/E3.1391.png";
+import E31392 from "@/assets/E3.1392.png";
+
 const ProductPage = () => {
   const [currentPod, setCurrentPod] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -10,16 +22,16 @@ const ProductPage = () => {
   const carouselRef = useRef(null);
 
   const pods = [
-    { id: 1, name: 'Midnight Storm', flavor: 'Dark Berry Mix', color: '#dc2626', nicotine: '50mg', puffs: '600+', image: 'https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=400&h=600&fit=crop' },
-    { id: 2, name: 'Arctic Blast', flavor: 'Cool Mint', color: '#6b7280', nicotine: '35mg', puffs: '800+', image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=600&fit=crop' },
-    { id: 3, name: 'Crimson Fire', flavor: 'Cherry Tobacco', color: '#dc2626', nicotine: '50mg', puffs: '700+', image: 'https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=400&h=600&fit=crop' },
-    { id: 4, name: 'Solar Flare', flavor: 'Tropical Mango', color: '#ef4444', nicotine: '25mg', puffs: '900+', image: 'https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=400&h=600&fit=crop' },
-    { id: 5, name: 'Neon Dream', flavor: 'Grape Fusion', color: '#6b7280', nicotine: '35mg', puffs: '750+', image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=600&fit=crop' },
-    { id: 6, name: 'Steel Thunder', flavor: 'Vanilla Cream', color: '#4b5563', nicotine: '20mg', puffs: '1000+', image: 'https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=400&h=600&fit=crop' },
-    { id: 7, name: 'Electric Blue', flavor: 'Blueberry Ice', color: '#6b7280', nicotine: '50mg', puffs: '650+', image: 'https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=400&h=600&fit=crop' },
-    { id: 8, name: 'Ruby Surge', flavor: 'Strawberry Blast', color: '#dc2626', nicotine: '35mg', puffs: '800+', image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=600&fit=crop' },
-    { id: 9, name: 'Phantom Black', flavor: 'Coffee Espresso', color: '#1f2937', nicotine: '45mg', puffs: '700+', image: 'https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=400&h=600&fit=crop' },
-    { id: 10, name: 'Crystal White', flavor: 'Pure Menthol', color: '#f9fafb', nicotine: '30mg', puffs: '850+', image: 'https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=400&h=600&fit=crop' }
+    { id: 1, name: 'Midnight Storm', color: '#dc2626', image: E31383 },
+    { id: 2, name: 'Arctic Blast',color: '#6b7280',  image: E31384 },
+    { id: 3, name: 'Fresh Frost', color: '#dc2626',  image: E31385 },
+    { id: 4, name: 'M Fusion',  color: '#ef4444',  image: E31386 },
+    { id: 5, name: 'Rose Red', color: '#6b7280',  image: E31387 },
+    { id: 6, name: 'Lush Ice', color: '#4b5563', image: E31388 },
+    { id: 7, name: 'Purple Snow',  color: '#6b7280',  image: E31389 },
+    { id: 8, name: 'Pink Ice',  color: '#dc2626', image: E31390 },
+    { id: 9, name: 'Blue Ice',  color: '#1f2937',  image: E31391 },
+    { id: 10, name: 'Lush Pink', color: '#f9fafb', image: E31392 }
   ];
 
   const features = [
@@ -134,13 +146,18 @@ const ProductPage = () => {
               </div>
 
               {/* CTA Button */}
-              <button className="group relative overflow-hidden bg-black text-white px-12 py-6 text-lg font-semibold hover:bg-red-600 transition-all duration-500">
+              <a 
+                href="/AMZVape-A1-UserManual.pdf" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="group relative overflow-hidden bg-black text-white px-12 py-6 text-lg font-semibold hover:bg-red-600 transition-all duration-500 inline-block"
+              >
                 <span className="relative z-10 flex items-center gap-3">
                   User Manual
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                 </span>
                 <div className="absolute inset-0 bg-red-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-              </button>
+              </a>
             </div>
 
             {/* Right: Product Showcase */}
@@ -253,19 +270,7 @@ const ProductPage = () => {
                   Featured
                 </div>
                 
-                {/* Bottom Stats */}
-                <div className="absolute bottom-8 left-8 right-8 bg-black/80 backdrop-blur-sm rounded-xl p-4">
-                  <div className="grid grid-cols-2 gap-4 text-center">
-                    <div>
-                      <div className="text-2xl font-bold text-red-600">{currentPodData.nicotine}</div>
-                      <div className="text-sm text-gray-400">Nicotine</div>
-                    </div>
-                    <div>
-                      <div className="text-2xl font-bold text-white">{currentPodData.puffs}</div>
-                      <div className="text-sm text-gray-400">Puffs</div>
-                    </div>
-                  </div>
-                </div>
+            
               </div>
             </div>
 
@@ -276,7 +281,6 @@ const ProductPage = () => {
                   Pod #{String(currentPod + 1).padStart(2, '0')}
                 </div>
                 <h3 className="text-4xl font-bold text-white mb-4">{currentPodData.name}</h3>
-                <p className="text-xl text-gray-300 mb-6">{currentPodData.flavor}</p>
               </div>
 
 
