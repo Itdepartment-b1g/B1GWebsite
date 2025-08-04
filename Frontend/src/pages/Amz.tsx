@@ -22,9 +22,9 @@ const ProductPage = () => {
   const carouselRef = useRef(null);
 
   const pods = [
-    { id: 1, name: 'Midnight Storm', color: '#dc2626', image: E31383 },
-    { id: 2, name: 'Arctic Blast',color: '#6b7280',  image: E31384 },
-    { id: 3, name: 'Fresh Frost', color: '#dc2626',  image: E31385 },
+    { id: 1, name: 'White Fusion', color: '#dc2626', image: E31383 },
+    { id: 2, name: 'Black Torando',color: '#6b7280',  image: E31384 },
+    { id: 3, name: 'Fresh Forest', color: '#dc2626',  image: E31385 },
     { id: 4, name: 'M Fusion',  color: '#ef4444',  image: E31386 },
     { id: 5, name: 'Rose Red', color: '#6b7280',  image: E31387 },
     { id: 6, name: 'Lush Ice', color: '#4b5563', image: E31388 },
