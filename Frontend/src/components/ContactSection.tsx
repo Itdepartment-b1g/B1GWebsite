@@ -3,8 +3,116 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Mail, MapPin, Phone, Send } from "lucide-react";
+import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 
 const ContactSection = () => {
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    fullName: "",
+    contactNumber: "",
+    email: "",
+    companyName: "",
+    region: "",
+    city: "",
+    barangay: "",
+    streetAddress: "",
+    businessTypes: [] as string[],
+    message: ""
+  });
+
+  const handleInputChange = (field: string, value: string | string[]) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
+  const handleBusinessTypeChange = (type: string, checked: boolean) => {
+    setFormData(prev => ({
+      ...prev,
+      businessTypes: checked 
+        ? [...prev.businessTypes, type]
+        : prev.businessTypes.filter(t => t !== type)
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Validate required fields
+    const requiredFields = ['fullName', 'contactNumber', 'email', 'companyName', 'region', 'city', 'barangay', 'streetAddress', 'message'];
+    const missingFields = requiredFields.filter(field => !formData[field as keyof typeof formData]);
+    
+    if (missingFields.length > 0) {
+      toast({
+        title: "Missing Information",
+        description: "Please fill in all required fields.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (formData.businessTypes.length === 0) {
+      toast({
+        title: "Business Type Required",
+        description: "Please select at least one business type.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('http://localhost:5000/api/contact/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        toast({
+          title: "Success!",
+          description: result.message,
+        });
+        
+        // Reset form
+        setFormData({
+          fullName: "",
+          contactNumber: "",
+          email: "",
+          companyName: "",
+          region: "",
+          city: "",
+          barangay: "",
+          streetAddress: "",
+          businessTypes: [],
+          message: ""
+        });
+      } else {
+        toast({
+          title: "Error",
+          description: result.message || "Something went wrong. Please try again.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      toast({
+        title: "Connection Error",
+        description: "Unable to connect to server. Please check your internet connection and try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   return (
     <section className="py-12 md:py-24 bg-gradient-to-br from-[#472160] via-[#472160]/95 to-[#000204] relative overflow-hidden">
       {/* Enhanced Background Elements */}
@@ -119,11 +227,13 @@ const ContactSection = () => {
                 <p className="text-sm md:text-base text-white/70">We'll get back to you within 24 hours</p>
               </div>
 
-              <form className="space-y-4 md:space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
                 {/* Name Input */}
                 <div className="group">
                   <Input
                     placeholder="Full Name"
+                    value={formData.fullName}
+                    onChange={(e) => handleInputChange('fullName', e.target.value)}
                     className="bg-white/5 border-[#FF9BFF]/30 text-white placeholder:text-white/50 focus:border-[#FF9BFF] focus:ring-[#FF9BFF]/20 focus:bg-white/10 transition-all duration-300 h-10 md:h-12 rounded-lg md:rounded-xl text-sm md:text-base"
                   />
                 </div>
@@ -132,6 +242,8 @@ const ContactSection = () => {
                 <div className="group">
                   <Input
                     placeholder="Contact Number"
+                    value={formData.contactNumber}
+                    onChange={(e) => handleInputChange('contactNumber', e.target.value)}
                     className="bg-white/5 border-[#FF9BFF]/30 text-white placeholder:text-white/50 focus:border-[#FF9BFF] focus:ring-[#FF9BFF]/20 focus:bg-white/10 transition-all duration-300 h-10 md:h-12 rounded-lg md:rounded-xl text-sm md:text-base"
                   />
                 </div>
@@ -141,6 +253,8 @@ const ContactSection = () => {
                   <Input
                     type="email"
                     placeholder="Email Address"
+                    value={formData.email}
+                    onChange={(e) => handleInputChange('email', e.target.value)}
                     className="bg-white/5 border-[#FF9BFF]/30 text-white placeholder:text-white/50 focus:border-[#FF9BFF] focus:ring-[#FF9BFF]/20 focus:bg-white/10 transition-all duration-300 h-10 md:h-12 rounded-lg md:rounded-xl text-sm md:text-base"
                   />
                 </div>
@@ -149,6 +263,8 @@ const ContactSection = () => {
                 <div className="group">
                   <Input
                     placeholder="Company / Store Name"
+                    value={formData.companyName}
+                    onChange={(e) => handleInputChange('companyName', e.target.value)}
                     className="bg-white/5 border-[#FF9BFF]/30 text-white placeholder:text-white/50 focus:border-[#FF9BFF] focus:ring-[#FF9BFF]/20 focus:bg-white/10 transition-all duration-300 h-10 md:h-12 rounded-lg md:rounded-xl text-sm md:text-base"
                   />
                 </div>
@@ -156,34 +272,36 @@ const ContactSection = () => {
                 {/* Location Fields - Responsive */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
                   <div className="group">
-                    <Select>
+                    <Select value={formData.region} onValueChange={(value) => handleInputChange('region', value)}>
                       <SelectTrigger className="bg-white/5 border-[#FF9BFF]/30 text-white placeholder:text-white/50 focus:border-[#FF9BFF] focus:ring-[#FF9BFF]/20 focus:bg-white/10 transition-all duration-300 h-10 md:h-12 rounded-lg md:rounded-xl text-sm md:text-base">
                         <SelectValue placeholder="Select Region" className="text-white/50" />
                       </SelectTrigger>
                       <SelectContent className="bg-gray-900 border-[#FF9BFF]/30 text-white max-h-48 md:max-h-60">
-                        <SelectItem value="region1">Region I - Ilocos Region</SelectItem>
-                        <SelectItem value="region2">Region II - Cagayan Valley</SelectItem>
-                        <SelectItem value="region3">Region III - Central Luzon</SelectItem>
-                        <SelectItem value="region4a">Region IV-A - CALABARZON</SelectItem>
-                        <SelectItem value="mimaropa">MIMAROPA - Southwestern Tagalog</SelectItem>
-                        <SelectItem value="region5">Region V - Bicol Region</SelectItem>
-                        <SelectItem value="region6">Region VI - Western Visayas</SelectItem>
-                        <SelectItem value="region7">Region VII - Central Visayas</SelectItem>
-                        <SelectItem value="region8">Region VIII - Eastern Visayas</SelectItem>
-                        <SelectItem value="region9">Region IX - Zamboanga Peninsula</SelectItem>
-                        <SelectItem value="region10">Region X - Northern Mindanao</SelectItem>
-                        <SelectItem value="region11">Region XI - Davao Region</SelectItem>
-                        <SelectItem value="region12">Region XII - SOCCSKSARGEN</SelectItem>
-                        <SelectItem value="region13">Region XIII - Caraga</SelectItem>
-                        <SelectItem value="ncr">NCR - National Capital Region</SelectItem>
-                        <SelectItem value="car">CAR - Cordillera Administrative Region</SelectItem>
-                        <SelectItem value="barmm">BARMM - Bangsamoro Autonomous Region in Muslim Mindanao</SelectItem>
+                        <SelectItem value="Region I - Ilocos Region">Region I - Ilocos Region</SelectItem>
+                        <SelectItem value="Region II - Cagayan Valley">Region II - Cagayan Valley</SelectItem>
+                        <SelectItem value="Region III - Central Luzon">Region III - Central Luzon</SelectItem>
+                        <SelectItem value="Region IV-A - CALABARZON">Region IV-A - CALABARZON</SelectItem>
+                        <SelectItem value="MIMAROPA - Southwestern Tagalog">MIMAROPA - Southwestern Tagalog</SelectItem>
+                        <SelectItem value="Region V - Bicol Region">Region V - Bicol Region</SelectItem>
+                        <SelectItem value="Region VI - Western Visayas">Region VI - Western Visayas</SelectItem>
+                        <SelectItem value="Region VII - Central Visayas">Region VII - Central Visayas</SelectItem>
+                        <SelectItem value="Region VIII - Eastern Visayas">Region VIII - Eastern Visayas</SelectItem>
+                        <SelectItem value="Region IX - Zamboanga Peninsula">Region IX - Zamboanga Peninsula</SelectItem>
+                        <SelectItem value="Region X - Northern Mindanao">Region X - Northern Mindanao</SelectItem>
+                        <SelectItem value="Region XI - Davao Region">Region XI - Davao Region</SelectItem>
+                        <SelectItem value="Region XII - SOCCSKSARGEN">Region XII - SOCCSKSARGEN</SelectItem>
+                        <SelectItem value="Region XIII - Caraga">Region XIII - Caraga</SelectItem>
+                        <SelectItem value="NCR - National Capital Region">NCR - National Capital Region</SelectItem>
+                        <SelectItem value="CAR - Cordillera Administrative Region">CAR - Cordillera Administrative Region</SelectItem>
+                        <SelectItem value="BARMM - Bangsamoro Autonomous Region in Muslim Mindanao">BARMM - Bangsamoro Autonomous Region in Muslim Mindanao</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
                   <div className="group">
                     <Input
                       placeholder="City"
+                      value={formData.city}
+                      onChange={(e) => handleInputChange('city', e.target.value)}
                       className="bg-white/5 border-[#FF9BFF]/30 text-white placeholder:text-white/50 focus:border-[#FF9BFF] focus:ring-[#FF9BFF]/20 focus:bg-white/10 transition-all duration-300 h-10 md:h-12 rounded-lg md:rounded-xl text-sm md:text-base"
                     />
                   </div>
@@ -192,6 +310,8 @@ const ContactSection = () => {
                 <div className="group">
                   <Input
                     placeholder="Barangay"
+                    value={formData.barangay}
+                    onChange={(e) => handleInputChange('barangay', e.target.value)}
                     className="bg-white/5 border-[#FF9BFF]/30 text-white placeholder:text-white/50 focus:border-[#FF9BFF] focus:ring-[#FF9BFF]/20 focus:bg-white/10 transition-all duration-300 h-10 md:h-12 rounded-lg md:rounded-xl text-sm md:text-base"
                   />
                 </div>
@@ -199,6 +319,8 @@ const ContactSection = () => {
                 <div className="group">
                   <Input
                     placeholder="Street Number / Street Name / Village"
+                    value={formData.streetAddress}
+                    onChange={(e) => handleInputChange('streetAddress', e.target.value)}
                     className="bg-white/5 border-[#FF9BFF]/30 text-white placeholder:text-white/50 focus:border-[#FF9BFF] focus:ring-[#FF9BFF]/20 focus:bg-white/10 transition-all duration-300 h-10 md:h-12 rounded-lg md:rounded-xl text-sm md:text-base"
                   />
                 </div>
@@ -210,6 +332,8 @@ const ContactSection = () => {
                     <label className="flex items-center gap-2 md:gap-3 cursor-pointer group/checkbox">
                       <input
                         type="checkbox"
+                        checked={formData.businessTypes.includes('Distributor')}
+                        onChange={(e) => handleBusinessTypeChange('Distributor', e.target.checked)}
                         className="w-4 h-4 md:w-5 md:h-5 rounded border-2 border-[#FF9BFF]/30 bg-white/5 text-[#FF9BFF] focus:ring-[#FF9BFF]/20 focus:ring-2 transition-all duration-300"
                       />
                       <span className="text-sm md:text-base text-white/90 group-hover/checkbox:text-white transition-colors duration-300">Distributor</span>
@@ -217,6 +341,8 @@ const ContactSection = () => {
                     <label className="flex items-center gap-2 md:gap-3 cursor-pointer group/checkbox">
                       <input
                         type="checkbox"
+                        checked={formData.businessTypes.includes('Retailer')}
+                        onChange={(e) => handleBusinessTypeChange('Retailer', e.target.checked)}
                         className="w-4 h-4 md:w-5 md:h-5 rounded border-2 border-[#FF9BFF]/30 bg-white/5 text-[#FF9BFF] focus:ring-[#FF9BFF]/20 focus:ring-2 transition-all duration-300"
                       />
                       <span className="text-sm md:text-base text-white/90 group-hover/checkbox:text-white transition-colors duration-300">Retailer</span>
@@ -228,6 +354,8 @@ const ContactSection = () => {
                 <div className="group">
                   <Textarea
                     placeholder="Message - Tell us about your business needs or inquiry..."
+                    value={formData.message}
+                    onChange={(e) => handleInputChange('message', e.target.value)}
                     rows={4}
                     className="bg-white/5 border-[#FF9BFF]/30 text-white placeholder:text-white/50 focus:border-[#FF9BFF] focus:ring-[#FF9BFF]/20 focus:bg-white/10 transition-all duration-300 resize-none rounded-lg md:rounded-xl text-sm md:text-base min-h-[100px] md:min-h-[120px]"
                   />
@@ -235,11 +363,13 @@ const ContactSection = () => {
                 
                 {/* Enhanced Submit Button - Responsive */}
                 <Button 
-                  className="group w-full bg-gradient-to-r from-[#FF9BFF] to-[#FF9BFF]/80 text-[#472160] hover:from-[#FF9BFF]/90 hover:to-[#FF9BFF]/70 font-bold text-base md:text-lg py-4 md:py-6 rounded-lg md:rounded-xl transition-all duration-500 hover:scale-105 hover:shadow-lg hover:shadow-[#FF9BFF]/25 relative overflow-hidden"
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="group w-full bg-gradient-to-r from-[#FF9BFF] to-[#FF9BFF]/80 text-[#472160] hover:from-[#FF9BFF]/90 hover:to-[#FF9BFF]/70 font-bold text-base md:text-lg py-4 md:py-6 rounded-lg md:rounded-xl transition-all duration-500 hover:scale-105 hover:shadow-lg hover:shadow-[#FF9BFF]/25 relative overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <span className="relative z-10 flex items-center justify-center gap-2">
-                    Send Message
-                    <Send className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                    {isSubmitting ? 'Sending...' : 'Send Message'}
+                    {!isSubmitting && <Send className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform duration-300" />}
                   </span>
                   {/* Button glow effect */}
                   <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>

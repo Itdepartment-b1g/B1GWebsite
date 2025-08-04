@@ -60,9 +60,7 @@ const Index = () => {
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-4.5xl font-bold text-[#000204] mb-6">Latest News</h2>
             <div className="w-24 h-1 bg-[#FF9BFF] mx-auto mb-8"></div>
-            <p className="text-xl text-[#7A7f83] max-w-3xl mx-auto">
-              Stay updated with our latest innovations, partnerships, and industry insights.
-            </p>
+        
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -87,7 +85,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* FAQ Section */}
+      {/* FAQ Section
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-6">
           <div className="text-center mb-16">
@@ -107,7 +105,7 @@ const Index = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       <Footer />
     </div>
