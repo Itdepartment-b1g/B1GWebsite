@@ -10,7 +10,7 @@ const News = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   const newsArticles = [
-    {      id: 1,
+    {  id: 1,
       title: "X-Forge Launches Revolutionary Premium Technology Line",
       excerpt: "B1G Corporation introduces its most sophisticated product yet, setting new standards in innovation and craftsmanship.",
       content: "Today marks a significant milestone for B1G Corporation as we unveil the X-Forge premium technology line. This revolutionary product represents the culmination of years of research, development, and unwavering commitment to excellence. The X-Forge combines cutting-edge technology with timeless design principles, offering users an unparalleled experience that transcends conventional boundaries.\n\nOur engineering team has worked tirelessly to create a product that not only meets the highest standards of performance but also exceeds expectations in terms of design and user experience. The X-Forge features state-of-the-art components, advanced connectivity options, and intuitive controls that make it accessible to users of all technical levels.\n\nThe launch event, held at our headquarters, was attended by industry leaders, technology enthusiasts, and media representatives from around the world. The response has been overwhelmingly positive, with many praising the innovative approach to product design and the attention to detail that has become synonymous with the B1G brand.\n\n'This is more than just a product launch,' said our CEO during the presentation. 'This represents our vision for the future of technology - where innovation meets elegance, and where every detail matters.'\n\nThe X-Forge is now available for pre-order through our official website and authorized retailers worldwide. Early adopters will receive exclusive benefits, including extended warranty coverage and priority customer support.",
@@ -24,68 +24,16 @@ const News = () => {
     },
     {
       id: 2,
-      title: "B1G Corporation Expands Global Presence with New European Markets",
-      excerpt: "Strategic expansion into key European markets demonstrates our commitment to serving discerning customers worldwide.",
-      content: "B1G Corporation is proud to announce our strategic expansion into key European markets, including Germany, France, and the Netherlands. This expansion represents a significant step in our mission to bring premium technology experiences to discerning customers worldwide. Our carefully curated approach ensures that each market receives the same level of attention to detail and commitment to excellence that has defined our brand.\n\nThe European expansion follows months of careful planning and market research, during which we identified the most promising opportunities for growth while maintaining our commitment to quality and customer satisfaction. Each new market will be served by dedicated teams of professionals who understand the local culture and business environment.\n\n'Europe represents a significant opportunity for B1G Corporation,' said our Director of International Operations. 'The European market values quality, innovation, and sustainability - values that align perfectly with our brand philosophy.'\n\nOur expansion strategy includes establishing local partnerships, hiring regional talent, and adapting our products and services to meet the specific needs of European customers. We are committed to creating jobs and contributing to the local economies in each market we enter.\n\nThe first phase of our European expansion will focus on major metropolitan areas, with plans to expand to additional cities and regions based on market response and customer demand.",
+      title: "Work with a Heart: B1G Corporation Celebrates Valentine’s Day with Camaraderie and Appreciation",
+      excerpt: "B1G Corporation fosters camaraderie and appreciation through its ‘Work with a Heart’ initiative, bringing employees together in a vibrant and engaging Valentine’s Day celebration.",
+      content: "Alabang, Philippines – B1G Corporation celebrates Valentine's Day with its 'Work with a Heart' initiative, promoting camaraderie and boosting employee morale at its Alabang satellite office. Employees participate in a color-coded attire trend to reflect their relationship status, creating a lively and inclusive atmosphere. Red represents those in relationships, pink for those in complicated situations, blue for singles looking to mingle, white for those single by choice, and gray for those healing from heartbreak. Executives join the fun in a photo session, with the President humorously posing with singles by choice, while other leaders embrace their respective statuses.\n\nBeyond the colorful display, the celebration strengthens workplace culture as executives distribute chocolates and departments exchange treats and flowers. The event gains momentum with an energetic dance performance by interns, followed by a lively dance battle featuring the Sales Team. Employees also engage in a playful sweet exchange of chocolates, reminiscent of a traditional gift swap, with two colleagues in pink humorously earning the title of the event's 'love team.'\n\nAs the festivities continue, employees gather for a traditional Filipino merienda featuring sandwiches and pancit sa bilao. The highlight of the meal is the reading of heartfelt love notes collected throughout the past week. Messages range from humorous quips to words of encouragement, including 'Just Always Pray at Night (JAPAN),' 'You are the GOAT,' and a humorous misinterpretation that turns 'I love how you…' into 'I love you,' sparking laughter and camaraderie.\n\nAs the day concludes, employees take home their collected love notes as keepsakes, reinforcing B1G Corporation's commitment to fostering a workplace culture of recognition, connection, and appreciation. The 'Work with a Heart' initiative highlights the company's dedication to employee well-being, leaving team members feeling valued and motivated.",
       category: "Company News",
-      date: "2024-01-10",
+      date: "2025-02-14",
       readTime: "4 min read",
-      image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80",
+      image: "https://www.b1gcorporation.com/viber_image_2025-02-20_10-26-52-244.jpg",
       featured: false,
-      author: "B1G Communications",
-      tags: ["Expansion", "Europe", "Global Growth", "Market Entry"]
-    },
-    {
-      id: 3,
-      title: "Innovation Award: B1G Recognized for Design Excellence",
-      excerpt: "Our design team receives prestigious recognition for their commitment to creating products that blend form and function seamlessly.",
-      content: "B1G Corporation's design team has been honored with the prestigious Innovation in Design Award for their exceptional work on the X-Forge series. This recognition celebrates our commitment to creating products that not only meet functional requirements but also exceed aesthetic expectations. The award acknowledges our philosophy that true innovation lies in the perfect balance of form and function.\n\nThe Innovation in Design Award is presented annually to companies that demonstrate exceptional creativity, technical excellence, and user-centered design thinking. Our team was recognized for their work on the X-Forge product line, which has set new standards in the industry for both performance and aesthetics.\n\n'This award is a testament to the hard work and dedication of our entire design team,' said our Chief Design Officer. 'We believe that great design should be invisible - it should enhance the user experience without drawing attention to itself.'\n\nThe judging panel praised our approach to user experience design, noting the intuitive interface and thoughtful attention to detail that characterizes all B1G products. The award ceremony was attended by industry leaders and design professionals from around the world.\n\nThis recognition further solidifies B1G Corporation's position as a leader in innovative design and user experience. We remain committed to pushing the boundaries of what's possible in product design and user experience.",
-      category: "Awards",
-      date: "2024-01-05",
-      readTime: "3 min read",
-      image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80",
-      featured: false,
-      author: "B1G Awards Team",
-      tags: ["Design", "Awards", "Innovation", "Recognition"]
-    },
-    {
-      id: 4,
-      title: "Sustainability Initiative: B1G's Commitment to Environmental Excellence",
-      excerpt: "New sustainability program demonstrates our dedication to responsible innovation and environmental stewardship.",
-      content: "B1G Corporation is proud to announce our comprehensive sustainability initiative, which represents our commitment to environmental excellence and responsible innovation. This program encompasses every aspect of our operations, from product design and manufacturing to packaging and distribution. We believe that true luxury and innovation must go hand in hand with environmental responsibility.\n\nOur sustainability program includes several key initiatives designed to reduce our environmental impact while maintaining the high quality standards that our customers expect. These initiatives include the use of recycled materials in our products, energy-efficient manufacturing processes, and carbon-neutral shipping options.\n\n'Environmental responsibility is not just a corporate initiative for us - it's a core value that guides every decision we make,' said our Director of Sustainability. 'We believe that businesses have a responsibility to lead by example when it comes to environmental stewardship.'\n\nThe program also includes partnerships with environmental organizations and research institutions to develop new sustainable technologies and materials. We are committed to sharing our findings with the broader industry to encourage widespread adoption of sustainable practices.\n\nCustomers can now choose carbon-neutral shipping options when purchasing our products, and we are working to make all our packaging 100% recyclable by the end of the year. These initiatives represent just the beginning of our commitment to environmental excellence.",
-      category: "Sustainability",
-      date: "2023-12-28",
-      readTime: "6 min read",
-      image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=800&q=80",
-      featured: false,
-      author: "B1G Sustainability Team",
-      tags: ["Sustainability", "Environment", "Green Technology", "Corporate Responsibility"]
-    },
-    {
-      id: 5,
-      title: "Partnership Announcement: B1G Collaborates with Leading Tech Innovators",
-      excerpt: "Strategic partnerships with industry leaders will accelerate our innovation pipeline and enhance product capabilities.",
-      content: "B1G Corporation is excited to announce strategic partnerships with several leading technology innovators. These collaborations will accelerate our innovation pipeline and enhance our product capabilities, ensuring that we continue to deliver cutting-edge solutions that meet the evolving needs of our customers. These partnerships represent our commitment to staying at the forefront of technological advancement.\n\nThe partnerships include collaborations with companies specializing in artificial intelligence, cloud computing, and advanced materials science. These collaborations will enable us to integrate the latest technological innovations into our products while maintaining our commitment to quality and user experience.\n\n'These partnerships represent a significant step forward for B1G Corporation,' said our Chief Technology Officer. 'By working with industry leaders, we can accelerate our innovation timeline and bring new technologies to market faster than ever before.'\n\nEach partnership has been carefully selected to align with our strategic goals and brand values. We are committed to maintaining the high standards of quality and innovation that our customers have come to expect from B1G products.\n\nThe first products resulting from these partnerships are expected to launch later this year, with additional innovations planned for the coming months. We are excited to share more details about these collaborations as they develop.",
-      category: "Partnerships",
-      date: "2023-12-20",
-      readTime: "4 min read",
-      image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80",
-      featured: false,
-      author: "B1G Partnerships Team",
-      tags: ["Partnerships", "Innovation", "Technology", "Collaboration"]
-    },
-    {
-      id: 6,
-      title: "Customer Experience: B1G Introduces Premium Support Program",
-      excerpt: "New premium support program ensures that every customer receives the exceptional service they deserve.",
-      content: "B1G Corporation is pleased to introduce our new premium support program, designed to ensure that every customer receives the exceptional service they deserve. This comprehensive program includes personalized assistance, priority support, and exclusive access to our team of experts. We believe that exceptional products deserve exceptional support, and this program reflects our commitment to customer satisfaction.\n\nThe premium support program includes 24/7 customer service, priority handling of support requests, and exclusive access to our team of product specialists. Customers enrolled in the program will also receive early access to new features and updates, as well as personalized training sessions to help them get the most out of their B1G products.\n\n'Customer satisfaction has always been our top priority,' said our Director of Customer Experience. 'This new program represents our commitment to providing the highest level of service to our most valued customers.'\n\nThe program is available to all customers who purchase our premium products, with additional benefits available to customers who choose to upgrade to our highest tier of support. We believe that this program will set a new standard for customer service in our industry.\n\nEarly feedback from customers enrolled in the program has been overwhelmingly positive, with many praising the personalized attention and quick response times. We are committed to continuously improving the program based on customer feedback and evolving needs.",
-      category: "Customer Experience",
-      date: "2023-12-15",
-      readTime: "3 min read",
-      image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80",
-      featured: false,
-      author: "B1G Customer Experience Team",
-      tags: ["Customer Service", "Support", "Premium Experience", "Customer Satisfaction"]
+      author: "Rhem de Guzman, Marketing",
+      tags: ["Valentines"]
     }
   ];
 

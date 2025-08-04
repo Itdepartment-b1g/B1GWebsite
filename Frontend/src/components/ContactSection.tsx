@@ -82,7 +82,7 @@ const ContactSection = () => {
                   <div>
                     <h4 className="font-bold text-white mb-1 md:mb-2 text-base md:text-lg">Call Us</h4>
                     <p className="text-sm md:text-base text-white/80 hover:text-[#FF9BFF] transition-colors duration-300 cursor-pointer">
-                      +63 (XXX) XXX-XXXX
+                      +639690743506
                     </p>
                   </div>
                 </div>

@@ -6,7 +6,7 @@ const About = () => {
     <div className="min-h-screen">
       <Header alwaysShowBg={true} />
       {/* Hero Banner */}
-      <section className="pt-32 md:pt-40 pb-24 bg-gradient-to-br from-[#472160] to-[#7c3aed] text-center">
+      <section className="pt-32 md:pt-48 pb-24 bg-gradient-to-br from-[#472160] to-[#7c3aed] text-center">
         <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-4 drop-shadow-lg">About B1G Corporation</h1>
         <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-2xl mx-auto font-light">Empowering Innovation, Delivering Excellence</p>
       </section>
@@ -52,12 +52,6 @@ const About = () => {
             </div>
           </div>
         </div>
-      </section>
-      {/* Call to Action */}
-      <section className="py-12 bg-[#f3e8ff] text-center">
-        <h2 className="text-3xl font-bold mb-2 text-[#472160]">Ready to work with us?</h2>
-        <p className="mb-6 text-muted-foreground">Contact our team to start your digital transformation journey today.</p>
-        <a href="#contact" className="inline-block bg-[#472160] text-white px-8 py-3 rounded-full font-semibold shadow-md hover:bg-[#5e347a] transition-colors">Contact Us</a>
       </section>
       <Footer />
     </div>
