@@ -182,7 +182,7 @@ const ForgeAlpha = () => {
       <Header alwaysShowBg={true} />
       
       {/* Futuristic Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 md:pt-40">
         {/* Background Elements */}
         <div className="absolute inset-0 bg-black"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(2,236,207,0.15),transparent_60%)]"></div>
@@ -225,7 +225,7 @@ const ForgeAlpha = () => {
             </div>
 
             {/* Main Heading */}
-            <h1 ref={textRef} className="text-6xl md:text-7xl lg:text-8xl font-black text-white mb-6 leading-tight">
+            <h1 ref={textRef} className="mt-8 text-6xl md:text-7xl lg:text-8xl font-black text-white mb-6 leading-tight">
               FORGE
               <span className="block bg-gradient-to-r from-[#02ECCF] via-[#02ECCF] to-gray-400 bg-clip-text text-transparent">
                 ALPHA
@@ -624,7 +624,7 @@ const ForgeAlpha = () => {
                   </div>
                 </div>
 
-               
+                
 
               </div>
             </>

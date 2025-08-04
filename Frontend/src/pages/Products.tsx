@@ -184,7 +184,7 @@ const Products = () => {
           }
         `}
       </style>
-      <main className="pt-2">
+      <main className="pt-32 md:pt-32">
         {/* Hero Section with Slideshow */}
         <section className="relative h-[80vh] overflow-hidden">
           <div className="absolute inset-0">

@@ -6,7 +6,7 @@ const About = () => {
     <div className="min-h-screen">
       <Header alwaysShowBg={true} />
       {/* Hero Banner */}
-      <section className="py-24 bg-gradient-to-br from-[#472160] to-[#7c3aed] text-center">
+      <section className="pt-32 md:pt-40 pb-24 bg-gradient-to-br from-[#472160] to-[#7c3aed] text-center">
         <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-4 drop-shadow-lg">About B1G Corporation</h1>
         <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-2xl mx-auto font-light">Empowering Innovation, Delivering Excellence</p>
       </section>

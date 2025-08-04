@@ -6,7 +6,7 @@ const HeroSection = () => {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 md:pt-40"
       style={{
         backgroundImage: `linear-gradient(135deg, rgba(71, 33, 96, 0.85) 0%, rgba(71, 33, 96, 0.6) 50%, rgba(255, 155, 255, 0.2) 100%), url(https://i.pinimg.com/1200x/82/88/98/82889811f2b5c1e0e3e113b73247a724.jpg)`,
         backgroundSize: "cover",
@@ -34,7 +34,8 @@ const HeroSection = () => {
 
         {/* Supporting Typography */}
         <div className="space-y-8">
-          <p className="text-base md:text-lg lg:text-xl text-[#F4FBFE]/90 font-light max-w-4xl mx-auto leading-relaxed tracking-wide">
+        <p className="text-xs md:text-lg lg:text-xl text-[#F4FBFE]/90 font-light max-w-4xl mx-auto leading-relaxed tracking-wide">
+
             B1G Corporation has rapidly established itself as a leader in the
             vape distribution industry. We have achieved significant milestones,
             expanding our reach both nationally and internationally. Our mission

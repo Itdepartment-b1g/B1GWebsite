@@ -151,7 +151,7 @@ const Alpha = () => {
       <Header />
       <main>
         {/* Hero Section */}
-        <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-24 pb-5">
+        <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-32 md:pt-40 pb-5">
           <div className="absolute inset-0 bg-[#292929] -z-10"></div>
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(2,236,207,0.1),transparent_70%)] -z-10"></div>
           
