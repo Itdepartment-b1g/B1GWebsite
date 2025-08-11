@@ -67,11 +67,9 @@ const Services = () => {
               B1G Corporation has rapidly established itself as a leader in the vape distribution industry. We have achieved significant milestones, expanding our reach both nationally and internationally. Our mission is to create a seamless distribution process that connects and supports a thriving community of vaping enthusiasts and smokers seeking safer alternatives.
             </p>
           </div>
-
-          {/* Stats */}
         </div>
       </section>
-
+      
       {/* Core Values */}
       <section className="py-5 bg-white">
         <div className="max-w-7xl mx-auto px-6">
@@ -122,8 +120,8 @@ const Services = () => {
         </div>
       </section>
 
-
       <Footer />
+
     </div>
   );
 };

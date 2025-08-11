@@ -15,6 +15,7 @@ import E31390 from "@/assets/E3.1390.png";
 import E31391 from "@/assets/E3.1391.png";
 import E31392 from "@/assets/E3.1392.png";
 
+
 const ProductPage = () => {
   const [currentPod, setCurrentPod] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -199,6 +200,7 @@ const ProductPage = () => {
       </section>
 
       {/* Features Section - Card Layout */}
+      
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto max-w-7xl px-6">
           <div className="text-center mb-16">

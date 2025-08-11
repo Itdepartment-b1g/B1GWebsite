@@ -40,6 +40,7 @@ const placeholderProducts = [
   }
 ];
 
+
 const FeaturedProduct = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
