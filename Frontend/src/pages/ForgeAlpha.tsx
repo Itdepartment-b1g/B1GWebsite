@@ -189,10 +189,10 @@ const ForgeAlpha = () => {
                         md:left-[0rem] md:top-[26rem]
                         lg:left-[3rem] lg:top-[30rem]
                         xl:left-[8rem] xl:top-[30rem]">
-          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-white mb-6 leading-tight tracking-wide whitespace-nowrap">
+          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-white mb-6 leading-tight tracking-wide whitespace-nowrap font-montserrat font-bold">
             FORGE YOUR NEW EXPERIENCE
           </p>
-          <button className="px-6 py-3 border-2 border-white bg-transparent text-white font-semibold rounded-lg hover:bg-white hover:text-black transition-all duration-300 flex items-center gap-2">
+          <button className="px-6 py-3 border-2 border-white bg-transparent text-white font-semibold rounded-lg hover:bg-white hover:text-black transition-all duration-300 flex items-center gap-2 font-montserrat">
             <span>User Manual</span>
             <ArrowRight className="w-5 h-5" />
           </button>
@@ -208,10 +208,10 @@ const ForgeAlpha = () => {
             
             {/* Left Column - Text Content */}
             <div className="text-left">
-              <h2 className="text-4xl lg:text-5xl text-gray-900 mb-6">
+              <h2 className="text-4xl lg:text-5xl text-gray-900 mb-6 font-montserrat font-bold">
                 About Alpha
               </h2>
-              <p className="text-lg text-gray-600 leading-relaxed">
+              <p className="text-lg text-gray-600 leading-relaxed font-montserrat">
                 Discover the cutting-edge technology that makes Forge Alpha the ultimate vaping experience.
               </p>
             </div>
@@ -237,7 +237,7 @@ const ForgeAlpha = () => {
           
           {/* Text with Line */}
           <div className="mb-8 text-center">
-            <p className="text-xl font-semibold text-gray-800 mb-4">
+            <p className="text-xl font-semibold text-gray-800 mb-4 font-montserrat">
               Discover Our Premium Collection
             </p>
             <div className="w-500 h-1 bg-gray-700 rounded-full mx-auto"></div>
@@ -275,10 +275,10 @@ const ForgeAlpha = () => {
               
               {/* Content */}
               <div className="relative z-10">
-                <h2 className="text-4xl lg:text-5xl text-white mb-6 font-bold">
+                <h2 className="text-4xl lg:text-5xl text-white mb-6 font-bold font-montserrat">
                   Product Showcase
                 </h2>
-                <p className="text-lg text-gray-200 leading-relaxed">
+                <p className="text-lg text-gray-200 leading-relaxed font-montserrat">
                   Explore our complete range of premium vaping products designed for every preference.
                 </p>
                 
@@ -302,10 +302,10 @@ const ForgeAlpha = () => {
               
               {/* Vertical Text - Dynamic Flavor Name */}
               <div className="absolute right-3 top-1/2 transform -translate-y-1/2 -rotate-90 flex flex-col gap-8 z-20">
-                <h1 className="text-6xl font-bold text-white whitespace-nowrap tracking-wider drop-shadow-lg">
+                <h1 className="text-6xl font-bold text-white whitespace-nowrap tracking-wider drop-shadow-lg font-montserrat">
                   {currentFlavor.name}
                 </h1>
-                <h1 className="text-6xl font-bold whitespace-nowrap tracking-wider text-outline-black text-transparent drop-shadow-sm">
+                <h1 className="text-6xl font-bold whitespace-nowrap tracking-wider text-outline-black text-transparent drop-shadow-sm font-montserrat">
                   {currentFlavor.name}
                 </h1>
               </div>

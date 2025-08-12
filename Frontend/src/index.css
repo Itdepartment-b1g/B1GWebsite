@@ -189,14 +189,14 @@ All colors MUST be HSL.
     text-stroke: 0 !important;
   }
   
-  /* Remove all text stroke effects globally */
-  * {
+  /* Remove all text stroke effects globally - except outline classes */
+  *:not(.text-outline-black) {
     -webkit-text-stroke: 0 !important;
     text-stroke: 0 !important;
   }
   
-  /* Specifically target all text elements */
-  h1, h2, h3, h4, h5, h6, p, span, div, button, a {
+  /* Specifically target all text elements - except outline classes */
+  h1:not(.text-outline-black), h2:not(.text-outline-black), h3:not(.text-outline-black), h4:not(.text-outline-black), h5:not(.text-outline-black), h6:not(.text-outline-black), p:not(.text-outline-black), span:not(.text-outline-black), div:not(.text-outline-black), button:not(.text-outline-black), a:not(.text-outline-black) {
     -webkit-text-stroke: 0 !important;
     text-stroke: 0 !important;
     text-shadow: none !important;
@@ -430,10 +430,12 @@ All colors MUST be HSL.
     overflow: hidden;
   }
 
-  /* Text outline utility */
-  .text-outline-black {
+  /* Text outline utility - Higher specificity to override global rules */
+  h1.text-outline-black, .text-outline-black {
     -webkit-text-stroke: 2px rgb(255, 255, 255) !important;
     text-stroke: 2px rgb(255, 255, 255) !important;
+    text-shadow: none !important;
+    font-weight: bold !important;
   }
 
 }
