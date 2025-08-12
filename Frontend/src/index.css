@@ -429,4 +429,11 @@ All colors MUST be HSL.
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+
+  /* Text outline utility */
+  .text-outline-black {
+    -webkit-text-stroke: 2px rgb(255, 255, 255) !important;
+    text-stroke: 2px rgb(255, 255, 255) !important;
+  }
+
 }
