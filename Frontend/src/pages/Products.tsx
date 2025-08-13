@@ -4,6 +4,10 @@ import { ArrowRight, Shield, Zap, Brain, Cloud, BarChart3, Users, ChevronLeft, C
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
+// Import the ForgeBanner image
+import forgeBanner from "../assets/ForgeBanner.jpg";
+import forgePicture from "../assets/ForgePicture.jpg";
+
 const Products = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 2;
@@ -46,7 +50,7 @@ const Products = () => {
       ],
       primaryColor: "from-emerald-600 to-teal-700",
       accentColor: "bg-emerald-50 border-emerald-200",
-      image: "https://scontent.fmnl9-3.fna.fbcdn.net/v/t39.30808-6/509752842_122140628432792390_8217079412808562189_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_ohc=Ke8G0mXdZdQQ7kNvwFJW7Eh&_nc_oc=Adlfn5XvrUFcixorr91xvzhnJAmDZEGWXMxj8GwdhbeN9qbIW432tAIe76lrFDcvXdI&_nc_zt=23&_nc_ht=scontent.fmnl9-3.fna&_nc_gid=3ue72sWxSqiBT49YDWXK1g&oh=00_AfSmupKumbxwXzo1DmhxuDfxA-Z1Z7WpW8_EP_hkH8Hpdw&oe=688F578A"
+      image: forgePicture
     },
     {
       id: 3,
@@ -120,7 +124,7 @@ const Products = () => {
       title: "",
       subtitle: "",
       description: "",
-      image: "https://scontent.fmnl17-8.fna.fbcdn.net/v/t39.30808-6/485157766_122118285134792390_5323419709097863985_n.png?stp=dst-jpg_tt6&_nc_cat=104&ccb=1-7&_nc_sid=86c6b0&_nc_ohc=QVwWuFVHYEwQ7kNvwGk_fQq&_nc_oc=AdnqxWSANU12-QK1S3iQBzu3chZhXDvlszh2XT3dS9r8qQset6F7P_jc71w7rE1PdK8&_nc_zt=23&_nc_ht=scontent.fmnl17-8.fna&_nc_gid=254_yzALI7ohE73p_XSCNw&oh=00_AfRgPMagVre7vghNa78G-ptymjoAafOfN-jmZW-ovFDXiw&oe=688E5BC6",
+      image: forgeBanner,
       gradient: "from-cyan-600/30 to-lightblue-700/0"
     },
     {
