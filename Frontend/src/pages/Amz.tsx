@@ -93,12 +93,7 @@ const ProductPage = () => {
         }}></div>
       </div>
 
-      {/* Floating Elements */}
-      <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-red-600 rounded-full animate-pulse"></div>
-        <div className="absolute top-3/4 right-1/4 w-1 h-1 bg-gray-400 rounded-full animate-ping"></div>
-        <div className="absolute bottom-1/4 left-1/3 w-1.5 h-1.5 bg-red-500 rounded-full animate-bounce"></div>
-      </div>
+
 
       <Header alwaysShowBg={true} />
 
