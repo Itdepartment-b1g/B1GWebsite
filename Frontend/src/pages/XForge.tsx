@@ -1,14 +1,13 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Download, Zap, Battery, Droplets, Shield, Star, ChevronLeft, ChevronRight, Sparkles, Cpu, Shuffle } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import xforgeImage from "@/assets/image.png";
 import graphiteGrayImage from "@/assets/GraphiteGray.png";
 import obsidianBlackImage from "@/assets/ObsidianBlack.png";
 import vividCyanImage from "@/assets/VividCyan.png";
 import forgeLogo from "@/assets/ForgeLogoCyan.png";
-import FlavorSection from "@/components/ForgeFlavorSection";
 import B1GBlack from "@/assets/Forge/B1GBlack.png";
 import B1GBlue from "@/assets/Forge/B1GBlue.png";
 import B1GFrost from "@/assets/Forge/B1GFrost.png";
@@ -30,6 +29,7 @@ const XForgeProduct = () => {
   const [flavorsInView, setFlavorsInView] = useState(false);
   const [selectedFlavor, setSelectedFlavor] = useState(0);
   const [currentFlavorIndex, setCurrentFlavorIndex] = useState(0);
+  const gridRef = useRef<HTMLDivElement | null>(null);
 
   // Keyboard navigation for the showcase (Left/Right arrows)
   useEffect(() => {
@@ -44,36 +44,71 @@ const XForgeProduct = () => {
     return () => window.removeEventListener('keydown', handleKey);
   }, []);
 
-  // Parallax effect for grid background with smooth easing
+  const hexToRgb = (hex: string): { r: number; g: number; b: number } => {
+    const normalized = hex.replace('#', '');
+    const expanded = normalized.length === 3
+      ? normalized.split('').map((c) => c + c).join('')
+      : normalized;
+    const bigint = parseInt(expanded, 16);
+    return {
+      r: (bigint >> 16) & 255,
+      g: (bigint >> 8) & 255,
+      b: bigint & 255,
+    };
+  };
+
+  const hexToRgba = (hex: string, alpha: number): string => {
+    const { r, g, b } = hexToRgb(hex);
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+  };
+
+  const getFlavorTheme = (name: string): string => {
+    const key = name.toLowerCase();
+    if (key.includes('sparkle')) return '#FDE047';
+    if (key.includes('black')) return '#000000';
+    if (key.includes('rizz')) return '#EC4899';
+    if (key.includes('purple')) return '#A78BFA';
+    if (key.includes('shirota')) return '#FDE68A';
+    if (key.includes('blue')) return '#60A5FA';
+    if (key.includes('frost')) return '#67E8F9';
+    if (key.includes('lush')) return '#34D399';
+    if (key.includes('heart')) return '#FB7185';
+    if (key.includes('red')) return '#F87171';
+    return '#02ECCF';
+  };
+
+  // Smooth parallax for main grid overlay (AMZ-like smoothness)
   useEffect(() => {
+    const element = gridRef.current;
+    if (!element) return;
+
+    let rafId = 0;
     const current = { x: 0, y: 0 };
     const target = { x: 0, y: 0 };
-    const rafId = { id: 0 } as { id: number };
 
     const lerp = (a: number, b: number, n: number) => a + (b - a) * n;
 
     const animate = () => {
       current.x = lerp(current.x, target.x, 0.08);
       current.y = lerp(current.y, target.y, 0.08);
-      document.documentElement.style.setProperty('--grid-x', `${current.x.toFixed(2)}px`);
-      document.documentElement.style.setProperty('--grid-y', `${current.y.toFixed(2)}px`);
-      rafId.id = requestAnimationFrame(animate);
+      // Use transform-based movement to avoid full-surface repaints
+      element.style.transform = `translate3d(${current.x.toFixed(2)}px, ${current.y.toFixed(2)}px, 0)`;
+      rafId = requestAnimationFrame(animate);
     };
 
     const onScroll = () => {
       const scrollY = window.scrollY || 0;
       const scrollX = window.scrollX || 0;
-      // Smaller multipliers for a subtle effect; tuned to feel smooth
       target.x = scrollX * 0.08;
       target.y = scrollY * 0.12;
     };
 
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
-    rafId.id = requestAnimationFrame(animate);
+    rafId = requestAnimationFrame(animate);
     return () => {
       window.removeEventListener('scroll', onScroll);
-      cancelAnimationFrame(rafId.id);
+      cancelAnimationFrame(rafId);
     };
   }, []);
 
@@ -180,7 +215,7 @@ const XForgeProduct = () => {
               radial-gradient(circle at 80% 100%, rgba(2, 236, 207, 0.10), transparent 40%),
               linear-gradient(rgba(2, 236, 207, 0.22) 1px, transparent 1px),
               linear-gradient(90deg, rgba(2, 236, 207, 0.22) 1px, transparent 1px);
-            background-size: 100% 100%, 50px 50px, 50px 50px;
+            background-size: 100% 100%, 80px 80px, 80px 80px;
             background-position: left top, calc(var(--grid-x, 0px)) calc(var(--grid-y, 0px)), calc(var(--grid-x, 0px)) calc(var(--grid-y, 0px));
             background-blend-mode: screen;
             transition: background-position 200ms ease-out;
@@ -189,17 +224,34 @@ const XForgeProduct = () => {
             background-image: 
               linear-gradient(rgba(2, 236, 207, 0.22) 1px, transparent 1px),
               linear-gradient(90deg, rgba(2, 236, 207, 0.22) 1px, transparent 1px);
-            background-size: 50px 50px, 50px 50px;
+            background-size: 80px 80px, 80px 80px;
             background-position: calc(var(--grid-x, 0px)) calc(var(--grid-y, 0px)), calc(var(--grid-x, 0px)) calc(var(--grid-y, 0px));
             transition: background-position 200ms ease-out;
           }
         `}
       </style>
       
-      <main className="pt-24">
+      <main className="relative pt-24 overflow-hidden">
+        {/* Background grid overlay limited to main content */}
+        <div className="pointer-events-none absolute inset-0 z-0 opacity-80">
+          <div
+            ref={gridRef}
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `
+                linear-gradient(90deg, #02ECCF 1px, transparent 1px),
+                linear-gradient(180deg, #02ECCF 1px, transparent 1px)
+              `,
+              backgroundSize: '80px 80px',
+              backgroundPosition: '0px 0px, 0px 0px',
+              willChange: 'transform'
+            }}
+          ></div>
+        </div>
+        <div className="relative z-10">
 
        {/* Hero Section */}
-       <section ref={heroRef} className="relative py-24 overflow-hidden cyber-grid grid-only">
+        <section ref={heroRef} className="relative py-24 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-[#F4F6F8]/60"></div>
           <div className="container mx-auto max-w-7xl px-6 relative z-10">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -241,7 +293,7 @@ const XForgeProduct = () => {
           </div>
         </section>
         {/* Showcase Fan Section */}
-        <section ref={showcaseRef} className="relative pt-24 pb-8 md:pt-20 md:pb-10 overflow-hidden cyber-grid grid-only text-center min-h-[calc(100vh-6rem)]">
+        <section ref={showcaseRef} className="relative pt-24 pb-8 md:pt-20 md:pb-10 overflow-hidden text-center min-h-[calc(100vh-6rem)]">
           <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-transparent"></div>
           <div className="container mx-auto max-w-7xl px-6 relative z-10">
             {/* Forge logo placed within the same section to inherit background */}
@@ -455,9 +507,215 @@ const XForgeProduct = () => {
 
       
 
-        {/* Flavors Section */}
-        <div ref={flavorsRef} className={`transition-all duration-700 ${flavorsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-          <FlavorSection flavors={flavorsForSection} />
+        {/* Flavors Section (inlined) */}
+        <section ref={flavorsRef} className={`relative py-20 overflow-hidden transition-all duration-700 ${flavorsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          <div className="container mx-auto max-w-7xl px-6">
+            <div className="mb-12 text-center">
+              <h2 className="text-3xl md:text-4xl font-montserrat-bold text-[#292929] tracking-tight">Explore Our Flavors</h2>
+              <div className="mt-3 inline-flex items-center gap-2">
+                <span className="h-[3px] w-16 bg-gradient-to-r from-[#02ECCF] to-[#02ECCF]/40 rounded-full" />
+                <span className="h-[3px] w-6 bg-[#02ECCF]/30 rounded-full" />
+              </div>
+            </div>
+            <div className="relative">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-10 items-start">
+                <ul className="space-y-4 order-2 md:order-1 z-10" style={{ contain: 'content' }}>
+                  {(() => {
+                    const half = Math.ceil(flavorsForSection.length / 2);
+                    const leftFlavors = flavorsForSection.slice(0, half);
+                    return leftFlavors.map((flavor, index) => {
+                      const absoluteIndex = index;
+                      const isActive = absoluteIndex === selectedFlavor;
+                      const itemTheme = getFlavorTheme(flavor.name);
+                      return (
+                        <li key={flavor.name} style={{ animation: "fadeInUp 0.5s ease both", animationDelay: `${absoluteIndex * 120}ms` }}>
+                            <button
+                            type="button"
+                            onClick={() => setSelectedFlavor(absoluteIndex)}
+                              className={`group relative w-full text-left rounded-2xl p-4 transition-transform duration-200 hover:scale-[1.01] focus:outline-none will-change-transform`}
+                            style={{
+                              background: isActive ? 'rgba(255,255,255,0.16)' : 'rgba(255,255,255,0.10)',
+                              border: '1px solid',
+                              borderColor: isActive ? itemTheme : 'rgba(255,255,255,0.22)',
+                              boxShadow: isActive ? `0 6px 20px rgba(0,0,0,0.12), 0 0 0 3px ${itemTheme}22` : '0 6px 20px rgba(0,0,0,0.06)',
+                            }}
+                          >
+                            <span className={`absolute left-0 top-0 h-full w-1 rounded-l-2xl transition-opacity ${isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-60'}`}
+                                  style={{ backgroundColor: itemTheme }} />
+                            <div className="flex items-start gap-3">
+                              <span className={`flex-shrink-0 mt-0.5 inline-flex items-center justify-center w-6 h-6 rounded-full text-[11px] font-montserrat-bold ${isActive ? 'bg-[#02ECCF] text-[#292929]' : 'bg-[#02ECCF]/15 text-[#292929]'}`}>
+                                {String(absoluteIndex + 1).padStart(2, '0')}
+                              </span>
+                              <div>
+                                <div className="font-montserrat-bold text-[#292929]">{flavor.name}</div>
+                                <div className={`text-sm text-[#666666] mt-1 font-montserrat-regular ${isActive ? 'block' : 'hidden group-hover:block'}`}>
+                                  {flavor.description}
+                                </div>
+                              </div>
+                              <ChevronRight className={`ml-auto mt-0.5 h-4 w-4 transition-all ${isActive ? 'text-[#02ECCF]' : 'text-[#292929]/30 group-hover:text-[#02ECCF]'}`} />
+                            </div>
+                            <div className="pointer-events-none absolute inset-0 rounded-2xl"
+                                 style={{
+                                   background: 'linear-gradient(180deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.06) 60%, rgba(255,255,255,0.02) 100%)',
+                                   opacity: isActive ? 1 : 0.9,
+                                 }} />
+                          </button>
+                        </li>
+                      );
+                    });
+                  })()}
+                </ul>
+                <div className="order-1 md:order-2 md:sticky md:top-24">
+                  <div className="relative mx-auto aspect-[3/4] max-w-xs sm:max-w-sm overflow-visible">
+                    <style>
+                      {`
+                        @keyframes driftOne {
+                          0% { top: -18px; left: 50%; transform: translate(-50%, 0); }
+                          25% { top: 15%; left: 85%; transform: translate(-50%, 0); }
+                          50% { top: 60%; left: 55%; transform: translate(-50%, 0); }
+                          75% { top: 20%; left: 10%; transform: translate(-50%, 0); }
+                          100% { top: -18px; left: 50%; transform: translate(-50%, 0); }
+                        }
+                        @keyframes driftTwo {
+                          0% { bottom: -18px; left: -18px; }
+                          25% { bottom: 12%; left: 12%; }
+                          50% { bottom: 40%; left: 5%; }
+                          75% { bottom: 18%; left: 35%; }
+                          100% { bottom: -18px; left: -18px; }
+                        }
+                      `}
+                    </style>
+                    <div className="absolute w-80 h-80 will-change-transform" style={{ animation: "driftOne 18s ease-in-out infinite" }}>
+                      <div
+                        className="absolute inset-0 rounded-full opacity-70 blur-sm"
+                        style={{
+                          background: `conic-gradient(from 0deg, ${hexToRgba(getFlavorTheme(flavorsForSection[selectedFlavor]?.name || ''), 0.6)}, transparent 60%)`,
+                          animation: "spinSlow 12s linear infinite",
+                        }}
+                      />
+                    </div>
+                    <div className="absolute w-64 h-64 will-change-transform" style={{ animation: "driftTwo 20s ease-in-out infinite alternate" }}>
+                      <div
+                        className="absolute inset-0 rounded-full opacity-90 blur-sm"
+                        style={{
+                          background: `conic-gradient(from 0deg, ${hexToRgba(getFlavorTheme(flavorsForSection[selectedFlavor]?.name || ''), 0.45)}, transparent 60%)`,
+                          animation: "spinSlow 16s linear infinite reverse",
+                        }}
+                      />
+                    </div>
+                    <div className="absolute -inset-10 blur-xl pointer-events-none" style={{ background: `radial-gradient(closest-side, ${hexToRgba(getFlavorTheme(flavorsForSection[selectedFlavor]?.name || ''), 0.20)}, transparent 65%)` }} />
+                    <img
+                      src={flavorsForSection[selectedFlavor]?.image}
+                      alt={flavorsForSection[selectedFlavor]?.name}
+                      className="absolute inset-0 w-full h-full object-contain p-6 drop-shadow-xl"
+                    />
+                  </div>
+                  <div className="mt-4 text-center">
+                    <div className="inline-block rounded-full bg-[#02ECCF] text-[#292929] px-4 py-1 text-sm font-montserrat-bold shadow shadow-[#02ECCF]/40">
+                      {flavorsForSection[selectedFlavor]?.name}
+                    </div>
+                    <div className="mt-5 flex flex-wrap justify-center gap-3">
+                      {flavorsForSection.map((f, i) => (
+                        <button
+                          key={f.name}
+                          type="button"
+                          aria-label={f.name}
+                          onClick={() => setSelectedFlavor(i)}
+                          className={`w-2.5 h-2.5 rounded-full transition-all duration-200 ring-2 ${
+                            i === selectedFlavor
+                              ? 'bg-[#02ECCF] ring-[#02ECCF] scale-110'
+                              : 'bg-[#02ECCF]/40 ring-transparent hover:ring-[#02ECCF]/40 hover:scale-110'
+                          }`}
+                        />
+                      ))}
+                    </div>
+                    {(() => {
+                      const ratings: Record<string, { sweetness: number; coolness: number; flavor: number }> = {
+                        "b1g purple": { sweetness: 5, coolness: 5, flavor: 5 },
+                        "b1g red": { sweetness: 5, coolness: 4, flavor: 4 },
+                        "b1g sparkle": { sweetness: 5, coolness: 4, flavor: 4 },
+                        "b1g heart": { sweetness: 4, coolness: 4, flavor: 3 },
+                        "b1g rizz": { sweetness: 4, coolness: 3, flavor: 3 },
+                        "b1g lush": { sweetness: 4, coolness: 4, flavor: 5 },
+                        "b1g blue": { sweetness: 5, coolness: 4, flavor: 3 },
+                        "b1g frost": { sweetness: 4, coolness: 1, flavor: 3 },
+                        "b1g black": { sweetness: 4, coolness: 3, flavor: 4 },
+                        "b1g shirota": { sweetness: 4, coolness: 3, flavor: 4 },
+                      };
+                      const key = (flavorsForSection[selectedFlavor]?.name || '').toLowerCase();
+                      const profile = ratings[key] || { sweetness: 3, coolness: 3, flavor: 3 };
+                      return (
+                        <div className="mt-6 mx-auto max-w-sm bg-white/70 border border-white/70 rounded-2xl p-4 text-left shadow">
+                          <div className="mb-2 flex items-center gap-2 text-sm font-montserrat-bold text-[#292929]"><Sparkles className="h-4 w-4 text-[#02ECCF]" /> Flavor profile</div>
+                          <div className="space-y-3">
+                            <div>
+                              <div className="flex items-center justify-between text-xs text-[#666666]"><span className="inline-flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-[#02ECCF]/60" /> Sweetness</span><span className="font-montserrat-bold text-[#292929]/80">{profile.sweetness}/5</span></div>
+                              <div className="mt-1 h-2 rounded-full bg-[#292929]/10 overflow-hidden"><div className="h-full bg-gradient-to-r from-[#02ECCF] to-[#02ECCF]/60" style={{ width: `${profile.sweetness * 20}%` }} /></div>
+                            </div>
+                            <div>
+                              <div className="flex items-center justify-between text-xs text-[#666666]"><span className="inline-flex items-center gap-1"><Droplets className="h-3.5 w-3.5 text-[#02ECCF]" /> Coolness</span><span className="font-montserrat-bold text-[#292929]/80">{profile.coolness}/5</span></div>
+                              <div className="mt-1 h-2 rounded-full bg-[#292929]/10 overflow-hidden"><div className="h-full bg-gradient-to-r from-[#02ECCF] to-[#02ECCF]/60" style={{ width: `${profile.coolness * 20}%` }} /></div>
+                            </div>
+                            <div>
+                              <div className="flex items-center justify-between text-xs text-[#666666]"><span className="inline-flex items-center gap-1"><Star className="h-3.5 w-3.5 text-[#02ECCF]" /> Flavor</span><span className="font-montserrat-bold text-[#292929]/80">{profile.flavor}/5</span></div>
+                              <div className="mt-1 h-2 rounded-full bg-[#292929]/10 overflow-hidden"><div className="h-full bg-gradient-to-r from-[#02ECCF] to-[#02ECCF]/60" style={{ width: `${profile.flavor * 20}%` }} /></div>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })()}
+                  </div>
+                </div>
+                <ul className="space-y-4 order-3 z-10" style={{ contain: 'content' }}>
+                  {(() => {
+                    const half = Math.ceil(flavorsForSection.length / 2);
+                    const rightFlavors = flavorsForSection.slice(half);
+                    return rightFlavors.map((flavor, index) => {
+                      const absoluteIndex = index + half;
+                      const isActive = absoluteIndex === selectedFlavor;
+                      const itemTheme = getFlavorTheme(flavor.name);
+                      return (
+                        <li key={flavor.name} style={{ animation: "fadeInUp 0.5s ease both", animationDelay: `${absoluteIndex * 120}ms` }}>
+                            <button
+                            type="button"
+                            onClick={() => setSelectedFlavor(absoluteIndex)}
+                              className={`group relative w-full text-left rounded-2xl p-4 transition-transform duration-200 hover:scale-[1.01] focus:outline-none will-change-transform`}
+                            style={{
+                              background: isActive ? 'rgba(255,255,255,0.16)' : 'rgba(255,255,255,0.10)',
+                              border: '1px solid',
+                              borderColor: isActive ? itemTheme : 'rgba(255,255,255,0.22)',
+                              boxShadow: isActive ? `0 6px 20px rgba(0,0,0,0.12), 0 0 0 3px ${itemTheme}22` : '0 6px 20px rgba(0,0,0,0.06)',
+                            }}
+                          >
+                            <span className={`absolute left-0 top-0 h-full w-1 rounded-l-2xl transition-opacity ${isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-60'}`}
+                                  style={{ backgroundColor: itemTheme }} />
+                            <div className="flex items-start gap-3">
+                              <span className={`flex-shrink-0 mt-0.5 inline-flex items-center justify-center w-6 h-6 rounded-full text-[11px] font-montserrat-bold ${isActive ? 'bg-[#02ECCF] text-[#292929]' : 'bg-[#02ECCF]/15 text-[#292929]'}`}>
+                                {String(absoluteIndex + 1).padStart(2, '0')}
+                              </span>
+                              <div>
+                                <div className="font-montserrat-bold text-[#292929]">{flavor.name}</div>
+                                <div className={`text-sm text-[#666666] mt-1 font-montserrat-regular ${isActive ? 'block' : 'hidden group-hover:block'}`}>
+                                  {flavor.description}
+                                </div>
+                              </div>
+                              <ChevronRight className={`ml-auto mt-0.5 h-4 w-4 transition-all ${isActive ? 'text-[#02ECCF]' : 'text-[#292929]/30 group-hover:text-[#02ECCF]'}`} />
+                            </div>
+                            <div className="pointer-events-none absolute inset-0 rounded-2xl"
+                                 style={{
+                                   background: 'linear-gradient(180deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.06) 60%, rgba(255,255,255,0.02) 100%)',
+                                   opacity: isActive ? 1 : 0.9,
+                                 }} />
+                          </button>
+                        </li>
+                      );
+                    });
+                  })()}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
         </div>
       </main>
       <Footer />

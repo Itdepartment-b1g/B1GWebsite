@@ -4,16 +4,16 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 // Import AMZ pod images
-import E31383 from "@/assets/E3.1383.png";
-import E31384 from "@/assets/E3.1384.png";
-import E31385 from "@/assets/E3.1385.png";
-import E31386 from "@/assets/E3.1386.png";
-import E31387 from "@/assets/E3.1387.png";
-import E31388 from "@/assets/E3.1388.png";
-import E31389 from "@/assets/E3.1389.png";
-import E31390 from "@/assets/E3.1390.png";
-import E31391 from "@/assets/E3.1391.png";
-import E31392 from "@/assets/E3.1392.png";
+import E31383 from "@/assets/Amz/E3.1383.png";
+import E31384 from "@/assets/Amz/E3.1384.png";
+import E31385 from "@/assets/Amz/E3.1385.png";
+import E31386 from "@/assets/Amz/E3.1386.png";
+import E31387 from "@/assets/Amz/E3.1387.png";
+import E31388 from "@/assets/Amz/E3.1388.png";
+import E31389 from "@/assets/Amz/E3.1389.png";
+import E31390 from "@/assets/Amz/E3.1390.png";
+import E31391 from "@/assets/Amz/E3.1391.png";
+import E31392 from "@/assets/Amz/E3.1392.png";
 
 
 const ProductPage = () => {
