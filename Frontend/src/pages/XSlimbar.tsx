@@ -6,23 +6,45 @@ import Footer from "@/components/Footer";
 const Amz = () => {
   const [currentPod, setCurrentPod] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [currentColor, setCurrentColor] = useState(0);
+  const [isColorTransitioning, setIsColorTransitioning] = useState(false);
+  const [isPodAutoPlay, setIsPodAutoPlay] = useState(true);
+  const [isColorAutoPlay, setIsColorAutoPlay] = useState(true);
 
   const pods = [
-    { name: 'Cherry Blast', color: '#DC2626', image: 'https://www.xvape.cc/upload/images/2025/05/07/7196154304.png', description: 'Bold cherry flavor with a refreshing finish' },
-    { name: 'Ocean Blue', color: '#2563EB', image: 'https://www.xvape.cc/upload/images/2025/05/07/7195154228.png', description: 'Cool menthol sensation with tropical notes' },
-    { name: 'Forest Green', color: '#059669', image: 'https://www.xvape.cc/upload/images/2025/05/07/7187153806.png', description: 'Fresh mint with herbal undertones' },
-    { name: 'Sunset Orange', color: '#EA580C', image: 'https://www.xvape.cc/upload/images/2025/05/07/7192154011.png', description: 'Citrus burst with smooth vanilla finish' },
-    { name: 'Purple Storm', color: '#7C3AED', image: 'https://www.xvape.cc/upload/images/2025/05/07/7190153922.png', description: 'Mixed berry explosion with grape notes' },
-    { name: 'Golden Honey', color: '#D97706', image: 'https://www.xvape.cc/upload/images/2025/05/07/7193154049.png', description: 'Sweet honey with caramel undertones' },
-    { name: 'Pink Paradise', color: '#EC4899', image: 'https://www.xvape.cc/upload/images/2025/05/07/7191153939.png', description: 'Tropical fruit blend with floral hints' },
-    { name: 'Silver Ice', color: '#6B7280', image: 'https://www.xvape.cc/upload/images/2025/05/07/7194154206.png', description: 'Ultra-cool menthol with icy finish' },
-    { name: 'Royal Black', color: '#1F2937', image: 'https://www.xvape.cc/upload/images/2025/05/07/7186153735.png', description: 'Rich tobacco with subtle vanilla' },
-    { name: 'Lime Zest', color: '#65A30D', image: 'https://www.xvape.cc/upload/images/2025/05/07/7185153705.png', description: 'Zesty lime with refreshing kick' }
+    { name: 'ICY HEART', color: '#ff8d8e', image: 'https://www.xvape.cc/upload/images/2025/05/07/7196154304.png', description: 'Bold cherry flavor with a refreshing finish' },
+    { name: 'BLUE BURST', color: '#8ba1f2', image: 'https://www.xvape.cc/upload/images/2025/05/07/7195154228.png', description: 'Cool menthol sensation with tropical notes' },
+    { name: 'MYSTERY BURST', color: '#76aef0', image: 'https://www.xvape.cc/upload/images/2025/05/07/7194154206.png', description: 'Fresh mint with herbal undertones' },
+    { name: 'GOLDEN SUNBURST', color: '#f8ab75', image: 'https://www.xvape.cc/upload/images/2025/05/07/7193154049.png', description: 'Citrus burst with smooth vanilla finish' },
+    { name: 'GOLD SLICE', color: '#fa842b', image: 'https://www.xvape.cc/upload/images/2025/05/07/7192154011.png', description: 'Mixed berry explosion with grape notes' },
+    { name: 'RED TROPIC BUBBLE', color: '#fe464c', image: 'https://www.xvape.cc/upload/images/2025/05/07/7191153939.png', description: 'Sweet honey with caramel undertones' },
+    { name: 'PURPLE HAZE', color: '#a667d0', image: 'https://www.xvape.cc/upload/images/2025/05/07/7190153922.png', description: 'Tropical fruit blend with floral hints' },
+    { name: 'PURPLE BURST', color: '#a667d0', image: 'https://www.xvape.cc/upload/images/2025/05/07/7189153856.png', description: 'Ultra-cool menthol with icy finish' },
+    { name: 'AMBER', color: '#9b8882', image: 'https://www.xvape.cc/upload/images/2025/05/07/7188153829.png', description: 'Rich tobacco with subtle vanilla' },
+    { name: 'VIOLET ECLIPSE', color: '#c21c5a', image: 'https://www.xvape.cc/upload/images/2025/05/07/7187153806.png', description: 'Zesty lime with refreshing kick' },
+    { name: 'RED TROPIC', color: '#ff1425', image: 'https://www.xvape.cc/upload/images/2025/05/07/7186153735.png', description: 'Zesty lime with refreshing kick' },
+    { name: 'ROSY BREEZE', color: '#ff8ac1', image: 'https://www.xvape.cc/upload/images/2025/05/07/7185153705.png', description: 'Zesty lime with refreshing kick' }
   ];
 
-  const nextPod = () => {
+  const deviceColors = [
+    { name: 'Natural Titanium', color: '#cbc0be', image: 'https://www.xvape.cc/Templates/default/images/X-SLIMBAR1.png', description: 'Premium natural titanium finish with warm, earthy tones and aerospace-grade durability for sophisticated everyday elegance' },
+    { name: 'White Titanium', color: '#d5d5d3', image: 'https://www.xvape.cc/Templates/default/images/X-SLIMBAR2.png', description: 'Pure white titanium with lustrous pearl finish and advanced anti-fingerprint coating for pristine appearance' },
+    { name: 'Sakura Pink', color: '#f8bbc8', image: 'https://www.xvape.cc/Templates/default/images/X-SLIMBAR3.png', description: 'Inspired by cherry blossoms, this delicate pink finish features soft pearl coating with feminine elegance and refinement' },
+    { name: 'Desert Titanium', color: '#ca8b56', image: 'https://www.xvape.cc/Templates/default/images/X-SLIMBAR4.png', description: 'Warm desert-inspired titanium with rich bronze undertones and premium brushed texture for distinctive character' },
+    { name: 'Ultramarine', color: '#4c50b3', image: 'https://www.xvape.cc/Templates/default/images/X-SLIMBAR5.png', description: 'Deep ultramarine blue with vibrant intensity and precision-engineered satin finish for bold sophistication' },
+    { name: 'Space Grey', color: '#483f38', image: 'https://www.xvape.cc/Templates/default/images/X-SLIMBAR6.png', description: 'Modern space grey with sophisticated dark tones and ultra-smooth anodized finish for professional appeal' }
+  ];
+
+  const nextPod = (isUserInteraction = false) => {
     if (isTransitioning) return;
     setIsTransitioning(true);
+    
+    if (isUserInteraction) {
+      setIsPodAutoPlay(false);
+      // Resume auto-play after 5 seconds of inactivity
+      setTimeout(() => setIsPodAutoPlay(true), 5000);
+    }
+    
     setTimeout(() => {
       setCurrentPod((prev) => (prev + 1) % pods.length);
       setIsTransitioning(false);
@@ -32,18 +54,59 @@ const Amz = () => {
   const prevPod = () => {
     if (isTransitioning) return;
     setIsTransitioning(true);
+    
+    // User interaction - pause auto-play
+    setIsPodAutoPlay(false);
+    setTimeout(() => setIsPodAutoPlay(true), 5000);
+    
     setTimeout(() => {
       setCurrentPod((prev) => (prev - 1 + pods.length) % pods.length);
       setIsTransitioning(false);
     }, 300);
   };
 
+  const nextColor = () => {
+    if (isColorTransitioning) return;
+    setIsColorTransitioning(true);
+    
+    // User interaction - pause auto-play
+    setIsColorAutoPlay(false);
+    setTimeout(() => setIsColorAutoPlay(true), 5000);
+    
+    setTimeout(() => {
+      setCurrentColor((prev) => (prev + 1) % deviceColors.length);
+      setIsColorTransitioning(false);
+    }, 300);
+  };
+
+  const prevColor = () => {
+    if (isColorTransitioning) return;
+    setIsColorTransitioning(true);
+    
+    // User interaction - pause auto-play
+    setIsColorAutoPlay(false);
+    setTimeout(() => setIsColorAutoPlay(true), 5000);
+    
+    setTimeout(() => {
+      setCurrentColor((prev) => (prev - 1 + deviceColors.length) % deviceColors.length);
+      setIsColorTransitioning(false);
+    }, 300);
+  };
+
   useEffect(() => {
-    const interval = setInterval(nextPod, 4000);
+    if (!isPodAutoPlay) return;
+    
+    const interval = setInterval(() => {
+      if (isPodAutoPlay) {
+        nextPod(false); // false indicates this is not user interaction
+      }
+    }, 4000);
+    
     return () => clearInterval(interval);
-  }, []);
+  }, [isPodAutoPlay]);
 
   const currentPodData = pods[currentPod];
+  const currentColorData = deviceColors[currentColor];
 
   return (
     <div className="min-h-screen bg-white text-black">
@@ -225,39 +288,43 @@ const Amz = () => {
             </div>
 
             {/* Navigation Controls */}
-            <div className="absolute top-1/2 left-4 transform -translate-y-1/2">
-              <button
-                onClick={prevPod}
-                className="bg-white/90 hover:bg-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
-                disabled={isTransitioning}
-              >
-                <ChevronLeft className="w-6 h-6 text-gray-800" />
-              </button>
-            </div>
-            <div className="absolute top-1/2 right-4 transform -translate-y-1/2">
-              <button
-                onClick={nextPod}
-                className="bg-white/90 hover:bg-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
-                disabled={isTransitioning}
-              >
-                <ChevronRight className="w-6 h-6 text-gray-800" />
-              </button>
-            </div>
+                         <div className="absolute top-1/2 left-4 transform -translate-y-1/2">
+               <button
+                 onClick={prevPod}
+                 className="bg-white/90 hover:bg-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+                 disabled={isTransitioning}
+               >
+                 <ChevronLeft className="w-6 h-6 text-gray-800" />
+               </button>
+             </div>
+             <div className="absolute top-1/2 right-4 transform -translate-y-1/2">
+               <button
+                 onClick={() => nextPod(true)}
+                 className="bg-white/90 hover:bg-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+                 disabled={isTransitioning}
+               >
+                 <ChevronRight className="w-6 h-6 text-gray-800" />
+               </button>
+             </div>
 
             {/* Dot Indicators */}
             <div className="flex justify-center space-x-2 mt-8">
               {pods.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => {
-                    if (!isTransitioning) {
-                      setIsTransitioning(true);
-                      setTimeout(() => {
-                        setCurrentPod(index);
-                        setIsTransitioning(false);
-                      }, 300);
-                    }
-                  }}
+                                 <button
+                   key={index}
+                   onClick={() => {
+                     if (!isTransitioning) {
+                       setIsTransitioning(true);
+                       // User interaction - pause auto-play
+                       setIsPodAutoPlay(false);
+                       setTimeout(() => setIsPodAutoPlay(true), 5000);
+                       
+                       setTimeout(() => {
+                         setCurrentPod(index);
+                         setIsTransitioning(false);
+                       }, 300);
+                     }
+                   }}
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${
                     index === currentPod 
                       ? 'scale-125' 
@@ -273,41 +340,179 @@ const Amz = () => {
         </div>
       </section>
 
-      {/* Technical Specifications */}
-      <section className="py-20 bg-gray-900 text-white">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-4xl font-bold text-center mb-16">Technical Specifications</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-gray-800 p-6 rounded-2xl">
-              <h4 className="text-xl font-semibold mb-4 text-blue-400">Device Specs</h4>
-              <ul className="space-y-2 text-gray-300">
-                <li>• Dimensions: 110mm × 20mm × 12mm</li>
-                <li>• Weight: 28g</li>
-                <li>• Material: Aluminum alloy</li>
-                <li>• Finish: Anodized coating</li>
-              </ul>
+            {/* Device Colors - Sophisticated Design */}
+      <section className="py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-gray-100"></div>
+        <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 30% 20%, rgba(71, 33, 96, 0.08) 0%, transparent 50%), radial-gradient(circle at 70% 80%, rgba(255, 155, 255, 0.06) 0%, transparent 50%)' }}></div>
+        
+        <div className="relative max-w-7xl mx-auto px-8">
+          {/* Elegant Section Header */}
+          <div className="text-center mb-20">
+            <div className="inline-block px-8 py-3 rounded-full text-sm font-semibold mb-8" style={{ backgroundColor: 'rgba(71, 33, 96, 0.08)', color: '#472160', border: '1px solid rgba(71, 33, 96, 0.1)' }}>
+              PREMIUM FINISHES
             </div>
-            <div className="bg-gray-800 p-6 rounded-2xl">
-              <h4 className="text-xl font-semibold mb-4 text-green-400">Battery & Charging</h4>
-              <ul className="space-y-2 text-gray-300">
-                <li>• Battery: 450mAh lithium-ion</li>
-                <li>• Charging: USB-C, 5V/1A</li>
-                <li>• Charge time: 45 minutes</li>
-                <li>• Usage: Up to 800 puffs</li>
-              </ul>
+            <h2 className="text-5xl md:text-6xl font-light mb-6" style={{ color: '#000204', letterSpacing: '-0.02em' }}>
+              Exquisite Colors
+            </h2>
+            <div className="relative mb-12">
+              <div className="w-24 h-px mx-auto" style={{ backgroundColor: '#472160' }}></div>
+              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-6 h-px" style={{ backgroundColor: '#FF9BFF' }}></div>
             </div>
-            <div className="bg-gray-800 p-6 rounded-2xl">
-              <h4 className="text-xl font-semibold mb-4 text-purple-400">Pod System</h4>
-              <ul className="space-y-2 text-gray-300">
-                <li>• Capacity: 2ml</li>
-                <li>• Resistance: 1.2Ω mesh coil</li>
-                <li>• Activation: Draw-activated</li>
-                <li>• Magnetic connection</li>
-              </ul>
+            <p className="text-lg leading-relaxed max-w-3xl mx-auto" style={{ color: '#7A7f83' }}>
+              Choose from our meticulously crafted color collection, where each finish represents 
+              the pinnacle of design sophistication and premium materials.
+            </p>
+          </div>
+
+          {/* Modern Grid Layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
+            
+            {/* Color Selection Panel */}
+            <div className="lg:col-span-1 order-2 lg:order-1">
+              <div className="bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-lg border border-white/20">
+                <h3 className="text-2xl font-semibold mb-8 text-center" style={{ color: '#472160' }}>
+                  Select Your Finish
+                </h3>
+                
+                {/* Color Grid */}
+                <div className="grid grid-cols-3 gap-4 mb-8">
+                  {deviceColors.map((color, index) => (
+                    <button
+                      key={index}
+                      onClick={() => {
+                        if (!isColorTransitioning) {
+                          setIsColorTransitioning(true);
+                          setIsColorAutoPlay(false);
+                          setTimeout(() => setIsColorAutoPlay(true), 5000);
+                          
+                          setTimeout(() => {
+                            setCurrentColor(index);
+                            setIsColorTransitioning(false);
+                          }, 300);
+                        }
+                      }}
+                      className={`group relative p-4 rounded-2xl transition-all duration-300 ${
+                        index === currentColor 
+                          ? 'bg-white shadow-lg border-2 border-[#472160] scale-105' 
+                          : 'bg-white/50 hover:bg-white/80 border border-gray-200 hover:scale-102'
+                      }`}
+                    >
+                      <div className="flex flex-col items-center space-y-3">
+                        <div 
+                          className={`w-12 h-12 rounded-full shadow-lg border-2 transition-all duration-300 ${
+                            index === currentColor ? 'border-white scale-110' : 'border-gray-200 group-hover:scale-105'
+                          }`}
+                          style={{ backgroundColor: color.color }}
+                        ></div>
+                        <div className="text-center">
+                          <div className={`text-sm font-semibold transition-colors duration-300 ${
+                            index === currentColor ? 'text-[#472160]' : 'text-gray-700'
+                          }`}>
+                            {color.name}
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Selection Ring */}
+                      {index === currentColor && (
+                        <div className="absolute inset-0 rounded-2xl border-2 border-[#FF9BFF] animate-pulse"></div>
+                      )}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Navigation Controls */}
+                <div className="flex justify-center space-x-4">
+                  <button
+                    onClick={prevColor}
+                    className="w-12 h-12 rounded-full transition-all duration-300 hover:scale-110 flex items-center justify-center shadow-lg"
+                    style={{ backgroundColor: '#472160', color: 'white' }}
+                    disabled={isColorTransitioning}
+                  >
+                    <ChevronLeft className="w-5 h-5" />
+                  </button>
+                  <button
+                    onClick={nextColor}
+                    className="w-12 h-12 rounded-full transition-all duration-300 hover:scale-110 flex items-center justify-center shadow-lg"
+                    style={{ backgroundColor: '#472160', color: 'white' }}
+                    disabled={isColorTransitioning}
+                  >
+                    <ChevronRight className="w-5 h-5" />
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Device Showcase */}
+            <div className="lg:col-span-2 order-1 lg:order-2">
+              <div className="relative">
+                {/* Premium Device Display */}
+                <div className="relative bg-gradient-to-br from-white via-gray-50 to-white rounded-3xl p-12 shadow-2xl border border-white/20">
+                  <div className="absolute inset-0 rounded-3xl" style={{ 
+                    background: `linear-gradient(135deg, ${currentColorData.color}05, ${currentColorData.color}10)`,
+                  }}></div>
+                  
+                  <div className="relative z-10">
+                    {/* Device Image */}
+                    <div className="flex justify-center mb-8">
+                      <div className={`transition-all duration-700 ${isColorTransitioning ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
+                        <div className="relative">
+                          <img
+                            src={currentColorData.image}
+                            alt={currentColorData.name}
+                            className="w-80 h-96 object-cover rounded-2xl"
+                            style={{
+                              boxShadow: `0 25px 50px -12px ${currentColorData.color}40`
+                            }}
+                          />
+                          <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-black/5 to-transparent"></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Color Information */}
+                    <div className={`text-center transition-all duration-500 ${isColorTransitioning ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'}`}>
+                      <h3 className="text-3xl font-light mb-4" style={{ color: currentColorData.color }}>
+                        {currentColorData.name}
+                      </h3>
+                      <p className="text-lg leading-relaxed max-w-lg mx-auto mb-8" style={{ color: '#7A7f83' }}>
+                        {currentColorData.description}
+                      </p>
+
+                      {/* Premium Features */}
+                      <div className="grid grid-cols-2 gap-6 max-w-lg mx-auto">
+                        <div className="flex items-center space-x-3 justify-center lg:justify-start">
+                          <div className="w-3 h-3 rounded-full" style={{ backgroundColor: currentColorData.color }}></div>
+                          <span className="text-sm font-medium text-gray-600">Precision Finish</span>
+                        </div>
+                        <div className="flex items-center space-x-3 justify-center lg:justify-start">
+                          <div className="w-3 h-3 rounded-full" style={{ backgroundColor: currentColorData.color }}></div>
+                          <span className="text-sm font-medium text-gray-600">Ultra Durable</span>
+                        </div>
+                        <div className="flex items-center space-x-3 justify-center lg:justify-start">
+                          <div className="w-3 h-3 rounded-full" style={{ backgroundColor: currentColorData.color }}></div>
+                          <span className="text-sm font-medium text-gray-600">Anti-Fingerprint</span>
+                        </div>
+                        <div className="flex items-center space-x-3 justify-center lg:justify-start">
+                          <div className="w-3 h-3 rounded-full" style={{ backgroundColor: currentColorData.color }}></div>
+                          <span className="text-sm font-medium text-gray-600">Ergonomic Design</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Floating Elements */}
+                <div className="absolute -top-6 -right-6 w-24 h-24 rounded-full opacity-20 animate-pulse" style={{ backgroundColor: currentColorData.color }}></div>
+                <div className="absolute -bottom-4 -left-4 w-16 h-16 rounded-full opacity-10 animate-pulse delay-1000" style={{ backgroundColor: currentColorData.color }}></div>
+              </div>
             </div>
           </div>
-                 </div>
-       </section>
+        </div>
+      </section>
+
+
+      
        <Footer />
      </div>
    );

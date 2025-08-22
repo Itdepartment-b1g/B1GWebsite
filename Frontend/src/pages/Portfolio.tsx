@@ -92,7 +92,7 @@ const Support = () => {
       <Header alwaysShowBg={true} />
       
       {/* Hero Section */}
-      <section className="relative py-32 overflow-hidden">
+      <section className="relative pt-40 pb-32 overflow-hidden">
         {/* Background with deep purple */}
         <div className="absolute inset-0 bg-[#472160]"></div>
         <div className="absolute inset-0 opacity-50">

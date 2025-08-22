@@ -9,6 +9,7 @@ const placeholderProducts = [
     description: "Forge your new experience",
     image: "https://scontent.fmnl17-2.fna.fbcdn.net/v/t39.30808-6/508191087_122139471146792390_4059564809559462737_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=frL9QemXsfAQ7kNvwFyZcGK&_nc_oc=AdmqahKHft_C6lQwXzDSMjwRrYnuGOG3e-Rq7KTPInmvDeZSsr0Y0u0CGljlDtagE5I&_nc_zt=23&_nc_ht=scontent.fmnl17-2.fna&_nc_gid=LbzX7lo5YhKMiptbawCHlA&oh=00_AfSqg51dVVqTY6ds1w2NQI8C7oBto7eXv3r4ukBeGZxBfQ&oe=688E236E",
     category: "Vape",
+    route: "/XForge",
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ const placeholderProducts = [
     description: "The Alpha of all v1",
     image: "https://scontent.fmnl9-3.fna.fbcdn.net/v/t39.30808-6/509752842_122140628432792390_8217079412808562189_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_ohc=Ke8G0mXdZdQQ7kNvwFJW7Eh&_nc_oc=Adlfn5XvrUFcixorr91xvzhnJAmDZEGWXMxj8GwdhbeN9qbIW432tAIe76lrFDcvXdI&_nc_zt=23&_nc_ht=scontent.fmnl9-3.fna&_nc_gid=3ue72sWxSqiBT49YDWXK1g&oh=00_AfSmupKumbxwXzo1DmhxuDfxA-Z1Z7WpW8_EP_hkH8Hpdw&oe=688F578A",
     category: "Vape",
+    route: "/forgealpha",
   },
   {
     id: 3,
@@ -23,6 +25,7 @@ const placeholderProducts = [
     description: "Amazing Vape, Amazing Life",
     image: "https://scontent.fmnl17-4.fna.fbcdn.net/v/t39.30808-6/486667704_661021166292964_8960477590410985636_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=NwxZuIXK9tQQ7kNvwHTzILU&_nc_oc=AdkYho9Mpdmv4LxLoGcGveUNLT4q9L57aYP1OXTuSlIqJXMszhKO-yGArfevtMS4teA&_nc_zt=23&_nc_ht=scontent.fmnl17-4.fna&_nc_gid=962rsxJnpPLGKXeX4nODmw&oh=00_AfTPgUKNrf0tPklYum3TdpIO2HdZOBPgp1fbS9Nxu9PURQ&oe=688E298F",
     category: "Vape",
+    route: "/amz",
   },
   {
     id: 4,
@@ -30,6 +33,7 @@ const placeholderProducts = [
     description: "Designed to impress, Crafted to Last",
     image: "https://scontent.fmnl17-1.fna.fbcdn.net/v/t39.30808-6/516336560_122133870188741916_865665765343978951_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=6yg9MzpjEwwQ7kNvwHZnvt6&_nc_oc=Adl_gXjQDNESD8Ap-9YIx5CGME5atL_AAY7MUkolwtZXnPZZOY7bHVUiecFwKZP1YGU&_nc_zt=23&_nc_ht=scontent.fmnl17-1.fna&_nc_gid=XaVMpbv_q7spuvZ7M6TvlA&oh=00_AfQBpFRvG_C8YdPGAMEsyKNlNWzXibsf3RjdNoCqbtSzUQ&oe=688F5754",
     category: "Vape",
+    route: "/XSlimbar",
   },
   {
     id: 5,
@@ -37,6 +41,7 @@ const placeholderProducts = [
     description: "Explore your passion, Explore your taste",
     image: "https://scontent.fmnl17-3.fna.fbcdn.net/v/t39.30808-6/487791627_122117625074741916_4382918048910865605_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=OxZcprK9lRYQ7kNvwG7YmZr&_nc_oc=AdkSC0ctirJz45brQ9Y_Ba9KvTe9n1noOz3tdW2FfEmJa0VHS-PdvS1CX8zGKpHgjB0&_nc_zt=23&_nc_ht=scontent.fmnl17-3.fna&_nc_gid=h7qClb7EUzo-k2__c0dCTQ&oh=00_AfTVXLqoo8pK7OGYWc0EgDA7Vj9k_qq8ALt9pkpUhyTxEg&oe=688F5C6A",
     category: "Vape",
+    route: "/xultra",
   }
 ];
 
@@ -122,10 +127,12 @@ const FeaturedProduct = () => {
                         </div>
                         
                         <div className="flex items-center justify-between pt-6">
-                          <button className="group flex items-center gap-3 px-8 py-4 rounded-full font-medium transition-all duration-300 hover:scale-105 hover:shadow-xl" style={{ backgroundColor: '#472160', color: '#F4FBFE' }}>
-                            Explore Product
-                            <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
-                          </button>
+                          <Link to={product.route}>
+                            <button className="group flex items-center gap-3 px-8 py-4 rounded-full font-medium transition-all duration-300 hover:scale-105 hover:shadow-xl" style={{ backgroundColor: '#472160', color: '#F4FBFE' }}>
+                              Explore Product
+                              <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
+                            </button>
+                          </Link>
                         </div>
                       </div>
                     </div>

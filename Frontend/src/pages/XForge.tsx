@@ -793,54 +793,32 @@ const XForgeProduct = () => {
                         {`
                         @keyframes elegantFloat {
                           0%, 100% { 
-                            transform: translate(-50%, -50%) rotate(0deg) translateY(-15px);
-                            opacity: 0.95;
-                          }
-                          25% { 
-                            transform: translate(-50%, -50%) rotate(90deg) translateY(-20px);
-                            opacity: 1;
+                            transform: translate(-50%, -50%) rotate(0deg);
                           }
                           50% { 
-                            transform: translate(-50%, -50%) rotate(180deg) translateY(-10px);
-                            opacity: 1;
-                          }
-                          75% { 
-                            transform: translate(-50%, -50%) rotate(270deg) translateY(-25px);
-                            opacity: 1;
+                            transform: translate(-50%, -50%) rotate(180deg);
                           }
                         }
                         @keyframes elegantCounterFloat {
                           0%, 100% { 
-                            transform: translate(-50%, -50%) rotate(0deg) translateY(15px);
-                            opacity: 0.85;
-                          }
-                          25% { 
-                            transform: translate(-50%, -50%) rotate(-90deg) translateY(10px);
-                            opacity: 0.9;
+                            transform: translate(-50%, -50%) rotate(0deg);
                           }
                           50% { 
-                            transform: translate(-50%, -50%) rotate(-180deg) translateY(20px);
-                            opacity: 0.95;
-                          }
-                          75% { 
-                            transform: translate(-50%, -50%) rotate(-270deg) translateY(5px);
-                            opacity: 0.9;
+                            transform: translate(-50%, -50%) rotate(-180deg);
                           }
                         }
                         @keyframes modernPulse {
                           0%, 100% { 
                             transform: scale(1);
-                            opacity: 0.3;
                           }
                           50% { 
-                            transform: scale(1.05);
-                            opacity: 0.45;
+                            transform: scale(1.02);
                           }
                         }
                       `}
                       </style>
                       
-                      {/* Primary elegant rotating element with cyan-inspired blur */}
+                      {/* Primary elegant rotating element with stronger blur */}
                       <div
                         className="absolute top-1/2 left-1/2 w-80 h-80 will-change-transform"
                         style={{
@@ -848,10 +826,9 @@ const XForgeProduct = () => {
                         }}
                       >
                         <div
-                          className="absolute inset-0 rounded-full blur-3xl"
+                          className="absolute inset-0 rounded-full blur-3xl opacity-95"
                           style={{
-                            background: `conic-gradient(from 0deg, ${hexToRgba(getFlavorTheme(flavorsForSection[selectedFlavor]?.name || ""), 0.7)} 0%, ${hexToRgba(getFlavorTheme(flavorsForSection[selectedFlavor]?.name || ""), 0.25)} 40%, transparent 60%, transparent 100%)`,
-                            animation: "spinSlow 15s linear infinite",
+                            background: `conic-gradient(from 0deg, ${getFlavorTheme(flavorsForSection[selectedFlavor]?.name || "")}88 0%, ${getFlavorTheme(flavorsForSection[selectedFlavor]?.name || "")}44 40%, transparent 60%)`,
                           }}
                         />
                       </div>
@@ -864,28 +841,27 @@ const XForgeProduct = () => {
                         }}
                       >
                         <div
-                          className="absolute inset-0 rounded-full blur-2xl"
+                          className="absolute inset-0 rounded-full blur-2xl opacity-85"
                           style={{
-                            background: `conic-gradient(from 180deg, ${hexToRgba(getFlavorTheme(flavorsForSection[selectedFlavor]?.name || ""), 0.55)} 0%, ${hexToRgba(getFlavorTheme(flavorsForSection[selectedFlavor]?.name || ""), 0.15)} 50%, transparent 70%, transparent 100%)`,
-                            animation: "spinSlow 18s linear infinite reverse",
+                            background: `conic-gradient(from 180deg, ${getFlavorTheme(flavorsForSection[selectedFlavor]?.name || "")}77 0%, ${getFlavorTheme(flavorsForSection[selectedFlavor]?.name || "")}33 50%, transparent 70%)`,
                           }}
                         />
                       </div>
                       
-                      {/* Cyan-inspired ambient glow backdrop */}
+                      {/* Enhanced ambient glow backdrop */}
                       <div
-                        className="absolute top-1/2 left-1/2 w-[28rem] h-[28rem] -translate-x-1/2 -translate-y-1/2 blur-[100px] pointer-events-none will-change-transform"
+                        className="absolute top-1/2 left-1/2 w-96 h-96 -translate-x-1/2 -translate-y-1/2 blur-3xl pointer-events-none opacity-75"
                         style={{
-                          background: `radial-gradient(closest-side, ${hexToRgba(getFlavorTheme(flavorsForSection[selectedFlavor]?.name || ""), 0.4)} 0%, ${hexToRgba(getFlavorTheme(flavorsForSection[selectedFlavor]?.name || ""), 0.2)} 50%, transparent 80%)`,
+                          background: `radial-gradient(circle, ${getFlavorTheme(flavorsForSection[selectedFlavor]?.name || "")}55 0%, ${getFlavorTheme(flavorsForSection[selectedFlavor]?.name || "")}22 50%, transparent 80%)`,
                           animation: "modernPulse 12s ease-in-out infinite",
                         }}
                       />
                       
-                      {/* Additional subtle radial glow layers */}
+                      {/* Additional depth layer */}
                       <div
-                        className="absolute -inset-12 blur-[80px] pointer-events-none"
+                        className="absolute -inset-8 blur-xl pointer-events-none opacity-50"
                         style={{
-                          background: `radial-gradient(ellipse at center, ${hexToRgba(getFlavorTheme(flavorsForSection[selectedFlavor]?.name || ""), 0.25)} 0%, transparent 70%)`,
+                          background: `radial-gradient(ellipse at center, ${getFlavorTheme(flavorsForSection[selectedFlavor]?.name || "")}44 0%, transparent 70%)`,
                         }}
                       />
                       <img

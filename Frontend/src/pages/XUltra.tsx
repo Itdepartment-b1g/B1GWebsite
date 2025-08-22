@@ -1,270 +1,248 @@
-import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Battery, Droplets, Shield, Zap, Award, CheckCircle2 } from 'lucide-react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { ArrowRight } from 'lucide-react';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 const XUltra = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
+  const [currentFlavor, setCurrentFlavor] = useState(0);
+  const [currentColor, setCurrentColor] = useState(0);
+  const pauseRef = useRef(false);
+  const resumeTimerRef = useRef<number | null>(null);
 
-  // Enhanced product data
-  const products = [
-    {
-      id: 1,
-      name: "Tropical Mango",
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvQ5g16qeibhOYIqWMPGNK20kgHwuQ5x8w7w&s",
-      color: "#FF6B35",
-      description: "Exotic tropical mango with natural sweetness and smooth finish",
-      intensity: "Medium",
-      type: "Fruity"
-    },
-    {
-      id: 2,
-      name: "Cool Mint",
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvQ5g16qeibhOYIqWMPGNK20kgHwuQ5x8w7w&s",
-      color: "#00B4A6",
-      description: "Refreshing mint with an icy cooling sensation",
-      intensity: "Strong",
-      type: "Menthol"
-    },
-    {
-      id: 3,
-      name: "Berry Blast",
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvQ5g16qeibhOYIqWMPGNK20kgHwuQ5x8w7w&s",
-      color: "#8E44AD",
-      description: "Mixed berry explosion with natural sweetness",
-      intensity: "Medium",
-      type: "Fruity"
-    },
-    {
-      id: 4,
-      name: "Vanilla Dream",
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvQ5g16qeibhOYIqWMPGNK20kgHwuQ5x8w7w&s",
-      color: "#F39C12",
-      description: "Creamy vanilla with hints of caramel",
-      intensity: "Mild",
-      type: "Dessert"
-    }
+  // 8 Flavors with short descriptions (added `image` placeholder for each)
+  const flavors = [
+    { name: "Summer Dew", color: "#d31f38", desc: "A soft, juicy blend of ripe berries with a cool finish.", image: "https://www.xvape.cc/upload/images/2024/12/20/7137155055.png" },
+    { name: "Violet Stream", color: "#6305a3", desc: "Crisp, clean mint for an ultra-refreshing inhale.", image: "https://www.xvape.cc/upload/images/2024/12/20/7136155029.png" },
+    { name: "Purple Twilight", color: "#b621b3", desc: "Sweet, sun-ripened mango with smooth tropical notes.", image: "https://www.xvape.cc/upload/images/2024/12/20/7135154952.png" },
+    { name: "Morning Garden", color: "#ff36a6", desc: "Warm and familiar tobacco wrapped in velvety undertones.", image: "https://www.xvape.cc/upload/images/2024/12/20/7134154925.png" },
+    { name: "Cold Breeze", color: "#26933a", desc: "Cool, salty breeze meets subtle sweetness.", image: "https://www.xvape.cc/upload/images/2024/12/20/7133154805.png" },
+    { name: "Cloud Spring", color: "#edc5cd", desc: "Bright cherry with a juicy, nostalgic pop.", image: "https://www.xvape.cc/upload/images/2024/12/20/7132154726.png" },
+    { name: "Wild Fragrance", color: "#d66000", desc: "Creamy vanilla layered over delicate bakery notes.", image: "https://www.xvape.cc/upload/images/2024/12/20/7131154611.png" },
+    { name: "Bubble Dream", color: "#9dd9b2", desc: "Bold, dark blend for a deep, sophisticated palate.", image: "https://www.xvape.cc/upload/images/2024/12/20/7130154454.png" }
   ];
 
-  const specifications = [
-    { icon: Battery, title: "Battery Capacity", value: "650mAh", description: "Long-lasting power with fast charging" },
-    { icon: Droplets, title: "Pod Capacity", value: "2ml", description: "Pre-filled pods with leak-proof design" },
-    { icon: Shield, title: "Safety Features", value: "Multi-Protection", description: "Short-circuit and over-discharge protection" },
-    { icon: Zap, title: "Coil Technology", value: "Mesh Coil", description: "Enhanced flavor delivery system" }
+  // 4 Device Colors (added `image` placeholder for each)
+  const deviceColors = [
+    { name: "Metallic Silver", color: "#e6e6e4", image: "https://www.xvape.cc/Templates/default/images/ultra3.png" },
+    { name: "Metallic Gray", color: "#5c5a58", image: "https://www.xvape.cc/Templates/default/images/ultra4.png" },
+    { name: "Metallic Rose Gold", color: "#dfadae", image: "https://www.xvape.cc/Templates/default/images/ultra2.png" },
+    { name: "Metallic Blue", color: "#6771d2", image: "https://www.xvape.cc/Templates/default/images/ultra1.png" }
   ];
 
-  const nextSlide = () => {
-    if (!isAnimating) {
-      setIsAnimating(true);
-      setCurrentSlide((prev) => (prev + 1) % products.length);
-      setTimeout(() => setIsAnimating(false), 600);
-    }
-  };
-
-  const prevSlide = () => {
-    if (!isAnimating) {
-      setIsAnimating(true);
-      setCurrentSlide((prev) => (prev - 1 + products.length) % products.length);
-      setTimeout(() => setIsAnimating(false), 600);
-    }
-  };
-
-  const goToSlide = (index) => {
-    if (!isAnimating && index !== currentSlide) {
-      setIsAnimating(true);
-      setCurrentSlide(index);
-      setTimeout(() => setIsAnimating(false), 600);
-    }
-  };
-
+  // Auto-advance flavors and device colors (pauses on user interaction)
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (!isAnimating) {
-        setCurrentSlide((prev) => (prev + 1) % products.length);
+    const tick = () => {
+      if (!pauseRef.current) {
+        setCurrentFlavor((prev) => (prev + 1) % flavors.length);
+        setCurrentColor((prev) => (prev + 1) % deviceColors.length);
       }
-    }, 8000);
-    return () => clearInterval(interval);
-  }, [isAnimating]);
+    };
+    const id = setInterval(tick, 3000);
+    return () => clearInterval(id);
+  }, [flavors.length, deviceColors.length]);
 
-  const currentProduct = products[currentSlide];
+  const clearResumeTimer = useCallback(() => {
+    if (resumeTimerRef.current) {
+      clearTimeout(resumeTimerRef.current);
+      resumeTimerRef.current = null;
+    }
+  }, []);
+
+  const startInactivityTimer = useCallback(() => {
+    clearResumeTimer();
+    // resume auto-advance after 5s of no user interaction
+    resumeTimerRef.current = window.setTimeout(() => {
+      pauseRef.current = false;
+      resumeTimerRef.current = null;
+    }, 5000);
+  }, [clearResumeTimer]);
+
+  const userInteracted = useCallback(() => {
+    pauseRef.current = true;
+    startInactivityTimer();
+  }, [startInactivityTimer]);
+
+  // keyboard navigation: defined after callbacks
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') { userInteracted(); setCurrentFlavor((f) => (f - 1 + flavors.length) % flavors.length); }
+      if (e.key === 'ArrowRight') { userInteracted(); setCurrentFlavor((f) => (f + 1) % flavors.length); }
+      if (e.key === 'ArrowUp') { userInteracted(); setCurrentColor((c) => (c - 1 + deviceColors.length) % deviceColors.length); }
+      if (e.key === 'ArrowDown') { userInteracted(); setCurrentColor((c) => (c + 1) % deviceColors.length); }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [flavors.length, deviceColors.length, userInteracted]);
+  
+  // cleanup resume timer on unmount
+  useEffect(() => {
+    return () => clearResumeTimer();
+  }, [clearResumeTimer]);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white text-gray-800">
       <Header alwaysShowBg={true} />
-      
-      {/* Hero Section - Simple & Professional */}
-      <section className="pt-24 pb-16 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Left Side - Content */}
-            <div className="space-y-8">
-              <div className="space-y-6">
-                <div className="inline-block px-4 py-2 bg-gray-100 rounded-lg">
-                  <span className="text-sm font-semibold text-gray-700 uppercase tracking-wide">Professional Series</span>
-                </div>
-                
-                <h1 className="text-6xl font-bold text-gray-900">
-                  XULTRA
-                </h1>
-                
-                <p className="text-xl text-gray-600 leading-relaxed max-w-lg">
-                  Professional-grade vaping technology designed for excellence and reliability.
-                </p>
-              </div>
 
-              {/* Key Stats */}
-              <div className="grid grid-cols-3 gap-8 py-8 border-t border-gray-200">
-                <div>
-                  <div className="text-3xl font-bold text-gray-900">650mAh</div>
-                  <div className="text-sm text-gray-600">Battery Capacity</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-gray-900">2ml</div>
-                  <div className="text-sm text-gray-600">Pod Volume</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-gray-900">4</div>
-                  <div className="text-sm text-gray-600">Flavor Options</div>
-                </div>
-              </div>
+      {/* Hero */}
+      <section className="relative pt-36 md:pt-40 pb-20 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-tr from-white via-transparent to-cyan-50 opacity-60 pointer-events-none" />
+        <div className="max-w-6xl mx-auto px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div className="space-y-6 z-10">
+            <h1 className="text-8xl md:text-9xl font-extralight tracking-tight text-black leading-tight">ULTRA</h1>
+            <p className="text-lg text-gray-500 max-w-xl">
+              Minimal. Pure. Essential. Engineered for a premium experience with bold flavors and a refined, pocket-ready device.
+            </p>
 
-              {/* CTA Button */}
-              <button className="bg-gray-900 text-white px-8 py-4 font-semibold hover:bg-gray-800 transition-colors duration-300">
-                View Product Details
+            <div className="flex items-center gap-4 mt-6">
+              <button className="inline-flex items-center gap-2 px-6 py-3 bg-black text-white text-sm rounded-md shadow hover:opacity-90 transition">
+                ORDER NOW <ArrowRight size={14} />
+              </button>
+              <button className="inline-flex items-center gap-2 px-6 py-3 border border-gray-200 text-sm rounded-md hover:bg-gray-50 transition">
+                LEARN MORE
               </button>
             </div>
 
-            {/* Right Side - Product Image */}
-            <div className="flex justify-center">
-              <div className="relative">
-                <img
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvQ5g16qeibhOYIqWMPGNK20kgHwuQ5x8w7w&s"
-                  alt="XUltra Product"
-                  className="w-96 h-96 object-contain"
-                />
-              </div>
+            <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-6">
+              <FeatureCard number="850" label="mAh" />
+              <FeatureCard number="10" label="ML" />
+              <FeatureCard number="8" label="FLAVORS" />
+              <FeatureCard number="4" label="COLORS" />
+            </div>
+          </div>
+
+          {/* Live preview */}
+          <div className="z-10 flex items-center justify-center">
+            <div className="relative w-64 h-80 md:w-80 md:h-96 rounded-3xl shadow-2xl transform transition-all duration-500 overflow-hidden"
+                 style={{ background: deviceColors[currentColor].color }}
+                 aria-hidden>
+
+              {/* device image (center) */}
+              <img
+                src={deviceColors[currentColor].image}
+                alt={`${deviceColors[currentColor].name} device`}
+                className="absolute inset-0 m-auto w-40 h-64 md:w-48 md:h-80 object-contain transition-opacity duration-500 pointer-events-none"
+                onError={(e) => { (e.currentTarget as HTMLImageElement).src = '/placeholder.svg'; }}
+              />
+
+              {/* flavor image overlay (subtle) */}
+              <img
+                src={flavors[currentFlavor].image}
+                alt={`${flavors[currentFlavor].name} accent`}
+                className="absolute right-0 bottom-0 w-28 h-28 md:w-36 md:h-36 object-cover rounded-full transform translate-x-6 translate-y-6 opacity-90 shadow-lg"
+                onError={(e) => { (e.currentTarget as HTMLImageElement).src = '/placeholder.svg'; }}
+              />
+
+              {/* subtle mouthpiece */}
+              <div className="absolute right-6 top-6 w-10 h-4 rounded-full bg-black/10" />
+
+              {/* product silhouette lines */}
+              
             </div>
           </div>
         </div>
       </section>
 
-      {/* Specifications Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Specifications</h2>
-            <p className="text-lg text-gray-600">Professional-grade components for optimal performance</p>
+      {/* Flavors section */}
+      <section className="py-20">
+        <div className="max-w-6xl mx-auto px-8">
+          <div className="text-center mb-10">
+            <h2 className="text-sm tracking-widest text-gray-400 mb-4">FLAVORS</h2>
+            <div className="relative inline-block">
+              <h3 className="text-5xl md:text-6xl font-extralight text-black mb-4 animate-fade">
+                <span className="inline-block transition-transform duration-500" key={flavors[currentFlavor].name}>
+                  {flavors[currentFlavor].name}
+                </span>
+              </h3>
+              <div className="mx-auto w-40 md:w-64 overflow-hidden rounded-lg transition-all duration-500 shadow-sm bg-white/5">
+                <img
+                  src={flavors[currentFlavor].image}
+                  alt={`${flavors[currentFlavor].name} visual`}
+                  className="w-full h-auto object-contain"
+                  style={{ maxHeight: 220 }}
+                  onError={(e) => { (e.currentTarget as HTMLImageElement).src = '/placeholder.svg'; }}
+                />
+              </div>
+            </div>
+
+            <p className="mt-6 text-gray-500 max-w-2xl mx-auto">{flavors[currentFlavor].desc}</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {specifications.map((spec, index) => (
-              <div key={index} className="bg-white p-8 shadow-sm border border-gray-200">
-                <div className="text-center space-y-4">
-                  <div className="w-12 h-12 mx-auto bg-gray-900 flex items-center justify-center">
-                    <spec.icon className="w-6 h-6 text-white" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-gray-900">{spec.title}</h3>
-                  <div className="text-2xl font-bold text-gray-700">{spec.value}</div>
-                  <p className="text-sm text-gray-600">{spec.description}</p>
+          {/* Flavor dots */}
+          <div className="flex justify-center gap-4 mb-8"
+               onMouseEnter={() => userInteracted()}
+               onMouseLeave={() => startInactivityTimer()}>
+            {flavors.map((flavor, index) => (
+              <button
+                key={index}
+                onClick={() => { userInteracted(); setCurrentFlavor(index); }}
+                aria-label={`Select flavor ${flavor.name}`}
+                className={`w-4 h-4 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2` +
+                  (index === currentFlavor ? ' scale-150 ring-2 ring-black' : ' opacity-40 hover:opacity-80')}
+                style={{ backgroundColor: flavor.color }}
+              />
+            ))}
+          </div>
+
+          {/* flavor carousel grid for quick jump */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-4">
+            {flavors.map((flavor, index) => (
+              <button
+                key={index}
+                onClick={() => { userInteracted(); setCurrentFlavor(index); }}
+                className={`p-3 rounded-lg text-left hover:shadow-lg transition-shadow flex items-center gap-3 ${index === currentFlavor ? 'ring-2 ring-offset-2 ring-black' : 'bg-white'}`}>
+                <img
+                  src={flavor.image}
+                  alt={flavor.name}
+                  className="w-12 h-12 object-cover rounded-md flex-shrink-0"
+                  onError={(e) => { (e.currentTarget as HTMLImageElement).src = '/placeholder.svg'; }}
+                />
+                <div>
+                  <div className="text-sm font-medium">{flavor.name}</div>
+                  <div className="text-xs text-gray-400">Tap to preview</div>
                 </div>
-              </div>
+              </button>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Flavors Section - Simple Carousel */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Available Flavors</h2>
-            <p className="text-lg text-gray-600">Choose from our premium flavor collection</p>
+      {/* Device Colors */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-8">
+          <div className="text-center mb-8">
+            <h2 className="text-sm tracking-widest text-gray-400 mb-2">DEVICE</h2>
+            <div className="text-3xl md:text-5xl font-extralight text-black mb-4">{deviceColors[currentColor].name}</div>
+            <div className="w-1 h-12 mx-auto rounded-full transition-colors duration-500"
+                 style={{ backgroundColor: deviceColors[currentColor].color }} />
           </div>
 
-          {/* Simple Carousel */}
-          <div className="relative max-w-3xl mx-auto">
-            <div className="overflow-hidden rounded-lg">
-              <div 
-                className="flex transition-transform duration-600 ease-in-out"
-                style={{ 
-                  transform: `translateX(-${currentSlide * 100}%)`
-                }}
-              >
-                {products.map((product) => (
-                  <div 
-                    key={product.id}
-                    className="w-full flex-shrink-0"
-                  >
-                    <div className="bg-gray-50 rounded-lg p-8 mx-4">
-                      <div className="text-center space-y-6">
-                        {/* Product Image */}
-                        <div className="flex justify-center">
-                          <img
-                            src={product.image}
-                            alt={product.name}
-                            className="w-40 h-40 object-contain"
-                          />
-                        </div>
-
-                        {/* Product Info */}
-                        <div>
-                          <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                            {product.name}
-                          </h3>
-                          <p className="text-gray-600 mb-4">
-                            {product.description}
-                          </p>
-                          
-                          <div className="flex justify-center gap-6 text-sm">
-                            <span className="text-gray-500">
-                              <strong>Type:</strong> {product.type}
-                            </span>
-                            <span className="text-gray-500">
-                              <strong>Intensity:</strong> {product.intensity}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Simple Navigation */}
-            <div className="flex justify-center items-center mt-8 gap-6">
-              <button 
-                onClick={prevSlide}
-                disabled={isAnimating}
-                className="p-2 bg-gray-200 hover:bg-gray-300 rounded-full disabled:opacity-50"
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-
-              <div className="flex gap-2">
-                {products.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => goToSlide(index)}
-                    className={`w-3 h-3 rounded-full transition-colors ${
-                      index === currentSlide ? 'bg-gray-900' : 'bg-gray-300'
-                    }`}
-                  />
-                ))}
-              </div>
-
-              <button 
-                onClick={nextSlide}
-                disabled={isAnimating}
-                className="p-2 bg-gray-200 hover:bg-gray-300 rounded-full disabled:opacity-50"
-              >
-                <ChevronRight className="w-5 h-5" />
-              </button>
-            </div>
+          <div className="flex justify-center gap-6">
+            {deviceColors.map((color, index) => (
+              <button
+                key={index}
+                onClick={() => { userInteracted(); setCurrentColor(index); }}
+                aria-label={`Select device color ${color.name}`}
+                className={`w-8 h-8 rounded-full border-2 transition-transform duration-300 focus:outline-none ${index === currentColor ? 'ring-2 ring-black scale-110' : 'border-gray-200 hover:scale-105'}`}
+                style={{ backgroundColor: color.color }}
+              />
+            ))}
           </div>
+
+          <div className="mt-10 flex items-center justify-center">
+            <div className="w-72 h-96 rounded-3xl shadow-xl relative overflow-hidden"
+                 style={{ background: `linear-gradient(180deg, ${deviceColors[currentColor].color}, ${deviceColors[currentColor].color}80)` }}>
+              <img
+                src={deviceColors[currentColor].image}
+                alt={`${deviceColors[currentColor].name} device preview`}
+                className="absolute inset-0 m-auto w-48 h-80 object-contain transition-opacity duration-500"
+                onError={(e) => { (e.currentTarget as HTMLImageElement).src = '/placeholder.svg'; }}
+              />
+              
+            </div>
+           </div>
         </div>
       </section>
+  
 
       <Footer />
     </div>
@@ -272,3 +250,13 @@ const XUltra = () => {
 };
 
 export default XUltra;
+
+// Small presentational component for spec/feature cards
+function FeatureCard({ number, label }: { number: string; label: string }) {
+  return (
+    <div className="p-4 bg-white rounded-lg border border-gray-100 text-center shadow-sm">
+      <div className="text-2xl md:text-3xl font-extralight text-black">{number}</div>
+      <div className="text-xs tracking-widest text-gray-400 mt-1">{label}</div>
+    </div>
+  );
+}
