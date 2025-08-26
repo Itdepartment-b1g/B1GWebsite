@@ -1,462 +1,520 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  ArrowRight, Check, Star, Award, Shield, Zap, 
-  Battery, Play, ChevronDown, ChevronLeft, ChevronRight
-} from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-// Import images for better bundling and preloading
-import productImage2 from '../assets/2.png';
-import productImage3 from '../assets/3.png';
-import productImage4 from '../assets/4.png';
-import productImage5 from '../assets/5.png';
-import alphaLogo from '../assets/Alpha Logo.png';
-import obsidianBlack from '../assets/ObsidianBlack.png';
-import vividCyan from '../assets/VividCyan.png';
-import graphiteGray from '../assets/GraphiteGray.png';
-import customImage from '../assets/CutomImage.png';
-import b1gSparkle from '../assets/Forge/B1GSparkle.png';
-import b1gHeart from '../assets/Forge/B1GHeart.png';
-import b1gLush from '../assets/Forge/B1GLush.png';
-import b1gFrost from '../assets/Forge/B1GFrost.png';
-import b1gBlue from '../assets/Forge/B1GBlue.png';
-import b1gShirota from '../assets/Forge/B1GShirota.png';
-
-const flavorPods = [
-  {
-    id: 1,
-    name: "B1G RED",
-    description: "A vibrant and refreshing burst of sweet, sun-kissed energy.",
-    color: "#EF4444",
-    image: b1gSparkle,
-    intensity: "Strong",
-    profile: ["Sweet", "Fruity", "Energizing"]
-  },
-  {
-    id: 2,
-    name: "B1G HEART",
-    description: "A playful and smooth sensation that captures a sweet, lively essence.",
-    color: "#F59E0B",
-    image: b1gHeart,
-    intensity: "Medium",
-    profile: ["Sweet", "Smooth", "Playful"]
-  },
-  {
-    id: 3,
-    name: "B1G LUSH",
-    description: "A luxurious wave of delicate sweetness with an exotic touch.",
-    color: "#10B981",
-    image: b1gLush,
-    intensity: "Mild",
-    profile: ["Exotic", "Sweet", "Luxurious"]
-  },
-  {
-    id: 4,
-    name: "B1G FROST",
-    description: "A cool, invigorating breeze that awakens and refreshes with a crisp clarity.",
-    color: "#3B82F6",
-    image: b1gFrost,
-    intensity: "Cool",
-    profile: ["Cool", "Crisp", "Refreshing"]
-  },
-  {
-    id: 5,
-    name: "B1G BLUE",
-    description: "A calm, deep sensation that gently balances sweetness with a refreshing coolness.",
-    color: "#6366F1",
-    image: b1gBlue,
-    intensity: "Balanced",
-    profile: ["Calm", "Balanced", "Cool"]
-  },
-  {
-    id: 6,
-    name: "B1G SHIROTA",
-    description: "A smooth, creamy experience that's light and subtly refreshing with a hint of smoothness.",
-    color: "#8B5CF6",
-    image: b1gShirota,
-    intensity: "Creamy",
-    profile: ["Smooth", "Creamy", "Light"]
-  }
-];
-
-const batteryOptions = [
-  {
-    id: 1,
-    name: "Obsidian Black",
-    color: "#1F2937",
-    colorName: "Black",
-    image: obsidianBlack,
-    description: "Sleek and professional"
-  },
-  {
-    id: 2,
-    name: "Tiffany Blue",
-    color: "#00FFFF",
-    colorName: "Cyan",
-    image: vividCyan,
-    description: "Bold and distinctive"
-  },
-  {
-    id: 3,
-    name: "Metallic Grey",
-    color: "#6B7280",
-    colorName: "Gray",
-    image: graphiteGray,
-    description: "Classic and versatile"
-  }
-];
-
 const ForgeAlpha = () => {
-  const [showHeaderBg, setShowHeaderBg] = useState(false);
-  const [currentFlavorIndex, setCurrentFlavorIndex] = useState(0);
-  const [imagesLoaded, setImagesLoaded] = useState(false);
-  
-  // Use only first 5 flavors for carousel
-  const carouselFlavors = flavorPods.slice(0, 5);
-  const currentFlavor = carouselFlavors[currentFlavorIndex];
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [slideDirection, setSlideDirection] = useState('right');
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+  const [isUserInteracting, setIsUserInteracting] = useState(false);
+  const [lastInteractionTime, setLastInteractionTime] = useState(Date.now());
 
-  // Preload critical images
+  const flavorVariants = [
+    { 
+      name: "B1G Black", 
+      image: "/src/assets/Forge/B1GBlack.png", 
+      subtitle: "AGATE GREY",
+      specs: {
+        capacity: "20ML",
+        power: "850mAh",
+        puffs: "8000 Puffs",
+        technology: "Mesh Coil"
+      }
+    },
+    { 
+      name: "B1G Blue", 
+      image: "/src/assets/Forge/B1GBlue.png", 
+      subtitle: "OCEAN BLUE",
+      specs: {
+        capacity: "20ML",
+        power: "850mAh", 
+        puffs: "8000 Puffs",
+        technology: "Mesh Coil"
+      }
+    },
+    { 
+      name: "B1G Frost", 
+      image: "/src/assets/Forge/B1GFrost.png", 
+      subtitle: "ICE FROST",
+      specs: {
+        capacity: "20ML",
+        power: "850mAh",
+        puffs: "8000 Puffs", 
+        technology: "Mesh Coil"
+      }
+    },
+    { 
+      name: "B1G Heart", 
+      image: "/src/assets/Forge/B1GHeart.png", 
+      subtitle: "PASSION RED",
+      specs: {
+        capacity: "20ML",
+        power: "850mAh",
+        puffs: "8000 Puffs",
+        technology: "Mesh Coil"
+      }
+    },
+    { 
+      name: "B1G Lush", 
+      image: "/src/assets/Forge/B1GLush.png", 
+      subtitle: "EMERALD GREEN", 
+      specs: {
+        capacity: "20ML",
+        power: "850mAh",
+        puffs: "8000 Puffs",
+        technology: "Mesh Coil"
+      }
+    },
+    { 
+      name: "B1G Purple", 
+      image: "/src/assets/Forge/B1GPurple.png", 
+      subtitle: "ROYAL PURPLE",
+      specs: {
+        capacity: "20ML", 
+        power: "850mAh",
+        puffs: "8000 Puffs",
+        technology: "Mesh Coil"
+      }
+    },
+    { 
+      name: "B1G Red", 
+      image: "/src/assets/Forge/B1GRed.png", 
+      subtitle: "CRIMSON RED",
+      specs: {
+        capacity: "20ML",
+        power: "850mAh", 
+        puffs: "8000 Puffs",
+        technology: "Mesh Coil"
+      }
+    },
+    { 
+      name: "B1G Rizz", 
+      image: "/src/assets/Forge/B1GRizz.png", 
+      subtitle: "GOLDEN YELLOW",
+      specs: {
+        capacity: "20ML",
+        power: "850mAh",
+        puffs: "8000 Puffs",
+        technology: "Mesh Coil"
+      }
+    },
+    { 
+      name: "B1G Shirota", 
+      image: "/src/assets/Forge/B1GShirota.png", 
+      subtitle: "DEEP INDIGO",
+      specs: {
+        capacity: "20ML",
+        power: "850mAh", 
+        puffs: "8000 Puffs",
+        technology: "Mesh Coil"
+      }
+    },
+    { 
+      name: "B1G Sparkle", 
+      image: "/src/assets/Forge/B1GSparkle.png", 
+      subtitle: "DIAMOND SPARKLE",
+      specs: {
+        capacity: "20ML",
+        power: "850mAh",
+        puffs: "8000 Puffs", 
+        technology: "Mesh Coil"
+      }
+    }
+  ];
+
+  // Auto-advance slides every 5 seconds with swoosh animation, but pause during user interaction
   useEffect(() => {
-    const preloadImages = [
-      productImage2, productImage3, productImage4, productImage5, 
-      alphaLogo, ...carouselFlavors.map(flavor => flavor.image)
-    ];
-    
-    let loadedCount = 0;
-    const totalImages = preloadImages.length;
-    
-    preloadImages.forEach(src => {
-      const img = new Image();
-      img.onload = () => {
-        loadedCount++;
-        if (loadedCount === totalImages) {
-          setImagesLoaded(true);
-        }
-      };
-      img.src = src;
-    });
-  }, []);
+    const timer = setInterval(() => {
+      const timeSinceLastInteraction = Date.now() - lastInteractionTime;
+      // Only auto-advance if user hasn't interacted for 5 seconds
+      if (!isUserInteracting && timeSinceLastInteraction >= 5000) {
+        setSlideDirection('right');
+        setIsTransitioning(true);
+        setTimeout(() => {
+          setCurrentSlide((prev) => (prev + 1) % flavorVariants.length);
+          setIsTransitioning(false);
+        }, 400); // Swoosh duration
+      }
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [isUserInteracting, lastInteractionTime]);
 
-  const nextFlavor = () => {
-    setCurrentFlavorIndex((prev) => (prev + 1) % carouselFlavors.length);
+  // Reset user interaction after 5 seconds of inactivity
+  useEffect(() => {
+    const inactivityTimer = setTimeout(() => {
+      setIsUserInteracting(false);
+    }, 5000);
+
+    return () => clearTimeout(inactivityTimer);
+  }, [lastInteractionTime]);
+
+  // Handle manual slide change with swoosh animation
+  const handleSlideChange = (index) => {
+    if (index !== currentSlide) {
+      // Mark user interaction
+      setIsUserInteracting(true);
+      setLastInteractionTime(Date.now());
+      
+      setSlideDirection(index > currentSlide ? 'right' : 'left');
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setCurrentSlide(index);
+        setIsTransitioning(false);
+      }, 400);
+    }
   };
 
-  const prevFlavor = () => {
-    setCurrentFlavorIndex((prev) => (prev - 1 + carouselFlavors.length) % carouselFlavors.length);
+  // Handle touch/drag functionality
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+    // Mark user interaction
+    setIsUserInteracting(true);
+    setLastInteractionTime(Date.now());
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      // Show header background when scrolled down more than 100px
-      setShowHeaderBg(scrollPosition > 100);
-    };
+  const onTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      // Swipe left - go to next product
+      const nextIndex = (currentSlide + 1) % flavorVariants.length;
+      handleSlideChange(nextIndex);
+    }
+    if (isRightSwipe) {
+      // Swipe right - go to previous product
+      const prevIndex = currentSlide === 0 ? flavorVariants.length - 1 : currentSlide - 1;
+      handleSlideChange(prevIndex);
+    }
+  };
+
+  // Handle mouse drag functionality
+  const onMouseDown = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.clientX);
+    // Mark user interaction
+    setIsUserInteracting(true);
+    setLastInteractionTime(Date.now());
+  };
+
+  const onMouseMove = (e) => {
+    if (touchStart === null) return;
+    setTouchEnd(e.clientX);
+  };
+
+  const onMouseUp = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftDrag = distance > minSwipeDistance;
+    const isRightDrag = distance < -minSwipeDistance;
+
+    if (isLeftDrag) {
+      // Drag left - go to next product
+      const nextIndex = (currentSlide + 1) % flavorVariants.length;
+      handleSlideChange(nextIndex);
+    }
+    if (isRightDrag) {
+      // Drag right - go to previous product
+      const prevIndex = currentSlide === 0 ? flavorVariants.length - 1 : currentSlide - 1;
+      handleSlideChange(prevIndex);
+    }
+    setTouchStart(null);
+    setTouchEnd(null);
+  };
+
+  const currentProduct = flavorVariants[currentSlide];
 
   return (
-    <div className="min-h-screen bg-white">
-      <Header alwaysShowBg={showHeaderBg} />
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700 font-['Inter',sans-serif] overflow-hidden">
       
-            {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden rounded-b-[3rem]">
-        {/* Gradient Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 via-black via-gray-800 via-black to-gray-900"></div>
-
-        {/* Floor Rectangle */}
-        <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-gray-600 via-gray-700 via-gray-800 to-transparent"></div>
-
-        {/* Product Images */}
-        <img 
-          src={productImage4} 
-          alt="Product 4" 
-          className="absolute top-[15rem] left-[12rem] w-[20rem] 
-                     sm:top-[18rem] sm:left-[5rem] sm:w-[25rem]
-                     md:top-[20rem] md:left-[8rem] md:w-[35rem]
-                     lg:top-[22rem] lg:left-[20rem] lg:w-[45rem]
-                     xl:top-[25rem] xl:left-[40rem] xl:w-[55rem]
-                     h-auto z-10"
-          loading="eager"
-        />
-        <img 
-          src={productImage2} 
-          alt="Product 2" 
-          className="absolute top-[3rem] left-[2rem] w-[20rem]
-                     sm:top-[4rem] sm:left-[5rem] sm:w-[25rem]
-                     md:top-[5rem] md:left-[8rem] md:w-[35rem]
-                     lg:top-[6rem] lg:left-[12rem] lg:w-[45rem]
-                     xl:top-[16rem] xl:left-[40rem] xl:w-[53rem]
-                     h-auto z-10"
-          loading="eager"
-        />
-        <img 
-          src={productImage3} 
-          alt="Product 3" 
-          className="absolute top-[8rem] left-[5rem] w-[20rem]
-                     sm:top-[10rem] sm:left-[8rem] sm:w-[25rem]
-                     md:top-[12rem] md:left-[12rem] md:w-[30rem]
-                     lg:top-[14rem] lg:left-[25rem] lg:w-[40rem]
-                     xl:top-[-3rem] xl:left-[53rem] xl:w-[102rem]
-                     h-auto z-20"
-          loading="eager" 
-        />
-        <img 
-          src={productImage5} 
-          alt="Product 5" 
-          className="absolute top-[18rem] right-[2rem] w-[22rem]
-                     sm:top-[20rem] sm:right-[5rem] sm:w-[28rem]
-                     md:top-[22rem] md:right-[8rem] md:w-[35rem]
-                     lg:top-[2rem] lg:right-[-32rem] lg:w-[100rem]
-                     xl:top-[2rem] xl:right-[-43rem] xl:w-[200rem]
-                     z-10"
-          loading="eager"
-        />
-
-                {/* Hero Content - Alpha Logo */}
-        <img 
-          src={alphaLogo} 
-          alt="Alpha Logo" 
-          className="absolute left-[-5rem] top-[10rem] w-[20rem] 
-                     sm:left-[-3rem] sm:top-[12rem] sm:w-[25rem]
-                     md:left-[0rem] md:top-[15rem] md:w-[28rem]
-                     lg:left-[3rem] lg:top-[18rem] lg:w-[32rem]
-                     xl:left-[8rem] xl:top-[22rem] xl:w-[35rem]
-                     h-auto z-30"
-          loading="eager"
-        />
-        
-        {/* Hero Text and Button */}
-        <div className="absolute left-[-5rem] top-[18rem] max-w-4xl z-30
-                        sm:left-[-3rem] sm:top-[22rem]
-                        md:left-[0rem] md:top-[26rem]
-                        lg:left-[3rem] lg:top-[30rem]
-                        xl:left-[8rem] xl:top-[30rem]">
-          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-white mb-6 leading-tight tracking-wide whitespace-nowrap font-montserrat font-bold">
-            FORGE YOUR NEW EXPERIENCE
-          </p>
-          <button className="px-6 py-3 border-2 border-white bg-transparent text-white font-semibold rounded-lg hover:bg-white hover:text-black transition-all duration-300 flex items-center gap-2 font-montserrat">
-            <span>User Manual</span>
-            <ArrowRight className="w-5 h-5" />
-          </button>
-        </div>
-      </section>
-
-      {/* Custom Content Section */}
-      <section className="pt-24 pb-12 bg-white-50 ml-12 mr-12 lg:ml-16 lg:mr-16 rounded-2xl">
-        <div className="max-w-7xl mx-auto px-4 lg:px-6">
+      {/* Custom CSS for Swoosh Animation */}
+      <style dangerouslySetInnerHTML={{
+        __html: `
+          @keyframes swooshLeft {
+            0% { transform: translateX(100%) scale(0.8) rotate(5deg); opacity: 0; }
+            50% { transform: translateX(0%) scale(1.1) rotate(-2deg); opacity: 0.8; }
+            100% { transform: translateX(0%) scale(1) rotate(0deg); opacity: 1; }
+          }
           
-          {/* Section Content - Two Column Layout */}
-          <div className="grid lg:grid-cols-2 gap-0 items-center mb-8">
+          @keyframes swooshRight {
+            0% { transform: translateX(-100%) scale(0.8) rotate(-5deg); opacity: 0; }
+            50% { transform: translateX(0%) scale(1.1) rotate(2deg); opacity: 0.8; }
+            100% { transform: translateX(0%) scale(1) rotate(0deg); opacity: 1; }
+          }
+          
+          @keyframes swooshOut {
+            0% { transform: translateX(0%) scale(1) rotate(0deg); opacity: 1; }
+            100% { 
+              transform: translateX(${slideDirection === 'right' ? '-100%' : '100%'}) scale(0.8) rotate(${slideDirection === 'right' ? '-5deg' : '5deg'}); 
+              opacity: 0; 
+            }
+          }
+          
+          @keyframes textSwoosh {
+            0% { transform: translateX(100%) skewX(-10deg); opacity: 0; }
+            60% { transform: translateX(-10px) skewX(-5deg); opacity: 0.8; }
+            100% { transform: translateX(0%) skewX(0deg); opacity: 1; }
+          }
+          
+          @keyframes specSwoosh {
+            0% { transform: translateY(30px) translateX(50px) rotate(3deg); opacity: 0; }
+            70% { transform: translateY(-5px) translateX(-5px) rotate(-1deg); opacity: 0.8; }
+            100% { transform: translateY(0px) translateX(0px) rotate(0deg); opacity: 1; }
+          }
+          
+          .swoosh-enter-right { animation: swooshLeft 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
+          .swoosh-enter-left { animation: swooshRight 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
+          .swoosh-exit { animation: swooshOut 0.4s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards; }
+          .text-swoosh { animation: textSwoosh 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
+          .spec-swoosh { animation: specSwoosh 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
+        `
+      }} />
+
+      <Header alwaysShowBg={true} />
+      
+      {/* Hero Section */}
+      <section className="h-screen flex items-center justify-center pt-20 pb-8 bg-gradient-to-r from-gray-50 to-gray-100">
+        <div className="max-w-6xl mx-auto px-8">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
             
             {/* Left Column - Text Content */}
-            <div className="text-left">
-              <h2 className="text-4xl lg:text-5xl text-gray-900 mb-6 font-montserrat font-bold">
-                About Alpha
-              </h2>
-              <p className="text-lg text-gray-600 leading-relaxed font-montserrat">
-                Discover the cutting-edge technology that makes Forge Alpha the ultimate vaping experience.
-              </p>
+            <div className="space-y-8">
+              <div className="space-y-4">
+                <div className="text-sm font-bold tracking-[0.3em] text-gray-300 uppercase">
+                  B1G CORPORATION
+                </div>
+                <h1 className="text-6xl md:text-7xl font-black text-white tracking-tight leading-none">
+                  FORGE
+                </h1>
+                <h2 className="text-6xl md:text-7xl font-light text-cyan-400 tracking-tight leading-none">
+                  ALPHA
+                </h2>
+                <p className="text-xl text-gray-300 font-medium max-w-md leading-relaxed">
+                  Premium Vaping Experience Redefined with Advanced Technology and Unmatched Performance
+                </p>
+              </div>
+              
+              <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                <button className="px-8 py-4 bg-white text-gray-900 rounded-lg font-bold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
+                  Explore Collection
+                </button>
+                <button className="px-8 py-4 border-2 border-cyan-400 text-cyan-400 rounded-lg font-bold hover:bg-cyan-400 hover:text-gray-900 transition-all duration-300 transform hover:scale-105">
+                  Learn More
+                </button>
+              </div>
+              
+              {/* Key Features */}
+              <div className="flex space-x-8 pt-4">
+                <div className="text-center">
+                  <div className="text-2xl font-black text-white">20ML</div>
+                  <div className="text-sm text-gray-300 font-medium">Capacity</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-black text-white">8000+</div>
+                  <div className="text-sm text-gray-300 font-medium">Puffs</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-black text-white">850mAh</div>
+                  <div className="text-sm text-gray-300 font-medium">Battery</div>
+                </div>
+              </div>
             </div>
 
-            {/* Right Column - Image */}
-            <div className="flex justify-center lg:justify-end">
+            {/* Right Column - Featured Product Image */}
+            <div className="relative">
+              <div className="bg-gradient-to-br from-white to-gray-100 rounded-3xl p-12 shadow-2xl border border-gray-200">
+                <img 
+                  src="/src/assets/Forge/B1GBlack.png"
+                  alt="Forge Alpha Featured Product"
+                  className="w-full h-auto object-contain drop-shadow-xl hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              {/* Decorative elements */}
+              <div className="absolute -top-4 -right-4 w-24 h-24 bg-gray-200 rounded-full opacity-30"></div>
+              <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-gray-400 rounded-full opacity-20"></div>
+              <div className="absolute top-1/2 -left-8 w-8 h-8 bg-gray-500 rounded-full opacity-15"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Specifications Section */}
+      <section className="py-16 bg-gray-800">
+        <div className="max-w-6xl mx-auto px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
+              Technical <span className="text-cyan-400">Specifications</span>
+            </h2>
+            <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+              Engineered for excellence with premium components and cutting-edge technology
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="bg-gradient-to-br from-gray-700 to-gray-600 rounded-2xl p-8 shadow-lg border border-gray-500 text-center hover:shadow-xl transition-all duration-300 group">
+              <div className="w-12 h-12 bg-cyan-500 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:bg-cyan-400 transition-colors duration-300">
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                </svg>
+              </div>
+              <h3 className="text-sm font-bold text-gray-300 uppercase tracking-wide mb-2">
+                E-Liquid Capacity
+              </h3>
+              <div className="text-3xl font-black text-white">
+                20ML
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-br from-gray-700 to-gray-600 rounded-2xl p-8 shadow-lg border border-gray-500 text-center hover:shadow-xl transition-all duration-300 group">
+              <div className="w-12 h-12 bg-cyan-500 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:bg-cyan-400 transition-colors duration-300">
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <h3 className="text-sm font-bold text-gray-300 uppercase tracking-wide mb-2">
+                Battery Power
+              </h3>
+              <div className="text-3xl font-black text-white">
+                850mAh
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-br from-gray-700 to-gray-600 rounded-2xl p-8 shadow-lg border border-gray-500 text-center hover:shadow-xl transition-all duration-300 group">
+              <div className="w-12 h-12 bg-cyan-500 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:bg-cyan-400 transition-colors duration-300">
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+              </div>
+              <h3 className="text-sm font-bold text-gray-300 uppercase tracking-wide mb-2">
+                Total Puffs
+              </h3>
+              <div className="text-3xl font-black text-white">
+                8000+
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-br from-gray-700 to-gray-600 rounded-2xl p-8 shadow-lg border border-gray-500 text-center hover:shadow-xl transition-all duration-300 group">
+              <div className="w-12 h-12 bg-cyan-500 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:bg-cyan-400 transition-colors duration-300">
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                </svg>
+              </div>
+              <h3 className="text-sm font-bold text-gray-300 uppercase tracking-wide mb-2">
+                Technology
+              </h3>
+              <div className="text-3xl font-black text-white">
+                Mesh Coil
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* Porsche-Style Carousel Section */}
+      <section className="h-[10vh] flex items-center justify-center pt-8 pb-8">
+        <div className="max-w-5xl mx-auto px-6 text-center">
+          
+          {/* Brand Header */}
+          <div className="mb-6 space-y-2">
+            <div className="text-xs font-bold tracking-[0.3em] text-gray-400 uppercase">
+              B1G CORPORATION
+            </div>
+            <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight">
+              FORGE <span className="font-light text-cyan-400">ALPHA</span>
+            </h1>
+          </div>
+
+          {/* Large Product Name Display with Swoosh Animation */}
+          <div className="mb-8 overflow-hidden">
+            <h2 className={`text-4xl md:text-5xl font-black text-cyan-400 tracking-wider uppercase leading-none ${
+              isTransitioning 
+                ? 'swoosh-exit' 
+                : slideDirection === 'right' 
+                  ? 'swoosh-enter-right text-swoosh' 
+                  : 'swoosh-enter-left text-swoosh'
+            }`}>
+              {currentProduct.subtitle}
+            </h2>
+          </div>
+
+          {/* Main Product Display with Dynamic Swoosh Animation */}
+          <div className="relative mb-8">
+            <div 
+              className="flex justify-center items-center h-[250px] cursor-grab active:cursor-grabbing select-none"
+              onTouchStart={onTouchStart}
+              onTouchMove={onTouchMove}
+              onTouchEnd={onTouchEnd}
+              onMouseDown={onMouseDown}
+              onMouseMove={onMouseMove}
+              onMouseUp={onMouseUp}
+              onMouseLeave={onMouseUp}
+            >
               <img 
-                src={obsidianBlack} 
-                alt="Forge Alpha Product" 
-                className="w-64 h-auto max-w-full"
-                loading="lazy"
+                src={currentProduct.image}
+                alt={currentProduct.name}
+                className={`max-w-sm w-full h-auto object-contain drop-shadow-xl hover:scale-105 transition-transform duration-300 pointer-events-none ${
+                  isTransitioning 
+                    ? 'swoosh-exit' 
+                    : slideDirection === 'right' 
+                      ? 'swoosh-enter-right' 
+                      : 'swoosh-enter-left'
+                }`}
               />
             </div>
-
+            
+            {/* Swoosh Effect Overlay */}
+            <div className={`absolute inset-0 pointer-events-none ${
+              isTransitioning ? 'opacity-100' : 'opacity-0'
+            } transition-opacity duration-200`}>
+              <div className={`absolute top-1/2 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent transform -translate-y-1/2 ${
+                slideDirection === 'right' ? 'animate-pulse' : 'animate-pulse'
+              }`}></div>
+            </div>
           </div>
 
-
-        </div>
-      </section>
-
-      {/* Additional Content Section */}
-      <section className="pt-32 pb-48 bg-white-50 ml-12 mr-12 lg:ml-16 lg:mr-16 rounded-2xl">
-        <div className="max-w-7xl mx-auto px-4 lg:px-6">
-          
-          {/* Text with Line */}
+          {/* Product Name Display */}
           <div className="mb-8 text-center">
-            <p className="text-xl font-semibold text-gray-800 mb-4 font-montserrat">
-              Discover Our Premium Collection
-            </p>
-            <div className="w-500 h-1 bg-gray-700 rounded-full mx-auto"></div>
-          </div>
-          
-          {/* Image Rectangle */}
-          <div className="rounded-2xl overflow-hidden h-80 lg:h-96">
-            <img 
-              src={customImage} 
-              alt="Product Image" 
-              className="w-full h-full object-cover"
-              loading="lazy"
-            />
+            <h3 className="text-3xl md:text-4xl font-bold text-white mb-2">
+              {currentProduct.name}
+            </h3>
           </div>
 
+          {/* Navigation Dots with Enhanced Animation */}
+          <div className="flex justify-center space-x-2 mb-6">
+            {flavorVariants.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => handleSlideChange(index)}
+                className={`w-2 h-2 rounded-full transition-all duration-300 transform hover:scale-150 ${
+                  index === currentSlide 
+                    ? 'bg-cyan-400 scale-125 shadow-lg shadow-cyan-400/30' 
+                    : 'bg-gray-500 hover:bg-gray-400 scale-100'
+                }`}
+              />
+            ))}
+          </div>
+
+          {/* Go Back Button with Pulse Animation */}
+          <button className="inline-flex items-center space-x-2 px-6 py-3 bg-cyan-500 text-white rounded-lg hover:bg-cyan-400 transition-all duration-300 group hover:scale-105 hover:shadow-xl hover:shadow-cyan-500/25">
+            <svg className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            <span className="font-medium">Go Back</span>
+          </button>
         </div>
       </section>
 
-      {/* Product Showcase Section */}
-      <section className="relative h-[800px] overflow-hidden">
-        {/* Enhanced Gradient Background with Lighting */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 via-gray-800 to-black"></div>
-        
-        {/* Dynamic Lighting Effects */}
-        <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-radial from-cyan-500/20 via-blue-500/10 to-transparent rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-0 w-80 h-80 bg-gradient-radial from-purple-500/15 via-pink-500/8 to-transparent rounded-full blur-2xl"></div>
-        <div className="absolute top-1/2 left-1/4 w-64 h-64 bg-gradient-radial from-blue-400/10 via-cyan-400/5 to-transparent rounded-full blur-xl"></div>
-        
-        <div className="relative z-10 h-full flex">
-          
-          {/* Left Content with Enhanced Glassmorphism */}
-          <div className="flex-1 flex items-center px-6 lg:px-8">
-            <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl relative overflow-hidden">
-              {/* Subtle Inner Glow */}
-              <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-cyan-500/5 rounded-3xl"></div>
-              
-              {/* Content */}
-              <div className="relative z-10">
-                <h2 className="text-4xl lg:text-5xl text-white mb-6 font-bold font-montserrat">
-                  Product Showcase
-                </h2>
-                <p className="text-lg text-gray-200 leading-relaxed font-montserrat">
-                  Explore our complete range of premium vaping products designed for every preference.
-                </p>
-                
-                {/* Accent Line */}
-                <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full mt-6"></div>
-              </div>
-            </div>
-          </div>
-  
-          <div className="hidden lg:block w-[40rem] relative">
-            {/* Enhanced Glassmorphism Panel */}
-            <div className="w-full h-full bg-gradient-to-br from-white/10 via-white/5 to-white/10 backdrop-blur-2xl border border-white/20 rounded-l-[6rem] relative shadow-2xl overflow-visible">
-              
-              {/* Multiple Glass Layers for Depth */}
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-blue-500/10 rounded-l-[6rem]"></div>
-              <div className="absolute inset-2 bg-gradient-to-tl from-white/5 via-transparent to-white/10 rounded-l-[6rem]"></div>
-              
-              {/* Dynamic Light Reflections */}
-              <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-white/15 via-white/5 to-transparent"></div>
-              <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-cyan-500/10 via-transparent to-transparent"></div>
-              
-              {/* Vertical Text - Dynamic Flavor Name */}
-              <div className="absolute right-3 top-1/2 transform -translate-y-1/2 -rotate-90 flex flex-col gap-8 z-20">
-                <h1 className="text-6xl font-bold text-white whitespace-nowrap tracking-wider drop-shadow-lg font-montserrat">
-                  {currentFlavor.name}
-                </h1>
-                <h1 className="text-6xl font-bold whitespace-nowrap tracking-wider text-outline-black text-transparent drop-shadow-sm font-montserrat">
-                  {currentFlavor.name}
-                </h1>
-              </div>
-              
-              {/* Enhanced Flavor Images with Advanced Animation - Vertically Centered */}
-              <div className="absolute left-[-10rem] top-1/2 transform -translate-y-1/2 w-[20rem] h-[20rem] overflow-visible z-0 flex items-center justify-center">
-                {carouselFlavors.map((flavor, index) => {
-                  const offset = index - currentFlavorIndex;
-                  const isActive = index === currentFlavorIndex;
-                  const isPrev = index === (currentFlavorIndex - 1 + carouselFlavors.length) % carouselFlavors.length;
-                  const isNext = index === (currentFlavorIndex + 1) % carouselFlavors.length;
-                  
-                  return (
-                    <div key={flavor.id} className="absolute w-full h-full flex items-center justify-center">
-                      {/* Enhanced Glow Effect with Pulsing */}
-                      <div className={`absolute inset-0 transition-all duration-700 ease-out ${
-                        isActive ? 'opacity-100 scale-110' : 'opacity-0 scale-100'
-                      }`}>
-                        <div className="w-full h-full bg-gradient-radial from-cyan-400/30 via-blue-400/15 to-transparent blur-3xl animate-pulse"></div>
-                      </div>
-                      
-                      {/* Secondary Glow for Depth */}
-                      <div className={`absolute inset-0 transition-all duration-500 ${
-                        isActive ? 'opacity-60' : 'opacity-0'
-                      }`}>
-                        <div className="w-full h-full bg-gradient-radial from-white/10 via-cyan-300/5 to-transparent blur-xl"></div>
-                      </div>
-                      
-                      {/* Actual Image with Complex Animation - Centered Positioning */}
-                      <img 
-                        src={flavor.image} 
-                        alt={flavor.name} 
-                        className={`w-full h-auto max-h-full object-contain transition-all duration-700 ease-out drop-shadow-2xl ${
-                          isActive 
-                            ? 'transform translate-x-0 translate-y-0 scale-110 brightness-110 saturate-110 rotate-0 opacity-100 z-20' 
-                            : isPrev
-                            ? 'transform -translate-x-32 translate-y-0 scale-75 brightness-75 saturate-75 -rotate-12 opacity-40 z-10'
-                            : isNext
-                            ? 'transform translate-x-32 translate-y-0 scale-75 brightness-75 saturate-75 rotate-12 opacity-40 z-10'
-                            : offset < 0
-                            ? 'transform -translate-x-96 translate-y-0 scale-50 brightness-50 saturate-50 -rotate-45 opacity-0 z-0'
-                            : 'transform translate-x-96 translate-y-0 scale-50 brightness-50 saturate-50 rotate-45 opacity-0 z-0'
-                        }`}
-                        style={{
-                          filter: isActive 
-                            ? 'drop-shadow(0 20px 40px rgba(0, 255, 255, 0.3)) drop-shadow(0 0 20px rgba(255, 255, 255, 0.2))'
-                            : 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3))'
-                        }}
-                      />
-                      
-                      {/* Floating Particles Effect for Active Item */}
-                      {isActive && (
-                        <div className="absolute inset-0 pointer-events-none">
-                          <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-cyan-400/60 rounded-full animate-ping"></div>
-                          <div className="absolute top-3/4 right-1/4 w-1 h-1 bg-blue-400/80 rounded-full animate-pulse delay-300"></div>
-                          <div className="absolute top-1/2 right-1/3 w-1.5 h-1.5 bg-white/60 rounded-full animate-bounce delay-500"></div>
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-              
-              {/* Animated Shimmer Effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -skew-x-12 w-full h-full opacity-0 animate-pulse"></div>
-            </div>
-
-          </div>
-
-        </div>
-        
- 
-        
-        {/* Navigation Buttons - Bottom Right */}
-        <div className="absolute bottom-6 right-6 flex gap-4 z-20">
-          <button 
-            onClick={prevFlavor}
-            className="w-12 h-12 border-2 border-white bg-transparent text-white rounded-lg hover:bg-white hover:text-black transition-all duration-300 flex items-center justify-center"
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </button>
-          <button 
-            onClick={nextFlavor}
-            className="w-12 h-12 border-2 border-white bg-transparent text-white rounded-lg hover:bg-white hover:text-black transition-all duration-300 flex items-center justify-center"
-          >
-            <ChevronRight className="w-6 h-6" />
-          </button>
-        </div>
-        
-        {/* Flavor Indicator Dots */}
-        <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-2 z-20">
-          {carouselFlavors.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentFlavorIndex(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                index === currentFlavorIndex 
-                  ? 'bg-white' 
-                  : 'bg-white/30 hover:bg-white/60'
-              }`}
-            />
-          ))}
-        </div>
-      </section>    
       <Footer />
     </div>
   );

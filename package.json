@@ -26,5 +26,8 @@
     "typescript"
   ],
   "author": "B1G Corporation",
-  "license": "MIT"
-} 
+  "license": "MIT",
+  "dependencies": {
+    "all": "^0.0.0"
+  }
+}
