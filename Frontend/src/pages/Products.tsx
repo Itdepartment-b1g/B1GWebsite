@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 // Import images
 import forgeBanner from "../assets/ForgeBanner.jpg";
 import forgePicture from "../assets/ForgePicture.jpg";
+import XslimbarImage from "../assets/Slimbar/Xslimbar.jpg";
 
 const Products = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -61,7 +62,7 @@ const Products = () => {
       features: ["Ultra-Slim Design", "Portable", "Rich Flavors", "Advanced Specs"],
       category: "X-Vape",
       price: "Essential Line",
-      image: "https://mcwinternationaltrading.com/cdn/shop/files/X4_1080x.jpg?v=1747153609",
+      image: XslimbarImage,
       route: "/XSlimbar",
       gradient: "from-[#472160] to-[#FF9BFF]",
       available: true
@@ -74,7 +75,7 @@ const Products = () => {
       features: ["Smart Display", "USB-C Charging", "Detachable Cartridge", "Luxury Airflow"],
       category: "X-Vape",
       price: "Ultra Line",
-      image: "/src/assets/UltraPhoto.webp",
+      image: "/src/assets/Ultra/UltraPhoto.webp",
       route: "/xultra",
       gradient: "from-[#472160] to-[#FF9BFF]",
       available: true

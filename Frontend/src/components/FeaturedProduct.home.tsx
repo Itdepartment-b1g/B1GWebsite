@@ -2,6 +2,8 @@ import { useState } from "react";
 import { ChevronLeft, ChevronRight, Star, ArrowRight } from 'lucide-react';
 import { Link } from "react-router-dom";
 import ForgePicture from "../assets/ForgePicture.jpg";
+import XslimbarImage from "../assets/Slimbar/Xslimbar.jpg";
+import AmzPhoto from "../assets/Amz/amz photo.jpg";
 
 const placeholderProducts = [
   {
@@ -19,12 +21,13 @@ const placeholderProducts = [
     image: ForgePicture,
     category: "Vape",
     route: "/forgealpha",
+    comingSoon: true,
   },
   {
     id: 4,
     name: "X-Slimbar",
     description: "Designed to impress, Crafted to Last",
-    image: "https://scontent.fmnl17-1.fna.fbcdn.net/v/t39.30808-6/516336560_122133870188741916_865665765343978951_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=6yg9MzpjEwwQ7kNvwHZnvt6&_nc_oc=Adl_gXjQDNESD8Ap-9YIx5CGME5atL_AAY7MUkolwtZXnPZZOY7bHVUiecFwKZP1YGU&_nc_zt=23&_nc_ht=scontent.fmnl17-1.fna&_nc_gid=XaVMpbv_q7spuvZ7M6TvlA&oh=00_AfQBpFRvG_C8YdPGAMEsyKNlNWzXibsf3RjdNoCqbtSzUQ&oe=688F5754",
+    image: XslimbarImage,
     category: "Vape",
     route: "/XSlimbar",
   },
@@ -32,7 +35,7 @@ const placeholderProducts = [
     id: 3,
     name: "X-Ultra",
     description: "Explore your passion, Explore your taste",
-    image: "https://scontent.fmnl17-3.fna.fbcdn.net/v/t39.30808-6/487791627_122117625074741916_4382918048910865605_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=OxZcprK9lRYQ7kNvwG7YmZr&_nc_oc=AdkSC0ctirJz45brQ9Y_Ba9KvTe9n1noOz3tdW2FfEmJa0VHS-PdvS1CX8zGKpHgjB0&_nc_zt=23&_nc_ht=scontent.fmnl17-3.fna&_nc_gid=h7qClb7EUzo-k2__c0dCTQ&oh=00_AfTVXLqoo8pK7OGYWc0EgDA7Vj9k_qq8ALt9pkpUhyTxEg&oe=688F5C6A",
+    image: "/src/assets/Ultra/UltraPhoto.webp",
     category: "Vape",
     route: "/xultra",
   },
@@ -40,7 +43,7 @@ const placeholderProducts = [
     id: 5,
     name: "AMZ",
     description: "Amazing Vape, Amazing Life",
-    image: "https://scontent.fmnl17-4.fna.fbcdn.net/v/t39.30808-6/486667704_661021166292964_8960477590410985636_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=NwxZuIXK9tQQ7kNvwHTzILU&_nc_oc=AdkYho9Mpdmv4LxLoGcGveUNLT4q9L57aYP1OXTuSlIqJXMszhKO-yGArfevtMS4teA&_nc_zt=23&_nc_ht=scontent.fmnl17-4.fna&_nc_gid=962rsxJnpPLGKXeX4nODmw&oh=00_AfTPgUKNrf0tPklYum3TdpIO2HdZOBPgp1fbS9Nxu9PURQ&oe=688E298F",
+    image: AmzPhoto,
     category: "Vape",
     route: "/amz",
   }
@@ -105,9 +108,21 @@ const FeaturedProduct = () => {
                       <img 
                         src={product.image} 
                         alt={product.name}
-                        className="w-full h-[500px] object-cover transition-transform duration-700 group-hover:scale-110"
+                        className={`w-full h-[500px] object-cover transition-transform duration-700 ${product.comingSoon ? 'grayscale' : 'group-hover:scale-110'}`}
                       />
                       <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-black/20"></div>
+                      
+                      {/* Coming Soon Overlay */}
+                      {product.comingSoon && (
+                        <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
+                          <div className="text-center">
+                            <div className="px-6 py-3 rounded-full text-lg font-bold tracking-wider mb-2" style={{ backgroundColor: '#FF9BFF', color: '#000204' }}>
+                              COMING SOON
+                            </div>
+                            <p className="text-white text-sm opacity-90">Stay tuned for the launch</p>
+                          </div>
+                        </div>
+                      )}
                       
                       {/* Category Badge */}
                       <div className="absolute top-6 left-6 px-4 py-2 rounded-full text-xs font-semibold tracking-wider" style={{ backgroundColor: '#472160', color: '#F4FBFE' }}>
@@ -128,12 +143,23 @@ const FeaturedProduct = () => {
                         </div>
                         
                         <div className="flex items-center justify-between pt-6">
-                          <Link to={product.route}>
-                            <button className="group flex items-center gap-3 px-8 py-4 rounded-full font-medium transition-all duration-300 hover:scale-105 hover:shadow-xl" style={{ backgroundColor: '#472160', color: '#F4FBFE' }}>
-                              Explore Product
-                              <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
+                          {product.comingSoon ? (
+                            <button 
+                              disabled 
+                              className="group flex items-center gap-3 px-8 py-4 rounded-full font-medium cursor-not-allowed opacity-60" 
+                              style={{ backgroundColor: '#7A7f83', color: '#F4FBFE' }}
+                            >
+                              Coming Soon
+                              <ArrowRight className="w-5 h-5" />
                             </button>
-                          </Link>
+                          ) : (
+                            <Link to={product.route}>
+                              <button className="group flex items-center gap-3 px-8 py-4 rounded-full font-medium transition-all duration-300 hover:scale-105 hover:shadow-xl" style={{ backgroundColor: '#472160', color: '#F4FBFE' }}>
+                                Explore Product
+                                <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
+                              </button>
+                            </Link>
+                          )}
                         </div>
                       </div>
                     </div>
