@@ -11,7 +11,6 @@ const placeholderProducts = [
     name: "FORGE",
     description: "Forge your new experience",
     image: "https://mcwinternationaltrading.com/cdn/shop/files/X4_1080x.jpg?v=1747153609",
-    category: "Vape",
     route: "/XForge",
   },
   {
@@ -19,7 +18,6 @@ const placeholderProducts = [
     name: "ALPHA",
     description: "The Alpha of all v1",
     image: ForgePicture,
-    category: "Vape",
     route: "/forgealpha",
     comingSoon: true,
   },
@@ -28,7 +26,6 @@ const placeholderProducts = [
     name: "X-Slimbar",
     description: "Designed to impress, Crafted to Last",
     image: XslimbarImage,
-    category: "Vape",
     route: "/XSlimbar",
   },
   {
@@ -36,15 +33,13 @@ const placeholderProducts = [
     name: "X-Ultra",
     description: "Explore your passion, Explore your taste",
     image: "/src/assets/Ultra/UltraPhoto.webp",
-    category: "Vape",
     route: "/xultra",
   },
   {
     id: 5,
-    name: "AMZ",
+    name: "AMZ A1",
     description: "Amazing Vape, Amazing Life",
     image: AmzPhoto,
-    category: "Vape",
     route: "/amz",
   }
 ];
@@ -124,10 +119,7 @@ const FeaturedProduct = () => {
                         </div>
                       )}
                       
-                      {/* Category Badge */}
-                      <div className="absolute top-6 left-6 px-4 py-2 rounded-full text-xs font-semibold tracking-wider" style={{ backgroundColor: '#472160', color: '#F4FBFE' }}>
-                        {product.category}
-                      </div>
+                      
                     </div>
 
                     {/* Product Info */}
