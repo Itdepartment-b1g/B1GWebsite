@@ -236,9 +236,35 @@ const ForgeAlpha = () => {
   const currentProduct = flavorVariants[currentSlide];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700 font-['Inter',sans-serif] overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700 font-['Inter',sans-serif] overflow-hidden relative">
       
-      {/* Custom CSS for Swoosh Animation */}
+      {/* Enhanced Background Elements */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        {/* Animated geometric shapes */}
+        <div className="absolute top-20 left-10 w-32 h-32 bg-cyan-500/10 rounded-full blur-xl animate-pulse"></div>
+        <div className="absolute top-40 right-20 w-24 h-24 bg-cyan-400/20 rounded-full blur-lg animate-bounce slow"></div>
+        <div className="absolute bottom-32 left-20 w-40 h-40 bg-gray-600/30 rounded-full blur-2xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-32 w-28 h-28 bg-cyan-300/15 rounded-full blur-xl animate-bounce slow"></div>
+        
+        {/* Diagonal grid pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `radial-gradient(circle at 2px 2px, cyan 1px, transparent 0)`,
+            backgroundSize: '50px 50px'
+          }}></div>
+        </div>
+        
+        {/* Subtle moving lines */}
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent animate-pulse"></div>
+        <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent animate-pulse"></div>
+        
+        {/* Floating particles */}
+        <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-cyan-400/40 rounded-full animate-ping"></div>
+        <div className="absolute top-3/4 right-1/4 w-1 h-1 bg-cyan-300/60 rounded-full animate-ping delay-1000"></div>
+        <div className="absolute top-1/2 left-3/4 w-1.5 h-1.5 bg-cyan-500/50 rounded-full animate-ping delay-500"></div>
+      </div>
+
+      {/* Custom CSS for Swoosh Animation and Enhanced Backgrounds */}
       <style dangerouslySetInnerHTML={{
         __html: `
           @keyframes swooshLeft {
@@ -273,18 +299,29 @@ const ForgeAlpha = () => {
             100% { transform: translateY(0px) translateX(0px) rotate(0deg); opacity: 1; }
           }
           
+          @keyframes slowFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+          }
+          
+          @keyframes slowBounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+          }
+          
           .swoosh-enter-right { animation: swooshLeft 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
           .swoosh-enter-left { animation: swooshRight 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
           .swoosh-exit { animation: swooshOut 0.4s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards; }
           .text-swoosh { animation: textSwoosh 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
           .spec-swoosh { animation: specSwoosh 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
+          .slow { animation-duration: 3s; animation-iteration-count: infinite; }
         `
       }} />
 
       <Header alwaysShowBg={true} />
       
       {/* Hero Section */}
-      <section className="h-screen flex items-center justify-center pt-20 pb-8 bg-gradient-to-r from-gray-50 to-gray-100">
+      <section className="h-screen flex items-center justify-center pt-20 pb-8 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700">
         <div className="max-w-6xl mx-auto px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             
@@ -307,10 +344,7 @@ const ForgeAlpha = () => {
               
               <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
                 <button className="px-8 py-4 bg-white text-gray-900 rounded-lg font-bold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
-                  Explore Collection
-                </button>
-                <button className="px-8 py-4 border-2 border-cyan-400 text-cyan-400 rounded-lg font-bold hover:bg-cyan-400 hover:text-gray-900 transition-all duration-300 transform hover:scale-105">
-                  Learn More
+                  User Manual
                 </button>
               </div>
               
@@ -333,7 +367,7 @@ const ForgeAlpha = () => {
 
             {/* Right Column - Featured Product Image */}
             <div className="relative">
-              <div className="bg-gradient-to-br from-white to-gray-100 rounded-3xl p-12 shadow-2xl border border-gray-200">
+              <div className="bg-gradient-to-br from-gray-800 to-gray-700 rounded-3xl p-12 shadow-2xl border border-gray-600">
                 <img 
                   src="/src/assets/Forge/B1GBlack.png"
                   alt="Forge Alpha Featured Product"
@@ -341,9 +375,9 @@ const ForgeAlpha = () => {
                 />
               </div>
               {/* Decorative elements */}
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-gray-200 rounded-full opacity-30"></div>
-              <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-gray-400 rounded-full opacity-20"></div>
-              <div className="absolute top-1/2 -left-8 w-8 h-8 bg-gray-500 rounded-full opacity-15"></div>
+              <div className="absolute -top-4 -right-4 w-24 h-24 bg-gray-600 rounded-full opacity-30"></div>
+              <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-gray-500 rounded-full opacity-20"></div>
+              <div className="absolute top-1/2 -left-8 w-8 h-8 bg-gray-400 rounded-full opacity-15"></div>
             </div>
           </div>
         </div>
@@ -422,11 +456,11 @@ const ForgeAlpha = () => {
       </section>
       
       {/* Porsche-Style Carousel Section */}
-      <section className="h-[10vh] flex items-center justify-center pt-8 pb-8">
+      <section className="h-[100vh] flex items-center justify-center pt-10 pb-8">
         <div className="max-w-5xl mx-auto px-6 text-center">
           
           {/* Brand Header */}
-          <div className="mb-6 space-y-2">
+          <div className="mb-6 pb-8 space-y-2">
             <div className="text-xs font-bold tracking-[0.3em] text-gray-400 uppercase">
               B1G CORPORATION
             </div>
@@ -435,83 +469,108 @@ const ForgeAlpha = () => {
             </h1>
           </div>
 
-          {/* Large Product Name Display with Swoosh Animation */}
-          <div className="mb-8 overflow-hidden">
-            <h2 className={`text-4xl md:text-5xl font-black text-cyan-400 tracking-wider uppercase leading-none ${
-              isTransitioning 
-                ? 'swoosh-exit' 
-                : slideDirection === 'right' 
-                  ? 'swoosh-enter-right text-swoosh' 
-                  : 'swoosh-enter-left text-swoosh'
-            }`}>
-              {currentProduct.subtitle}
-            </h2>
-          </div>
+      
 
-          {/* Main Product Display with Dynamic Swoosh Animation */}
-          <div className="relative mb-8">
-            <div 
-              className="flex justify-center items-center h-[250px] cursor-grab active:cursor-grabbing select-none"
-              onTouchStart={onTouchStart}
-              onTouchMove={onTouchMove}
-              onTouchEnd={onTouchEnd}
-              onMouseDown={onMouseDown}
-              onMouseMove={onMouseMove}
-              onMouseUp={onMouseUp}
-              onMouseLeave={onMouseUp}
-            >
-              <img 
-                src={currentProduct.image}
-                alt={currentProduct.name}
-                className={`max-w-sm w-full h-auto object-contain drop-shadow-xl hover:scale-105 transition-transform duration-300 pointer-events-none ${
-                  isTransitioning 
-                    ? 'swoosh-exit' 
-                    : slideDirection === 'right' 
-                      ? 'swoosh-enter-right' 
-                      : 'swoosh-enter-left'
-                }`}
-              />
-            </div>
-            
-            {/* Swoosh Effect Overlay */}
-            <div className={`absolute inset-0 pointer-events-none ${
-              isTransitioning ? 'opacity-100' : 'opacity-0'
-            } transition-opacity duration-200`}>
-              <div className={`absolute top-1/2 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent transform -translate-y-1/2 ${
-                slideDirection === 'right' ? 'animate-pulse' : 'animate-pulse'
-              }`}></div>
+          {/* Main Product Display with Side Details */}
+          <div className="relative mb-12">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+              
+              {/* Left Side - Empty for balance */}
+              <div className="lg:order-1">
+              </div>
+
+              {/* Center - Product Image */}
+              <div className="lg:order-2">
+                <div 
+                  className="flex justify-center items-center h-[300px] cursor-grab active:cursor-grabbing select-none"
+                  onTouchStart={onTouchStart}
+                  onTouchMove={onTouchMove}
+                  onTouchEnd={onTouchEnd}
+                  onMouseDown={onMouseDown}
+                  onMouseMove={onMouseMove}
+                  onMouseUp={onMouseUp}
+                  onMouseLeave={onMouseUp}
+                >
+                  <img 
+                    src={currentProduct.image}
+                    alt={currentProduct.name}
+                    className={`max-w-xs w-full h-auto object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-300 pointer-events-none ${
+                      isTransitioning 
+                        ? 'swoosh-exit' 
+                        : slideDirection === 'right' 
+                          ? 'swoosh-enter-right' 
+                          : 'swoosh-enter-left'
+                    }`}
+                  />
+                </div>
+              </div>
+
+              {/* Right Side - Empty for balance */}
+              <div className="lg:order-3">
+              </div>
             </div>
           </div>
 
           {/* Product Name Display */}
-          <div className="mb-8 text-center">
+          <div className="mb-12 pt-8 text-center">
             <h3 className="text-3xl md:text-4xl font-bold text-white mb-2">
               {currentProduct.name}
             </h3>
           </div>
 
-          {/* Navigation Dots with Enhanced Animation */}
-          <div className="flex justify-center space-x-2 mb-6">
-            {flavorVariants.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => handleSlideChange(index)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 transform hover:scale-150 ${
-                  index === currentSlide 
-                    ? 'bg-cyan-400 scale-125 shadow-lg shadow-cyan-400/30' 
-                    : 'bg-gray-500 hover:bg-gray-400 scale-100'
-                }`}
+          {/* Product Counter and Navigation */}
+          <div className="flex flex-col items-center space-y-4 mb-12">
+            {/* Product Counter Display */}
+            <div className="bg-gray-800/50 backdrop-blur-sm rounded-full px-6 py-2 border border-gray-600">
+              <span className="text-cyan-400 font-bold text-lg">
+                {String(currentSlide + 1).padStart(2, '0')}
+              </span>
+              <span className="text-gray-400 mx-2">/</span>
+              <span className="text-gray-300 font-medium">
+                {String(flavorVariants.length).padStart(2, '0')}
+              </span>
+            </div>
+            
+            {/* Progress Bar */}
+            <div className="w-48 h-1 bg-gray-600 rounded-full overflow-hidden">
+              <div 
+                className="h-full bg-gradient-to-r from-cyan-500 to-cyan-400 rounded-full transition-all duration-500 ease-out"
+                style={{ width: `${((currentSlide + 1) / flavorVariants.length) * 100}%` }}
               />
-            ))}
+            </div>
+            
+            {/* Navigation Arrows */}
+            <div className="flex items-center space-x-6">
+              <button
+                onClick={() => handleSlideChange(currentSlide === 0 ? flavorVariants.length - 1 : currentSlide - 1)}
+                className="w-10 h-10 bg-gray-700 hover:bg-gray-600 rounded-full flex items-center justify-center transition-all duration-300 group hover:scale-110"
+              >
+                <svg className="w-5 h-5 text-white group-hover:text-cyan-400 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              
+              <div className="text-center">
+                <div className="text-sm text-gray-400 font-medium">
+                  {currentProduct.name}
+                </div>
+                <div className="text-xs text-gray-500 uppercase tracking-wide">
+                  {currentProduct.subtitle}
+                </div>
+              </div>
+              
+              <button
+                onClick={() => handleSlideChange((currentSlide + 1) % flavorVariants.length)}
+                className="w-10 h-10 bg-gray-700 hover:bg-gray-600 rounded-full flex items-center justify-center transition-all duration-300 group hover:scale-110"
+              >
+                <svg className="w-5 h-5 text-white group-hover:text-cyan-400 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
           </div>
 
-          {/* Go Back Button with Pulse Animation */}
-          <button className="inline-flex items-center space-x-2 px-6 py-3 bg-cyan-500 text-white rounded-lg hover:bg-cyan-400 transition-all duration-300 group hover:scale-105 hover:shadow-xl hover:shadow-cyan-500/25">
-            <svg className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-            </svg>
-            <span className="font-medium">Go Back</span>
-          </button>
+       
         </div>
       </section>
 
