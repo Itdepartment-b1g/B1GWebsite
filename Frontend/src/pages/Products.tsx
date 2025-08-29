@@ -74,7 +74,7 @@ const Products = () => {
       features: ["Smart Display", "USB-C Charging", "Detachable Cartridge", "Luxury Airflow"],
       category: "X-Vape",
       price: "Ultra Line",
-      image: "https://scontent.fmnl17-3.fna.fbcdn.net/v/t39.30808-6/487791627_122117625074741916_4382918048910865605_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=OxZcprK9lRYQ7kNvwG7YmZr&_nc_oc=AdkSC0ctirJz45brQ9Y_Ba9KvTe9n1noOz3tdW2FfEmJa0VHS-PdvS1CX8zGKpHgjB0&_nc_zt=23&_nc_ht=scontent.fmnl17-3.fna&_nc_gid=h7qClb7EUzo-k2__c0dCTQ&oh=00_AfTVXLqoo8pK7OGYWc0EgDA7Vj9k_qq8ALt9pkpUhyTxEg&oe=688F5C6A",
+      image: "/src/assets/UltraPhoto.webp",
       route: "/xultra",
       gradient: "from-[#472160] to-[#FF9BFF]",
       available: true
@@ -87,7 +87,7 @@ const Products = () => {
       features: ["Battery & Pod System", "Flexible Combos", "Customizable", "Great Value"],
       category: "AMZ",
       price: "Value Line",
-      image: "https://scontent.fmnl17-4.fna.fbcdn.net/v/t39.30808-6/486667704_661021166292964_8960477590410985636_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=NwxZuIXK9tQQ7kNvwHTzILU&_nc_oc=AdkYho9Mpdmv4LxLoGcGveUNLT4q9L57aYP1OXTuSlIqJXMszhKO-yGArfevtMS4teA&_nc_zt=23&_nc_ht=scontent.fmnl17-4.fna&_nc_gid=962rsxJnpPLGKXeX4nODmw&oh=00_AfTPgUKNrf0tPklYum3TdpIO2HdZOBPgp1fbS9Nxu9PURQ&oe=688E298F",
+      image: "/src/assets/Amz/amz photo.jpg",
       route: "/amz",
       gradient: "from-[#472160] to-[#7A7f83]",
       available: true

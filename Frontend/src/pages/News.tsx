@@ -100,7 +100,7 @@ const News = () => {
                 </h1>
                 
                 <p className="text-xl text-white/80 leading-relaxed mb-8 max-w-lg">
-                  Stay informed about the latest innovations, company milestones, and industry developments from B1G Corporation.
+                  Stay informed about company milestones, and industry developments from B1G Corporation.
                 </p>
                 
                 <div className="flex flex-wrap gap-4">
@@ -135,10 +135,7 @@ const News = () => {
                   </div>
                 </div>
                 
-                {/* Floating elements */}
-                <div className="absolute -top-4 -right-4 w-8 h-8 bg-[#FF9BFF]/30 rounded-full animate-bounce"></div>
-                <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-[#FF9BFF]/20 rounded-full animate-pulse"></div>
-                <div className="absolute top-1/2 -right-8 w-4 h-4 bg-[#FF9BFF]/40 rounded-full animate-ping"></div>
+
               </div>
             </div>
           </div>
@@ -172,10 +169,7 @@ const News = () => {
                         <Calendar size={14} />
                         <span>{new Date(article.date).toLocaleDateString()}</span>
                       </div>
-                      <div className="flex items-center space-x-2 text-[#7A7f83] text-sm">
-                        <Clock size={14} />
-                        <span>{article.readTime}</span>
-                      </div>
+
                     </div>
                     <h3 className="text-3xl font-bold text-[#472160] mb-4 leading-tight">
                       {article.title}
@@ -242,10 +236,7 @@ const News = () => {
                           <Calendar size={12} />
                           <span>{new Date(article.date).toLocaleDateString()}</span>
                         </div>
-                        <div className="flex items-center space-x-1">
-                          <Clock size={12} />
-                          <span>{article.readTime}</span>
-                        </div>
+
                       </div>
                       <h3 className="text-xl font-bold text-[#472160] mb-3 leading-tight group-hover:text-[#FF9BFF] transition-colors duration-300">
                         {article.title}
@@ -286,12 +277,14 @@ const News = () => {
               )}
             </div>
 
-            {/* Load More Button */}
-            <div className="text-center mt-12">
-              <button className="px-8 py-4 border-2 border-[#472160] text-[#472160] rounded-lg font-bold hover:bg-[#472160] hover:text-white transition-all duration-300">
-                Load More Articles
-              </button>
-            </div>
+            {/* Load More Button - Only show if more than 5 articles */}
+            {newsArticles.length > 5 && (
+              <div className="text-center mt-12">
+                <button className="px-8 py-4 border-2 border-[#472160] text-[#472160] rounded-lg font-bold hover:bg-[#472160] hover:text-white transition-all duration-300">
+                  Load More Articles
+                </button>
+              </div>
+            )}
           </div>
         </section>
 
@@ -309,18 +302,8 @@ const News = () => {
                     <Calendar size={14} />
                     <span>{new Date(selectedArticle.date).toLocaleDateString()}</span>
                   </div>
-                  <div className="flex items-center space-x-2 text-[#7A7f83] text-sm">
-                    <Clock size={14} />
-                    <span>{selectedArticle.readTime}</span>
-                  </div>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <button className="p-2 hover:bg-[#F4FBFE] rounded-lg transition-colors">
-                    <Bookmark size={16} className="text-[#7A7f83]" />
-                  </button>
-                  <button className="p-2 hover:bg-[#F4FBFE] rounded-lg transition-colors">
-                    <Share2 size={16} className="text-[#7A7f83]" />
-                  </button>
                   <button 
                     onClick={closeArticle}
                     className="p-2 hover:bg-[#F4FBFE] rounded-lg transition-colors"
