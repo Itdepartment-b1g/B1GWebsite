@@ -1,13 +1,14 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Calendar, Clock, ArrowRight, ExternalLink, Tag, X, Share2, Bookmark } from "lucide-react";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 const News = () => {
   const [selectedArticle, setSelectedArticle] = useState(null);
   const [isArticleModalOpen, setIsArticleModalOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const location = useLocation();
 
   const newsArticles = [
     {  id: 1,
@@ -20,7 +21,7 @@ const News = () => {
       image: "/src/assets/slimbar event.jpg",
       featured: true,
       author: "B1G Marketing Team",
-      tags: [ "Product Launch", "X-SLIMBAR", "X Forge Alpha"]
+      tags: [ "Product Launch", "X-SLIMBAR"]
     },
     {
       id: 2,
@@ -39,6 +40,19 @@ const News = () => {
 
   const categories = ["All", "Product Launch", "Company News", "Awards", "Sustainability", "Partnerships", "Customer Experience"];
 
+  // Check for article parameter in URL and open modal automatically
+  useEffect(() => {
+    const urlParams = new URLSearchParams(location.search);
+    const articleId = urlParams.get('article');
+    
+    if (articleId) {
+      const article = newsArticles.find(article => article.id === parseInt(articleId));
+      if (article) {
+        openArticle(article);
+      }
+    }
+  }, [location.search]);
+
   const openArticle = (article) => {
     setSelectedArticle(article);
     setIsArticleModalOpen(true);
@@ -52,8 +66,8 @@ const News = () => {
   };
 
   const filteredArticles = selectedCategory === "All" 
-    ? newsArticles.filter(article => !article.featured)
-    : newsArticles.filter(article => !article.featured && article.category === selectedCategory);
+    ? newsArticles
+    : newsArticles.filter(article => article.category === selectedCategory);
 
   return (
     <div className="min-h-screen bg-[#F4FBFE] text-[#000204]">

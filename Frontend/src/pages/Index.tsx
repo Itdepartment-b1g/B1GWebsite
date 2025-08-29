@@ -2,25 +2,34 @@ import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import Footer from "@/components/Footer";
 import FeaturedProduct from "@/components/FeaturedProduct.home";
+import { useNavigate } from "react-router-dom";
 
-const placeholderNews = [
-  {
-    title: "B1G Launches New AI Platform",
-    date: "July 2024",
-    summary: "B1G Corporation unveils its latest AI-powered platform, revolutionizing business automation.",
-    image: "https://via.placeholder.com/400x200?text=News+1"
+const newsArticles = [
+  {  
+    id: 1,
+    title: "Witness the launch of X-SLiMBAR and the exclusive reveal of our next evolution: X Forge Alpha. ",
+    excerpt: "B1G Corporation introduces its most sophisticated product yet, setting new standards in innovation and craftsmanship.",
+    content: "Today marks a significant milestone for B1G Corporation as we unveil the X-SLIMBAR premium technology line. This revolutionary product represents the culmination of years of research, development, and unwavering commitment to excellence. The X-SLIMBAR combines cutting-edge technology with timeless design principles, offering users an unparalleled experience that transcends conventional boundaries.\n\nOur engineering team has worked tirelessly to create a product that not only meets the highest standards of performance but also exceeds expectations in terms of design and user experience. The X-SLIMBAR features state-of-the-art components, advanced connectivity options, and intuitive controls that make it accessible to users of all technical levels.\n\nThe launch event, held at our headquarters, was attended by industry leaders, technology enthusiasts, and media representatives from around the world. The response has been overwhelmingly positive, with many praising the innovative approach to product design and the attention to detail that has become synonymous with the B1G brand.\n\n'This is more than just a product launch,' said our CEO during the presentation. 'This represents our vision for the future of technology - where innovation meets elegance, and where every detail matters.'\n\nThe X-SLIMBAR is now available for pre-order through our official website and authorized retailers worldwide. Early adopters will receive exclusive benefits, including extended warranty coverage and priority customer support.",
+    category: "Product Launch",
+    date: "2025-06-11",
+    readTime: "",
+    image: "/src/assets/slimbar event.jpg",
+    featured: true,
+    author: "B1G Marketing Team",
+    tags: [ "Product Launch", "X-SLIMBAR"]
   },
   {
-    title: "Partnership with Tech Innovators",
-    date: "June 2024",
-    summary: "B1G partners with leading tech companies to drive digital transformation in Southeast Asia.",
-    image: "https://via.placeholder.com/400x200?text=News+2"
-  },
-  {
-    title: "Awarded Best Startup 2024",
-    date: "May 2024",
-    summary: "B1G Corporation receives the Best Startup Award for outstanding innovation and growth.",
-    image: "https://via.placeholder.com/400x200?text=News+3"
+    id: 2,
+    title: "Work with a Heart: B1G Corporation Celebrates Valentine's Day with Camaraderie and Appreciation",
+    excerpt: "B1G Corporation fosters camaraderie and appreciation through its 'Work with a Heart' initiative, bringing employees together in a vibrant and engaging Valentine's Day celebration.",
+    content: "Alabang, Philippines – B1G Corporation celebrates Valentine's Day with its 'Work with a Heart' initiative, promoting camaraderie and boosting employee morale at its Alabang satellite office. Employees participate in a color-coded attire trend to reflect their relationship status, creating a lively and inclusive atmosphere. Red represents those in relationships, pink for those in complicated situations, blue for singles looking to mingle, white for those single by choice, and gray for those healing from heartbreak. Executives join the fun in a photo session, with the President humorously posing with singles by choice, while other leaders embrace their respective statuses.\n\nBeyond the colorful display, the celebration strengthens workplace culture as executives distribute chocolates and departments exchange treats and flowers. The event gains momentum with an energetic dance performance by interns, followed by a lively dance battle featuring the Sales Team. Employees also engage in a playful sweet exchange of chocolates, reminiscent of a traditional gift swap, with two colleagues in pink humorously earning the title of the event's 'love team.'\n\nAs the festivities continue, employees gather for a traditional Filipino merienda featuring sandwiches and pancit sa bilao. The highlight of the meal is the reading of heartfelt love notes collected throughout the past week. Messages range from humorous quips to words of encouragement, including 'Just Always Pray at Night (JAPAN),' 'You are the GOAT,' and a humorous misinterpretation that turns 'I love how you…' into 'I love you,' sparking laughter and camaraderie.\n\nAs the day concludes, employees take home their collected love notes as keepsakes, reinforcing B1G Corporation's commitment to fostering a workplace culture of recognition, connection, and appreciation. The 'Work with a Heart' initiative highlights the company's dedication to employee well-being, leaving team members feeling valued and motivated.",
+    category: "Company News",
+    date: "2025-02-14",
+    readTime: "",
+    image: "https://www.b1gcorporation.com/viber_image_2025-02-20_10-26-52-244.jpg",
+    featured: false,
+    author: "Rhem de Guzman, Marketing",
+    tags: ["Valentines"]
   }
 ];
 
@@ -46,6 +55,12 @@ const placeholderFAQs = [
 ];
 
 const Index = () => {
+  const navigate = useNavigate();
+
+  const handleReadMore = (articleId) => {
+    navigate(`/news?article=${articleId}`);
+  };
+
   return (
     <div className="min-h-screen">
       <Header />
@@ -64,18 +79,21 @@ const Index = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {placeholderNews.map((news, idx) => (
-              <div key={idx} className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2">
+            {newsArticles.slice(0, 3).map((news, idx) => (
+              <div key={news.id} className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2">
                 <div className="relative overflow-hidden">
                   <img src={news.image} alt={news.title} className="w-full h-48 object-cover transition-all duration-300 hover:scale-110" />
                   <div className="absolute top-4 left-4 bg-[#FF9BFF] text-[#472160] px-3 py-1 rounded-full text-sm font-semibold">
-                    {news.date}
+                    {new Date(news.date).toLocaleDateString()}
                   </div>
                 </div>
                 <div className="p-6">
                   <h3 className="text-xl font-semibold mb-3 text-[#472160] leading-tight">{news.title}</h3>
-                  <p className="text-[#7A7f83] mb-6 leading-relaxed">{news.summary}</p>
-                  <button className="w-full bg-[#472160] text-white hover:bg-[#472160]/90 transition-all duration-300 px-4 py-2 rounded-lg">
+                  <p className="text-[#7A7f83] mb-6 leading-relaxed">{news.excerpt}</p>
+                  <button 
+                    onClick={() => handleReadMore(news.id)}
+                    className="w-full bg-[#472160] text-white hover:bg-[#472160]/90 transition-all duration-300 px-4 py-2 rounded-lg"
+                  >
                     Read More
                   </button>
                 </div>
