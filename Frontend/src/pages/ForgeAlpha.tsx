@@ -238,31 +238,7 @@ const ForgeAlpha = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700 font-['Inter',sans-serif] overflow-hidden relative">
       
-      {/* Enhanced Background Elements */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        {/* Animated geometric shapes */}
-        <div className="absolute top-20 left-10 w-32 h-32 bg-cyan-500/10 rounded-full blur-xl animate-pulse"></div>
-        <div className="absolute top-40 right-20 w-24 h-24 bg-cyan-400/20 rounded-full blur-lg animate-bounce slow"></div>
-        <div className="absolute bottom-32 left-20 w-40 h-40 bg-gray-600/30 rounded-full blur-2xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-32 w-28 h-28 bg-cyan-300/15 rounded-full blur-xl animate-bounce slow"></div>
-        
-        {/* Diagonal grid pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `radial-gradient(circle at 2px 2px, cyan 1px, transparent 0)`,
-            backgroundSize: '50px 50px'
-          }}></div>
-        </div>
-        
-        {/* Subtle moving lines */}
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent animate-pulse"></div>
-        <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent animate-pulse"></div>
-        
-        {/* Floating particles */}
-        <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-cyan-400/40 rounded-full animate-ping"></div>
-        <div className="absolute top-3/4 right-1/4 w-1 h-1 bg-cyan-300/60 rounded-full animate-ping delay-1000"></div>
-        <div className="absolute top-1/2 left-3/4 w-1.5 h-1.5 bg-cyan-500/50 rounded-full animate-ping delay-500"></div>
-      </div>
+
 
       {/* Custom CSS for Swoosh Animation and Enhanced Backgrounds */}
       <style dangerouslySetInnerHTML={{
@@ -321,66 +297,7 @@ const ForgeAlpha = () => {
       <Header alwaysShowBg={true} />
       
       {/* Hero Section */}
-      <section className="h-screen flex items-center justify-center pt-20 pb-8 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700">
-        <div className="max-w-6xl mx-auto px-8">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            
-            {/* Left Column - Text Content */}
-            <div className="space-y-8">
-              <div className="space-y-4">
-                <div className="text-sm font-bold tracking-[0.3em] text-gray-300 uppercase">
-                  B1G CORPORATION
-                </div>
-                <h1 className="text-6xl md:text-7xl font-black text-white tracking-tight leading-none">
-                  FORGE
-                </h1>
-                <h2 className="text-6xl md:text-7xl font-light text-cyan-400 tracking-tight leading-none">
-                  ALPHA
-                </h2>
-                <p className="text-xl text-gray-300 font-medium max-w-md leading-relaxed">
-                  Premium Vaping Experience Redefined with Advanced Technology and Unmatched Performance
-                </p>
-              </div>
-              
-              <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                <button className="px-8 py-4 bg-white text-gray-900 rounded-lg font-bold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
-                  User Manual
-                </button>
-              </div>
-              
-              {/* Key Features */}
-              <div className="flex space-x-8 pt-4">
-                <div className="text-center">
-                  <div className="text-2xl font-black text-white">20ML</div>
-                  <div className="text-sm text-gray-300 font-medium">Capacity</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-black text-white">8000+</div>
-                  <div className="text-sm text-gray-300 font-medium">Puffs</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-black text-white">850mAh</div>
-                  <div className="text-sm text-gray-300 font-medium">Battery</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Right Column - Featured Product Image */}
-            <div className="relative">
-              <div className="bg-gradient-to-br from-gray-800 to-gray-700 rounded-3xl p-12 shadow-2xl border border-gray-600">
-                <img 
-                  src="/src/assets/Forge/B1GBlack.png"
-                  alt="Forge Alpha Featured Product"
-                  className="w-full h-auto object-contain drop-shadow-xl hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-              {/* Decorative elements */}
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-gray-600 rounded-full opacity-30"></div>
-              <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-gray-500 rounded-full opacity-20"></div>
-              <div className="absolute top-1/2 -left-8 w-8 h-8 bg-gray-400 rounded-full opacity-15"></div>
-            </div>
-          </div>
-        </div>
+      <section className="h-screen">
       </section>
 
       {/* Specifications Section */}
