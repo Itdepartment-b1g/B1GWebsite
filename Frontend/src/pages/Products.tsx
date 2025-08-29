@@ -31,7 +31,7 @@ const Products = () => {
       id: 1,
       name: "FORGE",
       tagline: "Forge Your Experience",
-      description: "X-Forge is a sleek, rechargeable pre-filled vape that delivers up to 10,000 puffs of bold, satisfying flavors—perfect for vapers who want long-lasting performance with style.",
+      description: "Forge is a sleek, rechargeable pre-filled vape that delivers up to 10,000 puffs of bold, satisfying flavors—perfect for vapers who want long-lasting performance with style.",
       features: ["10,000 Puffs", "Rechargeable Battery", "Premium Flavors", "Sleek Design"],
       category: "B1G",
       price: "Premium Line",
