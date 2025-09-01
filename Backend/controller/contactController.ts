@@ -58,7 +58,9 @@ class ContactController {
       };
 
       // Step 1: Save to Google Sheets
+      console.log('🔍 Attempting to save to Google Sheets:', contactData.fullName);
       const sheetsSuccess = await googleSheetsService.saveContactData(contactData);
+      console.log('📊 Google Sheets save result:', sheetsSuccess);
       if (!sheetsSuccess) {
         const response: ApiResponse = {
           success: false,

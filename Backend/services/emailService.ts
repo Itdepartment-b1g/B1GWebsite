@@ -2,10 +2,18 @@ import nodemailer from 'nodemailer';
 import { EmailData } from '../types/contact';
 
 class EmailService {
-  private transporter: nodemailer.Transporter;
+  private transporter: nodemailer.Transporter | null = null;
 
-  constructor() {
+  private initializeTransporter() {
+    if (this.transporter) return;
+
+    console.log('🔧 Initializing email service...');
+    console.log('📧 EMAIL_HOST:', process.env.EMAIL_HOST);
+    console.log('📧 EMAIL_USER:', process.env.EMAIL_USER);
+    console.log('📧 EMAIL_PORT:', process.env.EMAIL_PORT);
+
     this.transporter = nodemailer.createTransport({
+      service: 'gmail',
       host: process.env.EMAIL_HOST,
       port: parseInt(process.env.EMAIL_PORT || '587'),
       secure: false, // true for 465, false for other ports
@@ -13,10 +21,20 @@ class EmailService {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
       },
+      tls: {
+        rejectUnauthorized: false
+      }
     });
+
+    console.log('✅ Email service initialized');
+  }
+
+  constructor() {
+    // Don't initialize here - do it lazily when first used
   }
 
   async sendEmail(emailData: EmailData): Promise<boolean> {
+    this.initializeTransporter(); // Initialize lazily
     try {
       const mailOptions = {
         from: process.env.EMAIL_FROM,
@@ -26,7 +44,7 @@ class EmailService {
         text: emailData.text,
       };
 
-      const info = await this.transporter.sendMail(mailOptions);
+      const info = await this.transporter!.sendMail(mailOptions);
       console.log('Email sent successfully:', info.messageId);
       return true;
     } catch (error) {
