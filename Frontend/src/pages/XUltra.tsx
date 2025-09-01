@@ -23,10 +23,10 @@ const XUltra = () => {
 
   // 4 Device Colors (added `image` placeholder for each)
   const deviceColors = [
-    { name: "Metallic Silver", color: "#e6e6e4", image: "https://www.xvape.cc/Templates/default/images/ultra3.png" },
-    { name: "Metallic Gray", color: "#5c5a58", image: "https://www.xvape.cc/Templates/default/images/ultra4.png" },
-    { name: "Metallic Rose Gold", color: "#dfadae", image: "https://www.xvape.cc/Templates/default/images/ultra2.png" },
-    { name: "Metallic Blue", color: "#6771d2", image: "https://www.xvape.cc/Templates/default/images/ultra1.png" }
+    { name: "Metallic Silver", color: "#e6e6e4", image: "/src/assets/Ultra/MetallicSilver.png" },
+    { name: "Metallic Gray", color: "#5c5a58", image: "/src/assets/Ultra/MetallicGray.png" },
+    { name: "Metallic Rose Gold", color: "#dfadae", image: "/src/assets/Ultra/MetallicRoseGold.png" },
+    { name: "Metallic Blue", color: "#6771d2", image: "/src/assets/Ultra/MetallicBlue.png" }
   ];
 
   // Auto-advance flavors and device colors (pauses on user interaction)

@@ -27,12 +27,12 @@ const Amz = () => {
   ];
 
   const deviceColors = [
-    { name: 'Natural Titanium', color: '#cbc0be', image: 'https://www.xvape.cc/Templates/default/images/X-SLIMBAR1.png', description: 'Premium natural titanium finish with warm, earthy tones and aerospace-grade durability for sophisticated everyday elegance' },
-    { name: 'White Titanium', color: '#d5d5d3', image: 'https://www.xvape.cc/Templates/default/images/X-SLIMBAR2.png', description: 'Pure white titanium with lustrous pearl finish and advanced anti-fingerprint coating for pristine appearance' },
-    { name: 'Sakura Pink', color: '#f8bbc8', image: 'https://www.xvape.cc/Templates/default/images/X-SLIMBAR3.png', description: 'Inspired by cherry blossoms, this delicate pink finish features soft pearl coating with feminine elegance and refinement' },
-    { name: 'Desert Titanium', color: '#ca8b56', image: 'https://www.xvape.cc/Templates/default/images/X-SLIMBAR4.png', description: 'Warm desert-inspired titanium with rich bronze undertones and premium brushed texture for distinctive character' },
-    { name: 'Ultramarine', color: '#4c50b3', image: 'https://www.xvape.cc/Templates/default/images/X-SLIMBAR5.png', description: 'Deep ultramarine blue with vibrant intensity and precision-engineered satin finish for bold sophistication' },
-    { name: 'Space Grey', color: '#483f38', image: 'https://www.xvape.cc/Templates/default/images/X-SLIMBAR6.png', description: 'Modern space grey with sophisticated dark tones and ultra-smooth anodized finish for professional appeal' }
+    { name: 'Natural Titanium', color: '#cbc0be', image: '/src/assets/Slimbar/NaturalTitanium.png', description: 'Premium natural titanium finish with warm, earthy tones and aerospace-grade durability for sophisticated everyday elegance' },
+    { name: 'White Titanium', color: '#d5d5d3', image: '/src/assets/Slimbar/WhiteTitanium.png', description: 'Pure white titanium with lustrous pearl finish and advanced anti-fingerprint coating for pristine appearance' },
+    { name: 'Sakura Pink', color: '#f8bbc8', image: '/src/assets/Slimbar/SakuraPink.png', description: 'Inspired by cherry blossoms, this delicate pink finish features soft pearl coating with feminine elegance and refinement' },
+    { name: 'Desert Titanium', color: '#ca8b56', image: '/src/assets/Slimbar/DessertTitanium.png', description: 'Warm desert-inspired titanium with rich bronze undertones and premium brushed texture for distinctive character' },
+    { name: 'Ultramarine', color: '#4c50b3', image: '/src/assets/Slimbar/UltraMarine.png', description: 'Deep ultramarine blue with vibrant intensity and precision-engineered satin finish for bold sophistication' },
+    { name: 'Space Grey', color: '#483f38', image: '/src/assets/Slimbar/SpaceGray.png', description: 'Modern space grey with sophisticated dark tones and ultra-smooth anodized finish for professional appeal' }
   ];
 
   const nextPod = (isUserInteraction = false) => {
@@ -180,13 +180,13 @@ const Amz = () => {
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <h2 className="text-4xl lg:text-5xl font-bold mb-8">Premium Design, Superior Performance</h2>
+              <h2 className="text-4xl lg:text-5xl font-bold mb-8">X-Slimbar Maximum Flavor</h2>
               <div className="space-y-6 text-gray-700 text-lg leading-relaxed">
                 <p>
-                  The AMZ Vape represents the pinnacle of vaping technology, combining sleek aesthetics with cutting-edge engineering. Our patented airflow system delivers consistent vapor production while maintaining the pure essence of each flavor.
+                  The X-SlimBar redefines portable vaping with its incredibly slim profile and powerful performance. Engineered with precision titanium finishes and advanced airflow technology, it delivers rich, consistent flavor in the most compact form factor.
                 </p>
                 <p>
-                  Built with aerospace-grade aluminum and featuring a leak-proof pod system, the AMZ Vape is designed for both novice users and vaping enthusiasts who demand excellence in every puff.
+                  Featuring a premium build quality with anti-fingerprint coating and ergonomic design, the X-SlimBar offers up to 800 puffs of pure satisfaction. Perfect for on-the-go users who refuse to compromise on quality or style.
                 </p>
                 <div className="grid grid-cols-2 gap-6 mt-8">
                   <div className="bg-gray-50 p-4 rounded-xl">
