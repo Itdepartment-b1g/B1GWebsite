@@ -3,6 +3,20 @@ import { ChevronLeft, ChevronRight, Battery, Zap, Shield, Wind } from 'lucide-re
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
+// Import all Slimbar images
+import IcyHeartImg from '@/assets/Slimbar/IcyHeart.png';
+import BlueBurstImg from '@/assets/Slimbar/BlueBurst.png';
+import MysteryBurstImg from '@/assets/Slimbar/MysteryBurst.png';
+import GoldenSunburstImg from '@/assets/Slimbar/GoldenSunburst.png';
+import GoldSliceImg from '@/assets/Slimbar/GoldSlice.png';
+import RedTropicBubbleImg from '@/assets/Slimbar/RedTropicBubble.png';
+import PurpleHazeImg from '@/assets/Slimbar/PurpleHaze.png';
+import PurpleBurstImg from '@/assets/Slimbar/PurpleBurst.png';
+import AmberImg from '@/assets/Slimbar/Amber.png';
+import VioletEclipseImg from '@/assets/Slimbar/VioletEclipse.png';
+import RedTropicImg from '@/assets/Slimbar/RedTropic.png';
+import RosyBreezeImg from '@/assets/Slimbar/RosyBreeze.png';
+
 const Amz = () => {
   const [currentPod, setCurrentPod] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -12,18 +26,18 @@ const Amz = () => {
   const [isColorAutoPlay, setIsColorAutoPlay] = useState(true);
 
   const pods = [
-    { name: 'ICY HEART', color: '#ff8d8e', image: 'https://www.xvape.cc/upload/images/2025/05/07/7196154304.png', description: 'Bold cherry flavor with a refreshing finish' },
-    { name: 'BLUE BURST', color: '#8ba1f2', image: 'https://www.xvape.cc/upload/images/2025/05/07/7195154228.png', description: 'Cool menthol sensation with tropical notes' },
-    { name: 'MYSTERY BURST', color: '#76aef0', image: 'https://www.xvape.cc/upload/images/2025/05/07/7194154206.png', description: 'Fresh mint with herbal undertones' },
-    { name: 'GOLDEN SUNBURST', color: '#f8ab75', image: 'https://www.xvape.cc/upload/images/2025/05/07/7193154049.png', description: 'Citrus burst with smooth vanilla finish' },
-    { name: 'GOLD SLICE', color: '#fa842b', image: 'https://www.xvape.cc/upload/images/2025/05/07/7192154011.png', description: 'Mixed berry explosion with grape notes' },
-    { name: 'RED TROPIC BUBBLE', color: '#fe464c', image: 'https://www.xvape.cc/upload/images/2025/05/07/7191153939.png', description: 'Sweet honey with caramel undertones' },
-    { name: 'PURPLE HAZE', color: '#a667d0', image: 'https://www.xvape.cc/upload/images/2025/05/07/7190153922.png', description: 'Tropical fruit blend with floral hints' },
-    { name: 'PURPLE BURST', color: '#a667d0', image: 'https://www.xvape.cc/upload/images/2025/05/07/7189153856.png', description: 'Ultra-cool menthol with icy finish' },
-    { name: 'AMBER', color: '#9b8882', image: 'https://www.xvape.cc/upload/images/2025/05/07/7188153829.png', description: 'Rich tobacco with subtle vanilla' },
-    { name: 'VIOLET ECLIPSE', color: '#c21c5a', image: 'https://www.xvape.cc/upload/images/2025/05/07/7187153806.png', description: 'Zesty lime with refreshing kick' },
-    { name: 'RED TROPIC', color: '#ff1425', image: 'https://www.xvape.cc/upload/images/2025/05/07/7186153735.png', description: 'Zesty lime with refreshing kick' },
-    { name: 'ROSY BREEZE', color: '#ff8ac1', image: 'https://www.xvape.cc/upload/images/2025/05/07/7185153705.png', description: 'Zesty lime with refreshing kick' }
+    { name: 'ICY HEART', color: '#ff8d8e', image: IcyHeartImg, description: 'Bold cherry flavor with a refreshing finish' },
+    { name: 'BLUE BURST', color: '#8ba1f2', image: BlueBurstImg, description: 'Cool menthol sensation with tropical notes' },
+    { name: 'MYSTERY BURST', color: '#76aef0', image: MysteryBurstImg, description: 'Fresh mint with herbal undertones' },
+    { name: 'GOLDEN SUNBURST', color: '#f8ab75', image: GoldenSunburstImg, description: 'Citrus burst with smooth vanilla finish' },
+    { name: 'GOLD SLICE', color: '#fa842b', image: GoldSliceImg, description: 'Mixed berry explosion with grape notes' },
+    { name: 'RED TROPIC BUBBLE', color: '#fe464c', image: RedTropicBubbleImg, description: 'Sweet honey with caramel undertones' },
+    { name: 'PURPLE HAZE', color: '#a667d0', image: PurpleHazeImg, description: 'Tropical fruit blend with floral hints' },
+    { name: 'PURPLE BURST', color: '#a667d0', image: PurpleBurstImg, description: 'Ultra-cool menthol with icy finish' },
+    { name: 'AMBER', color: '#9b8882', image: AmberImg, description: 'Rich tobacco with subtle vanilla' },
+    { name: 'VIOLET ECLIPSE', color: '#c21c5a', image: VioletEclipseImg, description: 'Zesty lime with refreshing kick' },
+    { name: 'RED TROPIC', color: '#ff1425', image: RedTropicImg, description: 'Zesty lime with refreshing kick' },
+    { name: 'ROSY BREEZE', color: '#ff8ac1', image: RosyBreezeImg, description: 'Zesty lime with refreshing kick' }
   ];
 
   const deviceColors = [
