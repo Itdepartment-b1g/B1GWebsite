@@ -279,8 +279,6 @@ const ProductPage = () => {
                 </div>
                 <h3 className="text-4xl font-bold text-white mb-4">{currentPodData.name}</h3>
               </div>
-
-
              
             </div>
           </div>
