@@ -525,7 +525,6 @@ const Amz = () => {
         </div>
       </section>
 
-
       
        <Footer />
      </div>

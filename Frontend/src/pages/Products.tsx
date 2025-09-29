@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import forgeBanner from "../assets/ForgeBanner.jpg";
 import forgePicture from "../assets/ForgePicture.jpg";
 import XslimbarImage from "../assets/Slimbar/Xslimbar.jpg";
+import productBanner21 from "../assets/Alpha/Product banners 21 (1200x600).png";
 
 const Products = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -24,6 +25,9 @@ const Products = () => {
     },
     {
       image: "https://www-x-xvape-x-cc.img.addlink.cn/Templates/default/proImages/X-SLIMBAR-sub-brand.png"
+    },
+    {
+      image: productBanner21
     }
   ];
 
@@ -122,9 +126,9 @@ const Products = () => {
     <div className="min-h-screen" style={{ backgroundColor: '#F4FBFE' }}>
       <Header alwaysShowBg={true} />
       
-      <main className="pt-20">
+      <main>
         {/* Hero Section with Advanced Slideshow */}
-        <section ref={heroRef} className="relative h-screen overflow-hidden">
+        <section ref={heroRef} className="relative overflow-hidden" style={{ height: 'calc(100vh - 120px)', marginTop: '120px' }}>
           <div className="absolute inset-0">
             {heroSlides.map((slide, index) => (
               <div
@@ -133,9 +137,10 @@ const Products = () => {
                   index === currentSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
                 }`}
               >
-                <div
-                  className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                  style={{ backgroundImage: `url(${slide.image})` }}
+                <img
+                  src={slide.image}
+                  alt={`Hero slide ${index + 1}`}
+                  className="w-full h-full object-cover"
                 />
               </div>
             ))}
