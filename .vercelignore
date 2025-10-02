@@ -3,6 +3,11 @@ node_modules
 Backend/node_modules
 Frontend/node_modules
 
+# Lock files (keep only npm)
+bun.lockb
+yarn.lock
+pnpm-lock.yaml
+
 # Development files
 *.log
 .DS_Store
@@ -38,3 +43,9 @@ Frontend/dist
 # Temporary files
 *.tmp
 *.temp
+
+# Cache directories
+.cache
+.parcel-cache
+.next
+.nuxt
