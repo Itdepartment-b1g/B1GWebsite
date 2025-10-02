@@ -14,10 +14,10 @@
 
 ### Recently Fixed Issues
 1. ✅ `ForgeAlpha.tsx` - Fixed import path from `product hero banner 1.png` to `Product Hero Banner 1.png`
-2. ✅ **Node.js Version** - Set to 18.x across all package.json files and vercel.json
+2. ✅ **Node.js Version** - Set to 18.x across all package.json files
    - Added `.nvmrc` file with Node.js 18
    - Added `"engines": { "node": "18.x" }` to all package.json files
-   - Updated `vercel.json` to use `nodejs18.x` runtime
+   - Removed invalid runtime specification from `vercel.json` (Vercel reads from package.json engines field)
 
 ### Best Practices
 
@@ -78,7 +78,15 @@ Make sure these are set in Vercel dashboard:
 **Fix**: 
 - Created `.nvmrc` file with value `18`
 - Added `"engines": { "node": "18.x" }` to all package.json files
-- Updated `vercel.json` runtime to `nodejs18.x`
+- Removed `functions.runtime` from `vercel.json` (Vercel automatically reads from package.json)
+
+### 5. Invalid Function Runtime Specification
+**Error**: `Function Runtimes must have a valid version, for example 'now-php@1.0.0'`
+
+**Fix**:
+- Removed the `functions` section from `vercel.json`
+- Vercel automatically detects serverless functions in `/api` directory
+- Node.js version is controlled by `engines` field in package.json files
 
 ## Testing Before Deployment
 

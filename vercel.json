@@ -3,11 +3,6 @@
   "installCommand": "npm install && cd Backend && npm install && cd ../Frontend && npm install",
   "buildCommand": "npm run vercel-build",
   "outputDirectory": "Frontend/dist",
-  "functions": {
-    "api/*.ts": {
-      "runtime": "nodejs18.x"
-    }
-  },
   "routes": [
     {
       "src": "/api/(.*)",
