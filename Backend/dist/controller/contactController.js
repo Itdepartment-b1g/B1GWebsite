@@ -4,7 +4,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const emailService_1 = __importDefault(require("../services/emailService"));
-const sendgridService_1 = __importDefault(require("../services/sendgridService"));
 const googleSheetsService_1 = __importDefault(require("../services/googleSheetsService"));
 class ContactController {
     async submitContactForm(req, res) {
@@ -58,26 +57,13 @@ class ContactController {
                 res.status(500).json(response);
                 return;
             }
-            // Step 2: Send thank you email to user
-            // Try SendGrid first (works better on Render), fallback to SMTP
-            let thankYouEmailSuccess = false;
-            if (process.env.SENDGRID_API_KEY) {
-                thankYouEmailSuccess = await sendgridService_1.default.sendThankYouEmail(email, fullName);
-            }
-            else {
-                thankYouEmailSuccess = await emailService_1.default.sendThankYouEmail(email, fullName);
-            }
+            // Step 2: Send thank you email to user (using SMTP)
+            const thankYouEmailSuccess = await emailService_1.default.sendThankYouEmail(email, fullName);
             if (!thankYouEmailSuccess) {
                 console.warn('⚠️ Failed to send thank you email to user:', email);
             }
-            // Step 3: Send notification email to recipient
-            let notificationEmailSuccess = false;
-            if (process.env.SENDGRID_API_KEY) {
-                notificationEmailSuccess = await sendgridService_1.default.sendNotificationEmail(contactData);
-            }
-            else {
-                notificationEmailSuccess = await emailService_1.default.sendNotificationEmail(contactData);
-            }
+            // Step 3: Send notification email to recipient (using SMTP)
+            const notificationEmailSuccess = await emailService_1.default.sendNotificationEmail(contactData);
             if (!notificationEmailSuccess) {
                 console.warn('⚠️ Failed to send notification email to recipient');
             }

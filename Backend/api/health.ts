@@ -12,6 +12,7 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
     status: 'OK', 
     message: 'B1G Corporation API is running on Vercel',
     timestamp: new Date().toISOString(),
-    platform: 'Vercel Serverless Functions'
+    platform: 'Vercel Serverless'
   });
 }
+
