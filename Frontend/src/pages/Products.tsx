@@ -9,6 +9,7 @@ import forgeBanner from "../assets/Forge/ForgeBanner.png";
 import forgePicture from "../assets/ForgePicture.jpg";
 import XslimbarImage from "../assets/Slimbar/Xslimbar.jpg";
 import productHeroBanner4 from "../assets/Alpha/Product Hero Banner 4.png";
+import AmzBanner from "../assets/Amz/AmzBanner.png";
 
 const Products = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -21,7 +22,7 @@ const Products = () => {
       image: forgeBanner
     },
     {
-      image: "https://www.b1gcorporation.com/AmzBanner.png"
+      image: AmzBanner
     },
     {
       image: "https://www-x-xvape-x-cc.img.addlink.cn/Templates/default/proImages/X-SLIMBAR-sub-brand.png"

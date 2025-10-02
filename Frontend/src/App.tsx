@@ -1,9 +1,11 @@
+import { useState } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
+import AgeGate from "./components/AgeGate";
 import Index from "./pages/Index";
 import Products from "./pages/Products";
 import XForge from "./pages/XForge";
@@ -19,32 +21,50 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/about" element={<Products />} />
-          <Route path="/XForge" element={<XForge />} />
-          <Route path="/XSlimbar" element={<XSlimbar />} />
-          <Route path="/amz" element={<Amz />} />
-          <Route path="/xultra" element={<XUltra />} />
-          <Route path="/forgealpha" element={<ForgeAlpha />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/portfolio" element={<Portfolio />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/news" element={<News />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+function useAgeVerified(): [boolean, () => void] {
+  const initial = (() => {
+    try {
+      return typeof window !== "undefined" && sessionStorage.getItem("ageVerified") === "true";
+    } catch {
+      return false;
+    }
+  })();
+  const [verified, setVerified] = useState(initial);
+  const confirm = () => setVerified(true);
+  return [verified, confirm];
+}
+
+const App = () => {
+  const [ageOk, confirmAge] = useAgeVerified();
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        {!ageOk && <AgeGate onVerified={confirmAge} />}
+        <BrowserRouter>
+          <ScrollToTop />
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/about" element={<Products />} />
+            <Route path="/XForge" element={<XForge />} />
+            <Route path="/XSlimbar" element={<XSlimbar />} />
+            <Route path="/amz" element={<Amz />} />
+            <Route path="/xultra" element={<XUltra />} />
+            <Route path="/forgealpha" element={<ForgeAlpha />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/news" element={<News />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;

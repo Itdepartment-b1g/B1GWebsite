@@ -205,9 +205,10 @@ const ContactSection = () => {
                   <div>
                     <h4 className="font-bold text-white mb-1 md:mb-2 text-base md:text-lg">Visit Us</h4>
                     <p className="text-sm md:text-base text-white/80 leading-relaxed">
-                      12 Lopez Building, Romulo Street<br />
-                      Poblacion A 2306 Camiling Tarlac<br />
-                      Philippines
+                    Coherco Financial Tower,<br />
+                    Investment Drive & Trade Ave.,<br />
+                    Madrigal Business Park, Ayala-Alabang,<br />
+                    Muntinlupa City
                     </p>
                   </div>
                 </div>

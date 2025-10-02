@@ -57,8 +57,8 @@ const Footer = () => {
                   </svg>
                 </div>
                 <div className="text-[#F4FBFE]/70">
-                  12 Lopez Building, Romulo Street<br />
-                  Poblacion A 2306 Camiling Tarlac
+                Coherco Financial Tower, Investment Drive & Trade Ave.,<br />
+                Madrigal Business Park, Ayala-Alabang, Muntinlupa City
                 </div>
               </div>
               <div className="flex items-start space-x-3">

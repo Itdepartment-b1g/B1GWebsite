@@ -46,7 +46,7 @@ const placeholderFAQs = [
   },
   {
     question: "Where is B1G Corporation located?",
-    answer: "12 Lopez Building, Romulo Street, Poblacion A 2306 Camiling Tarlac."
+    answer: "Coherco Financial Tower, Investment Drive & Trade Ave., Madrigal Business Park, Ayala-Alabang, Muntinlupa City"
   },
   {
     question: "Do you work with international clients?",

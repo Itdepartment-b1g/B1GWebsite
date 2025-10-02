@@ -31,6 +31,7 @@ const Header = ({ alwaysShowBg = false }: HeaderProps) => {
       setHeaderTop(bannerHeight);
       const totalOffset = bannerHeight + currentHeaderHeight;
       document.documentElement.style.setProperty('--app-header-offset', `${totalOffset}px`);
+      document.documentElement.style.setProperty('--banner-height', `${bannerHeight}px`);
     };
 
     updateHeaderMetrics();
@@ -45,6 +46,7 @@ const Header = ({ alwaysShowBg = false }: HeaderProps) => {
     const currentHeaderHeight = headerRef.current?.offsetHeight ?? 0;
     const totalOffset = bannerHeight + currentHeaderHeight;
     document.documentElement.style.setProperty('--app-header-offset', `${totalOffset}px`);
+    document.documentElement.style.setProperty('--banner-height', `${bannerHeight}px`);
   }, [isMobileMenuOpen]);
 
   const showBg = alwaysShowBg || isScrolled;
