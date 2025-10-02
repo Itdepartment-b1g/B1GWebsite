@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import { Calendar, Clock, ArrowRight, ExternalLink, Tag, X, Share2, Bookmark } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
+import Valentines from "@/assets/Valentines.jpg";
 
 const News = () => {
   const [selectedArticle, setSelectedArticle] = useState(null);
@@ -31,7 +32,7 @@ const News = () => {
       category: "Company News",
       date: "2025-02-14",
       readTime: "",
-      image: "https://www.b1gcorporation.com/viber_image_2025-02-20_10-26-52-244.jpg",
+      image: Valentines,
       featured: false,
       author: "Rhem de Guzman, Marketing",
       tags: ["Valentines"]

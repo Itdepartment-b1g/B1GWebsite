@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import Footer from "@/components/Footer";
 import FeaturedProduct from "@/components/FeaturedProduct.home";
+import Valentines from "@/assets/Valentines.jpg";
 import { useNavigate } from "react-router-dom";
 
 const newsArticles = [
@@ -26,7 +27,7 @@ const newsArticles = [
     category: "Company News",
     date: "2025-02-14",
     readTime: "",
-    image: "https://www.b1gcorporation.com/viber_image_2025-02-20_10-26-52-244.jpg",
+    image: Valentines,
     featured: false,
     author: "Rhem de Guzman, Marketing",
     tags: ["Valentines"]
