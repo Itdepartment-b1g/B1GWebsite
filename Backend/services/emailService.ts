@@ -12,21 +12,28 @@ class EmailService {
     console.log('📧 EMAIL_USER:', process.env.EMAIL_USER);
     console.log('📧 EMAIL_PORT:', process.env.EMAIL_PORT);
 
+    // Try port 465 (SSL) which is more reliable on Render
+    const useSSL = process.env.EMAIL_PORT === '465';
+    
     this.transporter = nodemailer.createTransport({
-      service: 'gmail',
-      host: process.env.EMAIL_HOST,
-      port: parseInt(process.env.EMAIL_PORT || '587'),
-      secure: false, // true for 465, false for other ports
+      host: process.env.EMAIL_HOST || 'smtp.gmail.com',
+      port: parseInt(process.env.EMAIL_PORT || '465'),
+      secure: useSSL, // true for 465, false for 587
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
       },
       tls: {
-        rejectUnauthorized: false
+        rejectUnauthorized: false,
+        ciphers: 'SSLv3'
       },
-      connectionTimeout: 20000, // 20 seconds
-      greetingTimeout: 15000,
-      socketTimeout: 30000,
+      connectionTimeout: 30000, // 30 seconds
+      greetingTimeout: 20000,
+      socketTimeout: 60000, // 60 seconds
+      pool: true, // Use connection pooling
+      maxConnections: 5,
+      maxMessages: 10,
+      rateLimit: 5 // 5 emails per second max
     });
 
     console.log('✅ Email service initialized');

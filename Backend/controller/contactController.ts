@@ -72,27 +72,14 @@ class ContactController {
         return;
       }
 
-      // Step 2: Send thank you email to user
-      // Try SendGrid first (works better on Render), fallback to SMTP
-      let thankYouEmailSuccess = false;
-      if (process.env.SENDGRID_API_KEY) {
-        thankYouEmailSuccess = await sendgridService.sendThankYouEmail(email, fullName);
-      } else {
-        thankYouEmailSuccess = await emailService.sendThankYouEmail(email, fullName);
-      }
-      
+      // Step 2: Send thank you email to user (using SMTP)
+      const thankYouEmailSuccess = await emailService.sendThankYouEmail(email, fullName);
       if (!thankYouEmailSuccess) {
         console.warn('⚠️ Failed to send thank you email to user:', email);
       }
 
-      // Step 3: Send notification email to recipient
-      let notificationEmailSuccess = false;
-      if (process.env.SENDGRID_API_KEY) {
-        notificationEmailSuccess = await sendgridService.sendNotificationEmail(contactData);
-      } else {
-        notificationEmailSuccess = await emailService.sendNotificationEmail(contactData);
-      }
-      
+      // Step 3: Send notification email to recipient (using SMTP)
+      const notificationEmailSuccess = await emailService.sendNotificationEmail(contactData);
       if (!notificationEmailSuccess) {
         console.warn('⚠️ Failed to send notification email to recipient');
       }
