@@ -19,7 +19,7 @@ const News = () => {
       category: "Product Launch",
       date: "2025-06-11",
       readTime: "",
-      image: "/src/assets/slimbar event.jpg",
+      image: "/src/assets/slimbarevent.jpg",
       featured: true,
       author: "B1G Marketing Team",
       tags: [ "Product Launch", "X-SLIMBAR"]
