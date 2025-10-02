@@ -20,7 +20,7 @@ export const getApiBaseUrl = (): string => {
 
 // API endpoints
 export const API_ENDPOINTS = {
-  CONTACT_SUBMIT: '/api/contact-submit',
+  CONTACT_SUBMIT: '/api/contact/submit',
   HEALTH: '/api/health',
 } as const;
 
