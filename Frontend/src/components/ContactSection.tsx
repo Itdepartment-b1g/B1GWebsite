@@ -66,7 +66,13 @@ const ContactSection = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('http://localhost:3002/api/contact/submit', {
+      // API endpoint - uses environment variable for Render backend
+      const apiBaseUrl = import.meta.env.VITE_API_URL || 'http://localhost:3002';
+      const apiUrl = `${apiBaseUrl}/api/contact/submit`;
+      
+      console.log('Submitting to:', apiUrl); // Debug log
+      
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

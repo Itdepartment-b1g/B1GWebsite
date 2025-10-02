@@ -22,6 +22,10 @@
 3. ✅ `api/contact.ts` - Fixed TypeScript import error
    - Changed from named import to default import: `import contactController from ...`
    - Fixed method name: `submitContactForm` instead of `submitContact`
+4. ✅ `ContactSection.tsx` - Fixed API endpoint configuration
+   - Changed from hardcoded localhost to environment-aware endpoint
+   - Development: `http://localhost:3002/api/contact/submit`
+   - Production: `/api/contact` (relative path, same domain)
 
 ### Best Practices
 
