@@ -23,7 +23,10 @@ class EmailService {
       },
       tls: {
         rejectUnauthorized: false
-      }
+      },
+      connectionTimeout: 20000, // 20 seconds
+      greetingTimeout: 15000,
+      socketTimeout: 30000,
     });
 
     console.log('✅ Email service initialized');
