@@ -5,6 +5,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Mail, MapPin, Phone, Send } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { getApiUrl, API_ENDPOINTS } from "@/config/api";
 
 const ContactSection = () => {
   const { toast } = useToast();
@@ -66,11 +67,11 @@ const ContactSection = () => {
     setIsSubmitting(true);
 
     try {
-      // API endpoint - uses environment variable for Render backend
-      const apiBaseUrl = import.meta.env.VITE_API_URL || 'http://localhost:3002';
-      const apiUrl = `${apiBaseUrl}/api/contact/submit`;
+      // Get API URL based on environment
+      const apiUrl = getApiUrl(API_ENDPOINTS.CONTACT_SUBMIT);
       
-      console.log('Submitting to:', apiUrl); // Debug log
+      console.log('🚀 Submitting to:', apiUrl); // Debug log
+      console.log('🌐 Hostname:', window.location.hostname); // Environment check
       
       const response = await fetch(apiUrl, {
         method: 'POST',
