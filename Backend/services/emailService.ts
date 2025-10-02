@@ -64,60 +64,112 @@ class EmailService {
   }
 
   async sendThankYouEmail(userEmail: string, userName: string): Promise<boolean> {
+    // More compatible HTML email template (inline styles for better email client support)
     const html = `
-      <!DOCTYPE html>
-      <html>
-      <head>
-        <meta charset="utf-8">
-        <title>Thank You for Your Inquiry</title>
-        <style>
-          body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-          .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-          .header { background: linear-gradient(135deg, #472160, #FF9BFF); color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0; }
-          .content { background: #f9f9f9; padding: 30px; border-radius: 0 0 10px 10px; }
-          .footer { text-align: center; margin-top: 20px; color: #666; font-size: 12px; }
-          .highlight { color: #472160; font-weight: bold; }
-        </style>
-      </head>
-      <body>
-        <div class="container">
-          <div class="header">
-            <h1>Thank You for Your Inquiry!</h1>
-            <p>B1G Corporation</p>
-          </div>
-          <div class="content">
-            <p>Dear <span class="highlight">${userName}</span>,</p>
-            
-            <p>Thank you for reaching out to B1G Corporation! We have received your inquiry and appreciate your interest in becoming a partner with us.</p>
-            
-            <p>Our team is currently reviewing your information and will get back to you within <span class="highlight">24-48 hours</span> with a detailed response.</p>
-            
-            <p>In the meantime, if you have any urgent questions, please don't hesitate to contact us directly at:</p>
-            
-            <ul>
-              <li><strong>Email:</strong> b1gcorporationofficial@gmail.com</li>
-              <li><strong>Phone:</strong> +639690743506</li>
-            </ul>
-            
-            <p>We look forward to the possibility of working together!</p>
-            
-            <p>Best regards,<br>
-            <strong>The B1G Corporation Team</strong></p>
-          </div>
-          <div class="footer">
-            <p>This is an automated message. Please do not reply to this email.</p>
-            <p>B1G Corporation | 12 Lopez Building, Romulo Street, Poblacion A 2306 Camiling Tarlac, Philippines</p>
-          </div>
-        </div>
-      </body>
-      </html>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f4f4f4;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f4f4f4; padding: 20px 0;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+          <!-- Header -->
+          <tr>
+            <td style="background: linear-gradient(135deg, #472160, #FF9BFF); padding: 40px; text-align: center;">
+              <h1 style="color: #ffffff; margin: 0; font-size: 28px;">Thank You for Your Inquiry!</h1>
+              <p style="color: #ffffff; margin: 10px 0 0 0; font-size: 16px;">B1G Corporation</p>
+            </td>
+          </tr>
+          
+          <!-- Content -->
+          <tr>
+            <td style="padding: 40px;">
+              <p style="margin: 0 0 20px 0; font-size: 16px; color: #333333;">Dear <strong style="color: #472160;">${userName}</strong>,</p>
+              
+              <p style="margin: 0 0 20px 0; font-size: 16px; line-height: 1.6; color: #333333;">
+                Thank you for reaching out to B1G Corporation! We have received your inquiry and appreciate your interest in becoming a partner with us.
+              </p>
+              
+              <p style="margin: 0 0 20px 0; font-size: 16px; line-height: 1.6; color: #333333;">
+                Our team is currently reviewing your information and will get back to you within <strong style="color: #472160;">24-48 hours</strong> with a detailed response.
+              </p>
+              
+              <p style="margin: 0 0 10px 0; font-size: 16px; color: #333333;">
+                In the meantime, if you have any urgent questions, please don't hesitate to contact us directly at:
+              </p>
+              
+              <table width="100%" cellpadding="0" cellspacing="0" style="margin: 20px 0;">
+                <tr>
+                  <td style="padding: 15px; background-color: #f9f9f9; border-left: 4px solid #472160; border-radius: 5px;">
+                    <p style="margin: 0 0 10px 0; font-size: 14px; color: #333333;">
+                      <strong style="color: #472160;">Email:</strong> b1gcorporationofficial@gmail.com
+                    </p>
+                    <p style="margin: 0; font-size: 14px; color: #333333;">
+                      <strong style="color: #472160;">Phone:</strong> +639690743506
+                    </p>
+                  </td>
+                </tr>
+              </table>
+              
+              <p style="margin: 0 0 20px 0; font-size: 16px; line-height: 1.6; color: #333333;">
+                We look forward to the possibility of working together!
+              </p>
+              
+              <p style="margin: 0; font-size: 16px; color: #333333;">
+                Best regards,<br>
+                <strong>The B1G Corporation Team</strong>
+              </p>
+            </td>
+          </tr>
+          
+          <!-- Footer -->
+          <tr>
+            <td style="padding: 20px; background-color: #f9f9f9; text-align: center; border-top: 1px solid #eeeeee;">
+              <p style="margin: 0 0 10px 0; font-size: 12px; color: #666666;">
+                This is an automated message. Please do not reply to this email.
+              </p>
+              <p style="margin: 0; font-size: 12px; color: #666666;">
+                B1G Corporation | 12 Lopez Building, Romulo Street, Poblacion A 2306 Camiling Tarlac, Philippines
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
     `;
+
+    const text = `Dear ${userName},
+
+Thank you for reaching out to B1G Corporation! We have received your inquiry and appreciate your interest in becoming a partner with us.
+
+Our team is currently reviewing your information and will get back to you within 24-48 hours with a detailed response.
+
+In the meantime, if you have any urgent questions, please don't hesitate to contact us directly at:
+
+Email: b1gcorporationofficial@gmail.com
+Phone: +639690743506
+
+We look forward to the possibility of working together!
+
+Best regards,
+The B1G Corporation Team
+
+---
+This is an automated message. Please do not reply to this email.
+B1G Corporation | 12 Lopez Building, Romulo Street, Poblacion A 2306 Camiling Tarlac, Philippines`;
 
     const emailData: EmailData = {
       to: userEmail,
       subject: 'Thank You for Your Inquiry - B1G Corporation',
       html: html,
-      text: `Dear ${userName},\n\nThank you for reaching out to B1G Corporation! We have received your inquiry and appreciate your interest in becoming a partner with us.\n\nOur team is currently reviewing your information and will get back to you within 24-48 hours with a detailed response.\n\nBest regards,\nThe B1G Corporation Team`
+      text: text
     };
 
     return this.sendEmail(emailData);
