@@ -7,12 +7,14 @@
     "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
     "dev:backend": "cd Backend && npm run dev",
     "dev:frontend": "cd Frontend && npm run dev",
-    "build": "npm run build:backend && npm run build:frontend",
+    "build": "npm run fix-permissions && npm run build:backend && npm run build:frontend",
     "build:backend": "cd Backend && npm run build",
     "build:frontend": "cd Frontend && npm run build",
     "install:all": "npm install && cd Backend && npm install && cd ../Frontend && npm install",
     "start": "cd Backend && npm start",
-    "clean": "cd Backend && rm -rf dist && cd ../Frontend && rm -rf dist"
+    "clean": "cd Backend && rm -rf dist && cd ../Frontend && rm -rf dist",
+    "fix-permissions": "chmod +x Backend/node_modules/.bin/* || true",
+    "vercel-build": "npm run fix-permissions && npm run build"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
