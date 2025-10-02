@@ -5,10 +5,10 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
 // Import images
-import forgeBanner from "../assets/ForgeBanner.jpg";
+import forgeBanner from "../assets/Forge/ForgeBanner.png";
 import forgePicture from "../assets/ForgePicture.jpg";
 import XslimbarImage from "../assets/Slimbar/Xslimbar.jpg";
-import productBanner21 from "../assets/Alpha/Product banners 21 (1200x600).png";
+import productHeroBanner4 from "../assets/Alpha/Product Hero Banner 4.png";
 
 const Products = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -27,11 +27,14 @@ const Products = () => {
       image: "https://www-x-xvape-x-cc.img.addlink.cn/Templates/default/proImages/X-SLIMBAR-sub-brand.png"
     },
     {
-      image: productBanner21
+      image: productHeroBanner4
+    },
+    {
+      image: "https://www.xvape.cc/Templates/default/proImages/X-ULTRA-sub-brand.png"
     }
   ];
 
-  const products = [
+  const products = [ 
     {
       id: 1,
       name: "FORGE",
@@ -126,9 +129,13 @@ const Products = () => {
     <div className="min-h-screen" style={{ backgroundColor: '#F4FBFE' }}>
       <Header alwaysShowBg={true} />
       
-      <main>
+      <main style={{ paddingTop: 'var(--app-header-offset, 120px)' }}>
         {/* Hero Section with Advanced Slideshow */}
-        <section ref={heroRef} className="relative overflow-hidden" style={{ height: 'calc(100vh - 120px)', marginTop: '120px' }}>
+        <section
+          ref={heroRef}
+          className="relative overflow-hidden"
+          style={{ width: '100%', aspectRatio: '16 / 9' }}
+        >
           <div className="absolute inset-0">
             {heroSlides.map((slide, index) => (
               <div

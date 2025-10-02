@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useLayoutEffect, useState, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "@/assets/logo.png";
 
@@ -12,6 +12,7 @@ const Header = ({ alwaysShowBg = false }: HeaderProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [headerTop, setHeaderTop] = useState(80);
   const warningBannerRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLElement>(null);
   const location = useLocation();
 
   useEffect(() => {
@@ -23,19 +24,28 @@ const Header = ({ alwaysShowBg = false }: HeaderProps) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [alwaysShowBg]);
 
-  useEffect(() => {
-    const updateHeaderPosition = () => {
-      if (warningBannerRef.current) {
-        const bannerHeight = warningBannerRef.current.offsetHeight;
-        // Position header exactly at the bottom of the warning banner
-        setHeaderTop(bannerHeight);
-      }
+  useLayoutEffect(() => {
+    const updateHeaderMetrics = () => {
+      const bannerHeight = warningBannerRef.current?.offsetHeight ?? 0;
+      const currentHeaderHeight = headerRef.current?.offsetHeight ?? 0;
+      setHeaderTop(bannerHeight);
+      const totalOffset = bannerHeight + currentHeaderHeight;
+      document.documentElement.style.setProperty('--app-header-offset', `${totalOffset}px`);
     };
 
-    updateHeaderPosition();
-    window.addEventListener('resize', updateHeaderPosition);
-    return () => window.removeEventListener('resize', updateHeaderPosition);
+    updateHeaderMetrics();
+    window.addEventListener('resize', updateHeaderMetrics);
+    window.addEventListener('load', updateHeaderMetrics);
+    return () => window.removeEventListener('resize', updateHeaderMetrics);
   }, []);
+
+  // Recalculate when the mobile menu opens/closes since header height changes
+  useEffect(() => {
+    const bannerHeight = warningBannerRef.current?.offsetHeight ?? 0;
+    const currentHeaderHeight = headerRef.current?.offsetHeight ?? 0;
+    const totalOffset = bannerHeight + currentHeaderHeight;
+    document.documentElement.style.setProperty('--app-header-offset', `${totalOffset}px`);
+  }, [isMobileMenuOpen]);
 
   const showBg = alwaysShowBg || isScrolled;
 
@@ -74,7 +84,7 @@ const Header = ({ alwaysShowBg = false }: HeaderProps) => {
       </div>
 
       {/* Main Header - Positioned directly below warning banner */}
-      <header className={`fixed left-0 right-0 z-40 transition-all duration-500 ${
+      <header ref={headerRef} className={`fixed left-0 right-0 z-40 transition-all duration-500 ${
         showBg 
           ? 'bg-[#472160]/95 backdrop-blur-lg border-b border-[#7A7f83]/20 shadow-xl' 
           : 'bg-transparent'
