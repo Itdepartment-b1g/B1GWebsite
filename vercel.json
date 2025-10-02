@@ -1,11 +1,12 @@
 {
   "buildCommand": "cd Frontend && npm install && npm run build",
   "outputDirectory": "Frontend/dist",
-  "installCommand": "npm install && cd Frontend && npm install && cd ../Backend && npm install",
+  "installCommand": "npm install && cd api && npm install && cd ../Backend && npm install && cd ../Frontend && npm install",
   "functions": {
     "api/**/*.ts": {
       "memory": 1024,
-      "maxDuration": 10
+      "maxDuration": 10,
+      "includeFiles": "Backend/**"
     }
   }
 }
