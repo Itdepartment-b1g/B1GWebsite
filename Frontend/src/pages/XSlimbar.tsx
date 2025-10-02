@@ -16,6 +16,12 @@ import AmberImg from '@/assets/Slimbar/Amber.png';
 import VioletEclipseImg from '@/assets/Slimbar/VioletEclipse.png';
 import RedTropicImg from '@/assets/Slimbar/RedTropic.png';
 import RosyBreezeImg from '@/assets/Slimbar/RosyBreeze.png';
+import NaturalTitaniumImg from '@/assets/Slimbar/NaturalTitanium.png';
+import WhiteTitaniumImg from '@/assets/Slimbar/WhiteTitanium.png';
+import SakuraPinkImg from '@/assets/Slimbar/SakuraPink.png';
+import DessertTitaniumImg from '@/assets/Slimbar/DessertTitanium.png';
+import UltraMarineImg from '@/assets/Slimbar/UltraMarine.png';
+import SpaceGrayImg from '@/assets/Slimbar/SpaceGray.png';
 
 const Amz = () => {
   const [currentPod, setCurrentPod] = useState(0);
@@ -41,12 +47,12 @@ const Amz = () => {
   ];
 
   const deviceColors = [
-    { name: 'Natural Titanium', color: '#cbc0be', image: '/src/assets/Slimbar/NaturalTitanium.png', description: 'Premium natural titanium finish with warm, earthy tones and aerospace-grade durability for sophisticated everyday elegance' },
-    { name: 'White Titanium', color: '#d5d5d3', image: '/src/assets/Slimbar/WhiteTitanium.png', description: 'Pure white titanium with lustrous pearl finish and advanced anti-fingerprint coating for pristine appearance' },
-    { name: 'Sakura Pink', color: '#f8bbc8', image: '/src/assets/Slimbar/SakuraPink.png', description: 'Inspired by cherry blossoms, this delicate pink finish features soft pearl coating with feminine elegance and refinement' },
-    { name: 'Desert Titanium', color: '#ca8b56', image: '/src/assets/Slimbar/DessertTitanium.png', description: 'Warm desert-inspired titanium with rich bronze undertones and premium brushed texture for distinctive character' },
-    { name: 'Ultramarine', color: '#4c50b3', image: '/src/assets/Slimbar/UltraMarine.png', description: 'Deep ultramarine blue with vibrant intensity and precision-engineered satin finish for bold sophistication' },
-    { name: 'Space Grey', color: '#483f38', image: '/src/assets/Slimbar/SpaceGray.png', description: 'Modern space grey with sophisticated dark tones and ultra-smooth anodized finish for professional appeal' }
+    { name: 'Natural Titanium', color: '#cbc0be', image: NaturalTitaniumImg, description: 'Premium natural titanium finish with warm, earthy tones and aerospace-grade durability for sophisticated everyday elegance' },
+    { name: 'White Titanium', color: '#d5d5d3', image: WhiteTitaniumImg, description: 'Pure white titanium with lustrous pearl finish and advanced anti-fingerprint coating for pristine appearance' },
+    { name: 'Sakura Pink', color: '#f8bbc8', image: SakuraPinkImg, description: 'Inspired by cherry blossoms, this delicate pink finish features soft pearl coating with feminine elegance and refinement' },
+    { name: 'Desert Titanium', color: '#ca8b56', image: DessertTitaniumImg, description: 'Warm desert-inspired titanium with rich bronze undertones and premium brushed texture for distinctive character' },
+    { name: 'Ultramarine', color: '#4c50b3', image: UltraMarineImg, description: 'Deep ultramarine blue with vibrant intensity and precision-engineered satin finish for bold sophistication' },
+    { name: 'Space Grey', color: '#483f38', image: SpaceGrayImg, description: 'Modern space grey with sophisticated dark tones and ultra-smooth anodized finish for professional appeal' }
   ];
 
   const nextPod = (isUserInteraction = false) => {

@@ -2,6 +2,10 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { ArrowRight } from 'lucide-react';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import MetallicSilver from "../assets/Ultra/MetallicSilver.png";
+import MetallicGray from "../assets/Ultra/MetallicGray.png";
+import MetallicRoseGold from "../assets/Ultra/MetallicRoseGold.png";
+import MetallicBlue from "../assets/Ultra/MetallicBlue.png";
 
 const XUltra = () => {
   const [currentFlavor, setCurrentFlavor] = useState(0);
@@ -23,10 +27,10 @@ const XUltra = () => {
 
   // 4 Device Colors (added `image` placeholder for each)
   const deviceColors = [
-    { name: "Metallic Silver", color: "#e6e6e4", image: "/src/assets/Ultra/MetallicSilver.png" },
-    { name: "Metallic Gray", color: "#5c5a58", image: "/src/assets/Ultra/MetallicGray.png" },
-    { name: "Metallic Rose Gold", color: "#dfadae", image: "/src/assets/Ultra/MetallicRoseGold.png" },
-    { name: "Metallic Blue", color: "#6771d2", image: "/src/assets/Ultra/MetallicBlue.png" }
+    { name: "Metallic Silver", color: "#e6e6e4", image: MetallicSilver },
+    { name: "Metallic Gray", color: "#5c5a58", image: MetallicGray },
+    { name: "Metallic Rose Gold", color: "#dfadae", image: MetallicRoseGold },
+    { name: "Metallic Blue", color: "#6771d2", image: MetallicBlue }
   ];
 
   // Auto-advance flavors and device colors (pauses on user interaction)

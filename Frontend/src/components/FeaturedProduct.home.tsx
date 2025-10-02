@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import ForgePicture from "../assets/ForgePicture.jpg";
 import XslimbarImage from "../assets/Slimbar/Xslimbar.jpg";
 import AmzPhoto from "../assets/Amz/amz photo.jpg";
+import UltraPhoto from "../assets/Ultra/UltraPhoto.webp";
 
 const placeholderProducts = [
   {
@@ -32,7 +33,7 @@ const placeholderProducts = [
     id: 3,
     name: "X-Ultra",
     description: "Explore your passion, Explore your taste",
-    image: "/src/assets/Ultra/UltraPhoto.webp",
+    image: UltraPhoto,
     route: "/xultra",
   },
   {
