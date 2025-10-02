@@ -3,6 +3,7 @@ import HeroSection from "@/components/HeroSection";
 import Footer from "@/components/Footer";
 import FeaturedProduct from "@/components/FeaturedProduct.home";
 import Valentines from "@/assets/Valentines.jpg";
+import SlimbarEvent from "@/assets/slimbarevent.jpg";
 import { useNavigate } from "react-router-dom";
 
 const newsArticles = [
@@ -14,7 +15,7 @@ const newsArticles = [
     category: "Product Launch",
     date: "2025-06-11",
     readTime: "",
-    image: "/src/assets/slimbarevent.jpg",
+    image: SlimbarEvent,
     featured: true,
     author: "B1G Marketing Team",
     tags: [ "Product Launch", "X-SLIMBAR"]

@@ -10,6 +10,8 @@ import forgePicture from "../assets/ForgePicture.jpg";
 import XslimbarImage from "../assets/Slimbar/Xslimbar.jpg";
 import productHeroBanner4 from "../assets/Alpha/Product Hero Banner 4.png";
 import AmzBanner from "../assets/Amz/AmzBanner.png";
+import UltraPhoto from "../assets/Ultra/UltraPhoto.webp";
+import AmzPhoto from "../assets/Amz/amz photo.jpg";
 
 const Products = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -83,7 +85,7 @@ const Products = () => {
       features: ["Smart Display", "USB-C Charging", "Detachable Cartridge", "Luxury Airflow"],
       category: "X-Vape",
       price: "Ultra Line",
-      image: "/src/assets/Ultra/UltraPhoto.webp",
+      image: UltraPhoto,
       route: "/xultra",
       gradient: "from-[#472160] to-[#FF9BFF]",
       available: true
@@ -96,7 +98,7 @@ const Products = () => {
       features: ["Battery & Pod System", "Flexible Combos", "Customizable", "Great Value"],
       category: "AMZ",
       price: "Value Line",
-      image: "/src/assets/Amz/amz photo.jpg",
+      image: AmzPhoto,
       route: "/amz",
       gradient: "from-[#472160] to-[#7A7f83]",
       available: true

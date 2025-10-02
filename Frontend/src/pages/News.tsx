@@ -4,6 +4,7 @@ import { Calendar, Clock, ArrowRight, ExternalLink, Tag, X, Share2, Bookmark } f
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Valentines from "@/assets/Valentines.jpg";
+import SlimbarEvent from "@/assets/slimbarevent.jpg";
 
 const News = () => {
   const [selectedArticle, setSelectedArticle] = useState(null);
@@ -19,7 +20,7 @@ const News = () => {
       category: "Product Launch",
       date: "2025-06-11",
       readTime: "",
-      image: "/src/assets/slimbarevent.jpg",
+      image: SlimbarEvent,
       featured: true,
       author: "B1G Marketing Team",
       tags: [ "Product Launch", "X-SLIMBAR"]
