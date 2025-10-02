@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { ContactFormData, ApiResponse } from '../types/contact';
 import emailService from '../services/emailService';
+import sendgridService from '../services/sendgridService';
 import googleSheetsService from '../services/googleSheetsService';
 
 class ContactController {
@@ -72,15 +73,28 @@ class ContactController {
       }
 
       // Step 2: Send thank you email to user
-      const thankYouEmailSuccess = await emailService.sendThankYouEmail(email, fullName);
+      // Try SendGrid first (works better on Render), fallback to SMTP
+      let thankYouEmailSuccess = false;
+      if (process.env.SENDGRID_API_KEY) {
+        thankYouEmailSuccess = await sendgridService.sendThankYouEmail(email, fullName);
+      } else {
+        thankYouEmailSuccess = await emailService.sendThankYouEmail(email, fullName);
+      }
+      
       if (!thankYouEmailSuccess) {
-        console.warn('Failed to send thank you email to user:', email);
+        console.warn('⚠️ Failed to send thank you email to user:', email);
       }
 
       // Step 3: Send notification email to recipient
-      const notificationEmailSuccess = await emailService.sendNotificationEmail(contactData);
+      let notificationEmailSuccess = false;
+      if (process.env.SENDGRID_API_KEY) {
+        notificationEmailSuccess = await sendgridService.sendNotificationEmail(contactData);
+      } else {
+        notificationEmailSuccess = await emailService.sendNotificationEmail(contactData);
+      }
+      
       if (!notificationEmailSuccess) {
-        console.warn('Failed to send notification email to recipient');
+        console.warn('⚠️ Failed to send notification email to recipient');
       }
 
       // Return success response
