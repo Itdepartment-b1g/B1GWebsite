@@ -14,6 +14,10 @@
 
 ### Recently Fixed Issues
 1. ✅ `ForgeAlpha.tsx` - Fixed import path from `product hero banner 1.png` to `Product Hero Banner 1.png`
+2. ✅ **Node.js Version** - Set to 18.x across all package.json files and vercel.json
+   - Added `.nvmrc` file with Node.js 18
+   - Added `"engines": { "node": "18.x" }` to all package.json files
+   - Updated `vercel.json` to use `nodejs18.x` runtime
 
 ### Best Practices
 
@@ -67,6 +71,14 @@ Make sure these are set in Vercel dashboard:
 **Error**: `bun: command not found`
 
 **Fix**: Removed `bun.lockb`, using only `npm` and `package-lock.json`
+
+### 4. Node.js Version Mismatch
+**Error**: `Found invalid Node.js Version: "22.x". Please set Node.js Version to 18.x`
+
+**Fix**: 
+- Created `.nvmrc` file with value `18`
+- Added `"engines": { "node": "18.x" }` to all package.json files
+- Updated `vercel.json` runtime to `nodejs18.x`
 
 ## Testing Before Deployment
 

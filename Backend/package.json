@@ -35,5 +35,8 @@
     "sheets"
   ],
   "author": "B1G Corporation",
-  "license": "MIT"
+  "license": "MIT",
+  "engines": {
+    "node": "18.x"
+  }
 }
