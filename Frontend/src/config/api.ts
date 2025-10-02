@@ -9,9 +9,9 @@ export const getApiBaseUrl = (): string => {
   const isProduction = window.location.hostname !== 'localhost' && 
                        window.location.hostname !== '127.0.0.1';
   
-  // In production, use Render backend
+  // In production, use same domain (Vercel serverless functions)
   if (isProduction) {
-    return 'https://b1gwebsite.onrender.com';
+    return ''; // Same origin - no need to specify domain
   }
   
   // In development, use local backend
@@ -20,8 +20,8 @@ export const getApiBaseUrl = (): string => {
 
 // API endpoints
 export const API_ENDPOINTS = {
-  CONTACT_SUBMIT: '/api/contact/submit',
-  HEALTH: '/health',
+  CONTACT_SUBMIT: '/api/contact-submit',
+  HEALTH: '/api/health',
 } as const;
 
 // Get full API URL

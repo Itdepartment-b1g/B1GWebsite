@@ -1,10 +1,11 @@
-# Ignore Backend completely (deployed on Render)
-Backend/
-api/
-
 # Dependencies
 node_modules
+Backend/node_modules
 Frontend/node_modules
+
+# Build outputs
+Backend/dist/
+Frontend/dist/
 
 # Lock files (keep only npm)
 bun.lockb
