@@ -1,6 +1,6 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
 import cors from 'cors';
-import { contactController } from '../Backend/controller/contactController';
+import contactController from '../Backend/controller/contactController';
 
 // Initialize CORS
 const corsHandler = cors({
@@ -47,8 +47,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       });
     }
 
-    // Call the contact controller
-    await contactController.submitContact(req, res);
+    // Call the contact controller - match Express req/res with Vercel types
+    await contactController.submitContactForm(req as any, res as any);
   } catch (error) {
     console.error('API Error:', error);
     res.status(500).json({

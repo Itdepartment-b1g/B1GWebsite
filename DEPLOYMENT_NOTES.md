@@ -19,6 +19,9 @@
    - Added `"engines": { "node": "22.x" }` to all package.json files
    - Removed invalid runtime specification from `vercel.json` (Vercel reads from package.json engines field)
    - Note: Node.js 18.x was discontinued by Vercel
+3. ✅ `api/contact.ts` - Fixed TypeScript import error
+   - Changed from named import to default import: `import contactController from ...`
+   - Fixed method name: `submitContactForm` instead of `submitContact`
 
 ### Best Practices
 
