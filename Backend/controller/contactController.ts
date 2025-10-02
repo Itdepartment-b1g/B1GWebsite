@@ -58,18 +58,18 @@ class ContactController {
         submittedAt: new Date()
       };
 
-      // Step 1: Save to Google Sheets
+      // Step 1: Save to Google Sheets (non-blocking - failure won't stop form submission)
       console.log('🔍 Attempting to save to Google Sheets:', contactData.fullName);
-      const sheetsSuccess = await googleSheetsService.saveContactData(contactData);
-      console.log('📊 Google Sheets save result:', sheetsSuccess);
-      if (!sheetsSuccess) {
-        const response: ApiResponse = {
-          success: false,
-          message: 'Failed to save data to database',
-          error: 'Database error'
-        };
-        res.status(500).json(response);
-        return;
+      try {
+        const sheetsSuccess = await googleSheetsService.saveContactData(contactData);
+        if (sheetsSuccess) {
+          console.log('✅ Data saved to Google Sheets successfully');
+        } else {
+          console.warn('⚠️ Failed to save to Google Sheets, but continuing...');
+        }
+      } catch (error) {
+        console.error('❌ Google Sheets error (non-fatal):', error);
+        // Continue processing - don't fail the entire submission
       }
 
       // Step 2: Send thank you email to user (using SMTP)
