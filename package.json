@@ -30,6 +30,8 @@
   "author": "B1G Corporation",
   "license": "MIT",
   "dependencies": {
-    "all": "^0.0.0"
+    "all": "^0.0.0",
+    "@vercel/node": "^3.0.7",
+    "cors": "^2.8.5"
   }
 }
