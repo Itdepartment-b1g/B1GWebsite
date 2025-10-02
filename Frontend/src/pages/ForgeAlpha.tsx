@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { ChevronLeft, ChevronRight, Battery, Zap, Droplets, Cpu, Star, Award, Shield, Sparkles } from 'lucide-react';
-import productHeroBanner from "../assets/Alpha/product hero banner 1.png";
+import productHeroBanner from "../assets/Alpha/Product Hero Banner 1.png";
 import productBanner from "../assets/Alpha/Product banners 21 (1200x600).png";
 import alphaWebsiteBanner from "../assets/Alpha/Alpha Website Banners.mp4";
 

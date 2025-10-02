@@ -15,7 +15,10 @@ app.use(cors({
     process.env.CORS_ORIGIN || "http://localhost:3000",
     "http://localhost:8080",
     "http://localhost:8081",
-    "http://localhost:5173"
+    "http://localhost:5173",
+    /\.vercel\.app$/, // Allow all Vercel preview deployments
+    "https://b1gcorporation.com",
+    "https://www.b1gcorporation.com"
   ],
   credentials: true
 }));

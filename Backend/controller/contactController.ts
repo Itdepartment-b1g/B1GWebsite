@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { ContactFormData, ApiResponse } from '../types/contact';
 import emailService from '../services/emailService';
+import sendgridService from '../services/sendgridService';
 import googleSheetsService from '../services/googleSheetsService';
 
 class ContactController {
@@ -71,16 +72,16 @@ class ContactController {
         return;
       }
 
-      // Step 2: Send thank you email to user
+      // Step 2: Send thank you email to user (using SMTP)
       const thankYouEmailSuccess = await emailService.sendThankYouEmail(email, fullName);
       if (!thankYouEmailSuccess) {
-        console.warn('Failed to send thank you email to user:', email);
+        console.warn('⚠️ Failed to send thank you email to user:', email);
       }
 
-      // Step 3: Send notification email to recipient
+      // Step 3: Send notification email to recipient (using SMTP)
       const notificationEmailSuccess = await emailService.sendNotificationEmail(contactData);
       if (!notificationEmailSuccess) {
-        console.warn('Failed to send notification email to recipient');
+        console.warn('⚠️ Failed to send notification email to recipient');
       }
 
       // Return success response
