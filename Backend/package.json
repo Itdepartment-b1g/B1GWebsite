@@ -37,6 +37,6 @@
   "author": "B1G Corporation",
   "license": "MIT",
   "engines": {
-    "node": "18.x"
+    "node": "22.x"
   }
 }

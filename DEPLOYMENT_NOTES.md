@@ -14,10 +14,11 @@
 
 ### Recently Fixed Issues
 1. ✅ `ForgeAlpha.tsx` - Fixed import path from `product hero banner 1.png` to `Product Hero Banner 1.png`
-2. ✅ **Node.js Version** - Set to 18.x across all package.json files
-   - Added `.nvmrc` file with Node.js 18
-   - Added `"engines": { "node": "18.x" }` to all package.json files
+2. ✅ **Node.js Version** - Set to 22.x across all package.json files (Vercel requirement as of Oct 2025)
+   - Added `.nvmrc` file with Node.js 22
+   - Added `"engines": { "node": "22.x" }` to all package.json files
    - Removed invalid runtime specification from `vercel.json` (Vercel reads from package.json engines field)
+   - Note: Node.js 18.x was discontinued by Vercel
 
 ### Best Practices
 
@@ -72,13 +73,13 @@ Make sure these are set in Vercel dashboard:
 
 **Fix**: Removed `bun.lockb`, using only `npm` and `package-lock.json`
 
-### 4. Node.js Version Mismatch
-**Error**: `Found invalid Node.js Version: "22.x". Please set Node.js Version to 18.x`
+### 4. Node.js Version - Discontinued 18.x
+**Error**: `Node.js Version "18.x" is discontinued and must be upgraded. Please set "engines": { "node": "22.x" }`
 
 **Fix**: 
-- Created `.nvmrc` file with value `18`
-- Added `"engines": { "node": "18.x" }` to all package.json files
-- Removed `functions.runtime` from `vercel.json` (Vercel automatically reads from package.json)
+- Updated `.nvmrc` file to `22`
+- Changed `"engines": { "node": "22.x" }` in ALL package.json files
+- Vercel now requires Node.js 22.x (18.x support discontinued as of October 2025)
 
 ### 5. Invalid Function Runtime Specification
 **Error**: `Function Runtimes must have a valid version, for example 'now-php@1.0.0'`
