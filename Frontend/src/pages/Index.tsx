@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import FeaturedProduct from "@/components/FeaturedProduct.home";
 import Valentines from "@/assets/Valentines.jpg";
 import SlimbarEvent from "@/assets/slimbarevent.jpg";
+import TownhallPic from "@/assets/townhallpic.jpg";
 import { useNavigate } from "react-router-dom";
 
 const newsArticles = [
@@ -32,7 +33,20 @@ const newsArticles = [
     featured: false,
     author: "Rhem de Guzman, Marketing",
     tags: ["Valentines"]
-  }
+  },
+  {
+    id: 3,
+    title: "First B1G Corporation Townhall Meeting",
+    excerpt: "A heartfelt message of gratitude to the team whose dedication and hard work turned dreams into reality, with optimism for achieving even greater goals together ahead.",
+    content: "Behind every milestone is a team that gives it their all, every idea shared, every effort given, is a step forward to what we once thought was just a dream. We are eternally grateful for everyone's hard work, loyalty, and commitment. Here's to building even bigger dreams…together 🫶🏻",
+    category: "Company News",
+    date: "2025-09-30",
+    readTime: "",
+    image: TownhallPic,
+    featured: false,
+    author: "B1G Marketing Team",
+    tags: ["Townhall Meeting"]
+  },
 ];
 
 
