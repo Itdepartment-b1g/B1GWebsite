@@ -5,6 +5,8 @@ import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Valentines from "@/assets/Valentines.jpg";
 import SlimbarEvent from "@/assets/slimbarevent.jpg";
+import TownhallVideo from "@/assets/mp4/Townhall Meeting Highlight FINAL.mp4";
+import TownhallPic from "@/assets/townhallpic.jpg";
 
 const News = () => {
   const [selectedArticle, setSelectedArticle] = useState(null);
@@ -22,7 +24,7 @@ const News = () => {
       date: "2025-06-11",
       readTime: "",
       image: SlimbarEvent,
-      featured: true,
+      featured: false,
       author: "B1G Marketing Team",
       tags: ["Product Launch", "X-SLIMBAR"]
     },
@@ -38,10 +40,24 @@ const News = () => {
       featured: false,
       author: "Rhem de Guzman, Marketing",
       tags: ["Valentines"]
-    }
+    },
+    {
+      id: 3,
+      title: "First B1G Corporation Townhall Meeting",
+      excerpt: "A heartfelt message of gratitude to the team whose dedication and hard work turned dreams into reality, with optimism for achieving even greater goals together ahead.",
+      content: "Behind every milestone is a team that gives it their all, every idea shared, every effort given, is a step forward to what we once thought was just a dream. We are eternally grateful for everyone's hard work, loyalty, and commitment. Here's to building even bigger dreams…together 🫶🏻",
+      category: "Company News",
+      date: "2025-09-30",
+      readTime: "",
+      image: TownhallPic,
+      video: TownhallVideo,
+      featured: true,
+      author: "B1G Marketing Team",
+      tags: ["Townhall Meeting"]
+    },
   ];
 
-  const categories = ["All", "Product Launch", "Company News", "Awards", "Sustainability", "Partnerships", "Customer Experience"];
+  const categories = ["All", "Product Launch", "Company News", "Awards", "Sustainability", "Partnerships"];
 
   // Check for article parameter in URL and open modal automatically
   useEffect(() => {
@@ -336,11 +352,23 @@ const News = () => {
                 </div>
 
                 <div className="relative mb-8">
-                  <img
-                    src={selectedArticle.image}
-                    alt={selectedArticle.title}
-                    className="w-full h-64 md:h-80 object-cover rounded-lg"
-                  />
+                  {selectedArticle.video ? (
+                    <video
+                      src={selectedArticle.video}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      controls
+                      className="w-full h-64 md:h-80 object-cover rounded-lg"
+                    />
+                  ) : (
+                    <img
+                      src={selectedArticle.image}
+                      alt={selectedArticle.title}
+                      className="w-full h-64 md:h-80 object-cover rounded-lg"
+                    />
+                  )}
                 </div>
 
                 <div className="prose prose-lg max-w-none">
