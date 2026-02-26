@@ -13,8 +13,9 @@ const News = () => {
   const location = useLocation();
 
   const newsArticles = [
-    {  id: 1,
-      title: "Witness the launch of X-SLiMBAR and the exclusive reveal of our next evolution: X Forge Alpha. ",
+    {
+      id: 1,
+      title: "Witness the launch of X-SLiMBAR, our latest premium technology line.",
       excerpt: "B1G Corporation introduces its most sophisticated product yet, setting new standards in innovation and craftsmanship.",
       content: "Today marks a significant milestone for B1G Corporation as we unveil the X-SLIMBAR premium technology line. This revolutionary product represents the culmination of years of research, development, and unwavering commitment to excellence. The X-SLIMBAR combines cutting-edge technology with timeless design principles, offering users an unparalleled experience that transcends conventional boundaries.\n\nOur engineering team has worked tirelessly to create a product that not only meets the highest standards of performance but also exceeds expectations in terms of design and user experience. The X-SLIMBAR features state-of-the-art components, advanced connectivity options, and intuitive controls that make it accessible to users of all technical levels.\n\nThe launch event, held at our headquarters, was attended by industry leaders, technology enthusiasts, and media representatives from around the world. The response has been overwhelmingly positive, with many praising the innovative approach to product design and the attention to detail that has become synonymous with the B1G brand.\n\n'This is more than just a product launch,' said our CEO during the presentation. 'This represents our vision for the future of technology - where innovation meets elegance, and where every detail matters.'\n\nThe X-SLIMBAR is now available for pre-order through our official website and authorized retailers worldwide. Early adopters will receive exclusive benefits, including extended warranty coverage and priority customer support.",
       category: "Product Launch",
@@ -23,7 +24,7 @@ const News = () => {
       image: SlimbarEvent,
       featured: true,
       author: "B1G Marketing Team",
-      tags: [ "Product Launch", "X-SLIMBAR"]
+      tags: ["Product Launch", "X-SLIMBAR"]
     },
     {
       id: 2,
@@ -46,7 +47,7 @@ const News = () => {
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     const articleId = urlParams.get('article');
-    
+
     if (articleId) {
       const article = newsArticles.find(article => article.id === parseInt(articleId));
       if (article) {
@@ -67,14 +68,14 @@ const News = () => {
     document.body.style.overflow = 'unset';
   };
 
-  const filteredArticles = selectedCategory === "All" 
+  const filteredArticles = selectedCategory === "All"
     ? newsArticles
     : newsArticles.filter(article => article.category === selectedCategory);
 
   return (
     <div className="min-h-screen bg-[#F4FBFE] text-[#000204]">
       <Header alwaysShowBg={true} />
-      
+
       <main className="pt-10">
         {/* Hero Section */}
         <section className="relative py-32 overflow-hidden">
@@ -87,7 +88,7 @@ const News = () => {
                                radial-gradient(circle at 75% 75%, rgba(255, 155, 255, 0.05) 0%, transparent 50%)`
             }}></div>
           </div>
-          
+
           <div className="container mx-auto max-w-7xl px-6 relative z-10">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               {/* Content */}
@@ -96,15 +97,15 @@ const News = () => {
                   <div className="w-2 h-2 bg-[#FF9BFF] rounded-full animate-pulse"></div>
                   <span>LATEST UPDATES</span>
                 </div>
-                
+
                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight">
                   News & EVENTS
                 </h1>
-                
+
                 <p className="text-xl text-white/80 leading-relaxed mb-8 max-w-lg">
                   Stay informed about company milestones, and industry developments from B1G Corporation.
                 </p>
-                
+
                 <div className="flex flex-wrap gap-4">
                   <div className="flex items-center space-x-2 text-white/70">
                     <div className="w-2 h-2 bg-[#FF9BFF] rounded-full"></div>
@@ -120,7 +121,7 @@ const News = () => {
                   </div>
                 </div>
               </div>
-              
+
               {/* Visual Element */}
               <div className="relative">
                 <div className="relative z-10">
@@ -136,7 +137,7 @@ const News = () => {
                     </div>
                   </div>
                 </div>
-                
+
 
               </div>
             </div>
@@ -150,7 +151,7 @@ const News = () => {
               <h2 className="text-3xl font-bold text-[#472160] mb-4">Featured Story</h2>
               <div className="w-20 h-1 bg-[#FF9BFF]"></div>
             </div>
-            
+
             {newsArticles.filter(article => article.featured).map(article => (
               <div key={article.id} className="bg-white shadow-lg border border-[#7A7f83]/20 rounded-2xl overflow-hidden cursor-pointer" onClick={() => openArticle(article)}>
                 <div className="grid lg:grid-cols-2 gap-0">
@@ -196,23 +197,22 @@ const News = () => {
             <div className="mb-12">
               <h2 className="text-3xl font-bold text-[#472160] mb-4">Latest News</h2>
               <div className="w-20 h-1 bg-[#FF9BFF] mb-8"></div>
-              
-                             {/* Category Filter */}
-               <div className="flex flex-wrap gap-3 mb-8">
-                 {categories.map((category, index) => (
-                   <button
-                     key={index}
-                     onClick={() => setSelectedCategory(category)}
-                     className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 ${
-                       selectedCategory === category
-                         ? 'bg-[#FF9BFF] text-[#472160]' 
-                         : 'bg-white border border-[#7A7f83]/30 text-[#7A7f83] hover:border-[#FF9BFF] hover:text-[#472160]'
-                     }`}
-                   >
-                     {category}
-                   </button>
-                 ))}
-               </div>
+
+              {/* Category Filter */}
+              <div className="flex flex-wrap gap-3 mb-8">
+                {categories.map((category, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setSelectedCategory(category)}
+                    className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 ${selectedCategory === category
+                        ? 'bg-[#FF9BFF] text-[#472160]'
+                        : 'bg-white border border-[#7A7f83]/30 text-[#7A7f83] hover:border-[#FF9BFF] hover:text-[#472160]'
+                      }`}
+                  >
+                    {category}
+                  </button>
+                ))}
+              </div>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -263,12 +263,12 @@ const News = () => {
                     </div>
                     <h3 className="text-xl font-semibold text-[#472160] mb-2">No articles found</h3>
                     <p className="text-[#7A7f83] mb-6">
-                      {selectedCategory === "All" 
-                        ? "There are currently no articles available." 
+                      {selectedCategory === "All"
+                        ? "There are currently no articles available."
                         : `No articles found in the "${selectedCategory}" category.`
                       }
                     </p>
-                    <button 
+                    <button
                       onClick={() => setSelectedCategory("All")}
                       className="px-6 py-3 bg-[#472160] text-white rounded-lg font-semibold hover:bg-[#472160]/90 transition-all duration-300"
                     >
@@ -294,8 +294,8 @@ const News = () => {
         {isArticleModalOpen && selectedArticle && (
           <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
             <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-                             {/* Modal Header */}
-               <div className="sticky top-0 bg-white border-b border-[#7A7f83]/20 p-6 flex items-center justify-between z-10 shadow-sm">
+              {/* Modal Header */}
+              <div className="sticky top-0 bg-white border-b border-[#7A7f83]/20 p-6 flex items-center justify-between z-10 shadow-sm">
                 <div className="flex items-center space-x-4">
                   <span className="px-3 py-1 bg-[#FF9BFF] text-[#472160] text-xs font-bold rounded-full">
                     {selectedArticle.category}
@@ -306,7 +306,7 @@ const News = () => {
                   </div>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <button 
+                  <button
                     onClick={closeArticle}
                     className="p-2 hover:bg-[#F4FBFE] rounded-lg transition-colors"
                   >
@@ -327,10 +327,10 @@ const News = () => {
                   <div className="flex items-center space-x-4 text-sm text-[#7A7f83]">
                     <span>By {selectedArticle.author}</span>
                     <span>•</span>
-                    <span>{new Date(selectedArticle.date).toLocaleDateString('en-US', { 
-                      year: 'numeric', 
-                      month: 'long', 
-                      day: 'numeric' 
+                    <span>{new Date(selectedArticle.date).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric'
                     })}</span>
                   </div>
                 </div>
@@ -369,9 +369,9 @@ const News = () => {
             </div>
           </div>
         )}
-      
+
       </main>
-      
+
       <Footer />
     </div>
   );

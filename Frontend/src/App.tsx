@@ -12,7 +12,6 @@ import XForge from "./pages/XForge";
 import XSlimbar from "./pages/XSlimbar";
 import Amz from "./pages/Amz";
 import XUltra from "./pages/XUltra";
-import ForgeAlpha from "./pages/ForgeAlpha";
 import Services from "./pages/Services";
 import Portfolio from "./pages/Portfolio";
 import Contact from "./pages/Contact";
@@ -53,7 +52,6 @@ const App = () => {
             <Route path="/XSlimbar" element={<XSlimbar />} />
             <Route path="/amz" element={<Amz />} />
             <Route path="/xultra" element={<XUltra />} />
-            <Route path="/forgealpha" element={<ForgeAlpha />} />
             <Route path="/services" element={<Services />} />
             <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/contact" element={<Contact />} />

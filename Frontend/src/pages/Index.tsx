@@ -7,9 +7,9 @@ import SlimbarEvent from "@/assets/slimbarevent.jpg";
 import { useNavigate } from "react-router-dom";
 
 const newsArticles = [
-  {  
+  {
     id: 1,
-    title: "Witness the launch of X-SLiMBAR and the exclusive reveal of our next evolution: X Forge Alpha. ",
+    title: "Witness the launch of X-SLiMBAR, our latest premium technology line.",
     excerpt: "B1G Corporation introduces its most sophisticated product yet, setting new standards in innovation and craftsmanship.",
     content: "Today marks a significant milestone for B1G Corporation as we unveil the X-SLIMBAR premium technology line. This revolutionary product represents the culmination of years of research, development, and unwavering commitment to excellence. The X-SLIMBAR combines cutting-edge technology with timeless design principles, offering users an unparalleled experience that transcends conventional boundaries.\n\nOur engineering team has worked tirelessly to create a product that not only meets the highest standards of performance but also exceeds expectations in terms of design and user experience. The X-SLIMBAR features state-of-the-art components, advanced connectivity options, and intuitive controls that make it accessible to users of all technical levels.\n\nThe launch event, held at our headquarters, was attended by industry leaders, technology enthusiasts, and media representatives from around the world. The response has been overwhelmingly positive, with many praising the innovative approach to product design and the attention to detail that has become synonymous with the B1G brand.\n\n'This is more than just a product launch,' said our CEO during the presentation. 'This represents our vision for the future of technology - where innovation meets elegance, and where every detail matters.'\n\nThe X-SLIMBAR is now available for pre-order through our official website and authorized retailers worldwide. Early adopters will receive exclusive benefits, including extended warranty coverage and priority customer support.",
     category: "Product Launch",
@@ -18,7 +18,7 @@ const newsArticles = [
     image: SlimbarEvent,
     featured: true,
     author: "B1G Marketing Team",
-    tags: [ "Product Launch", "X-SLIMBAR"]
+    tags: ["Product Launch", "X-SLIMBAR"]
   },
   {
     id: 2,
@@ -77,9 +77,9 @@ const Index = () => {
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-4.5xl font-bold text-[#000204] mb-6">Latest News</h2>
             <div className="w-24 h-1 bg-[#FF9BFF] mx-auto mb-8"></div>
-        
+
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {newsArticles.slice(0, 3).map((news, idx) => (
               <div key={news.id} className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2">
@@ -92,7 +92,7 @@ const Index = () => {
                 <div className="p-6">
                   <h3 className="text-xl font-semibold mb-3 text-[#472160] leading-tight">{news.title}</h3>
                   <p className="text-[#7A7f83] mb-6 leading-relaxed">{news.excerpt}</p>
-                  <button 
+                  <button
                     onClick={() => handleReadMore(news.id)}
                     className="w-full bg-[#472160] text-white hover:bg-[#472160]/90 transition-all duration-300 px-4 py-2 rounded-lg"
                   >

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { ChevronLeft, ChevronRight, Star, ArrowRight } from 'lucide-react';
 import { Link } from "react-router-dom";
-import ForgePicture from "../assets/ForgePicture.jpg";
 import XslimbarImage from "../assets/Slimbar/Xslimbar.jpg";
 import AmzPhoto from "../assets/Amz/amz photo.jpg";
 import UltraPhoto from "../assets/Ultra/UltraPhoto.webp";
@@ -13,14 +12,6 @@ const placeholderProducts = [
     description: "Forge your new experience",
     image: "https://mcwinternationaltrading.com/cdn/shop/files/X4_1080x.jpg?v=1747153609",
     route: "/XForge",
-  },
-  {
-    id: 2,
-    name: "ALPHA",
-    description: "The Alpha of all v1",
-    image: ForgePicture,
-    route: "/forgealpha",
-    comingSoon: true,
   },
   {
     id: 4,
@@ -50,13 +41,13 @@ const FeaturedProduct = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => 
+    setCurrentIndex((prevIndex) =>
       prevIndex === placeholderProducts.length - 1 ? 0 : prevIndex + 1
     );
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) => 
+    setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? placeholderProducts.length - 1 : prevIndex - 1
     );
   };
@@ -66,10 +57,10 @@ const FeaturedProduct = () => {
   };
 
   return (
-    <section className="py-24 relative overflow-hidden"style={{ backgroundColor: '#F4FBFE' }}>
+    <section className="py-24 relative overflow-hidden" style={{ backgroundColor: '#F4FBFE' }}>
       {/* Background Accent */}
       <div className="absolute top-0 right-0 w-96 h-96 rounded-full opacity-5" style={{ background: 'radial-gradient(circle, #472160 0%, transparent 70%)' }}></div>
-      
+
       <div className="max-w-7xl mx-auto px-8">
         {/* Header Section */}
         <div className="text-center mb-20">
@@ -84,7 +75,7 @@ const FeaturedProduct = () => {
             <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-8 h-0.5" style={{ backgroundColor: '#FF9BFF' }}></div>
           </div>
           <p className="text-lg leading-relaxed max-w-4xl mx-auto" style={{ color: '#7A7f83' }}>
-            Explore our meticulously curated collection of premium vaping solutions, where innovation meets 
+            Explore our meticulously curated collection of premium vaping solutions, where innovation meets
             sophistication to deliver an unparalleled experience for discerning professionals.
           </p>
         </div>
@@ -92,7 +83,7 @@ const FeaturedProduct = () => {
         {/* Carousel Container */}
         <div className="relative max-w-5xl mx-auto">
           <div className="overflow-hidden rounded-3xl" style={{ backgroundColor: 'rgba(71, 33, 96, 0.02)' }}>
-            <div 
+            <div
               className="flex transition-transform duration-700 ease-out"
               style={{ transform: `translateX(-${currentIndex * 100}%)` }}
             >
@@ -101,26 +92,12 @@ const FeaturedProduct = () => {
                   <div className="grid md:grid-cols-2 gap-0 items-center min-h-[500px]">
                     {/* Product Image */}
                     <div className="relative group overflow-hidden">
-                      <img 
-                        src={product.image} 
+                      <img
+                        src={product.image}
                         alt={product.name}
-                        className={`w-full h-[500px] object-cover transition-transform duration-700 ${product.comingSoon ? 'grayscale' : 'group-hover:scale-110'}`}
+                        className={`w-full h-[500px] object-cover transition-transform duration-700 group-hover:scale-110`}
                       />
                       <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-black/20"></div>
-                      
-                      {/* Coming Soon Overlay */}
-                      {product.comingSoon && (
-                        <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
-                          <div className="text-center">
-                            <div className="px-6 py-3 rounded-full text-lg font-bold tracking-wider mb-2" style={{ backgroundColor: '#FF9BFF', color: '#000204' }}>
-                              COMING SOON
-                            </div>
-                            <p className="text-white text-sm opacity-90">Stay tuned for the launch</p>
-                          </div>
-                        </div>
-                      )}
-                      
-                      
                     </div>
 
                     {/* Product Info */}
@@ -134,25 +111,14 @@ const FeaturedProduct = () => {
                             {product.description}
                           </p>
                         </div>
-                        
+
                         <div className="flex items-center justify-between pt-6">
-                          {product.comingSoon ? (
-                            <button 
-                              disabled 
-                              className="group flex items-center gap-3 px-8 py-4 rounded-full font-medium cursor-not-allowed opacity-60" 
-                              style={{ backgroundColor: '#7A7f83', color: '#F4FBFE' }}
-                            >
-                              Coming Soon
-                              <ArrowRight className="w-5 h-5" />
+                          <Link to={product.route}>
+                            <button className="group flex items-center gap-3 px-8 py-4 rounded-full font-medium transition-all duration-300 hover:scale-105 hover:shadow-xl" style={{ backgroundColor: '#472160', color: '#F4FBFE' }}>
+                              Explore Product
+                              <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
                             </button>
-                          ) : (
-                            <Link to={product.route}>
-                              <button className="group flex items-center gap-3 px-8 py-4 rounded-full font-medium transition-all duration-300 hover:scale-105 hover:shadow-xl" style={{ backgroundColor: '#472160', color: '#F4FBFE' }}>
-                                Explore Product
-                                <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
-                              </button>
-                            </Link>
-                          )}
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -170,7 +136,7 @@ const FeaturedProduct = () => {
           >
             <ChevronLeft className="w-6 h-6 mx-auto transition-colors duration-300 group-hover:text-white" style={{ color: '#472160' }} />
           </button>
-          
+
           <button
             onClick={nextSlide}
             className="absolute right-6 top-1/2 transform -translate-y-1/2 w-14 h-14 rounded-full transition-all duration-300 hover:scale-110 hover:shadow-lg group"
@@ -186,11 +152,10 @@ const FeaturedProduct = () => {
             <button
               key={idx}
               onClick={() => goToSlide(idx)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                idx === currentIndex 
-                  ? 'w-8 scale-110' 
-                  : 'hover:scale-125'
-              }`}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${idx === currentIndex
+                ? 'w-8 scale-110'
+                : 'hover:scale-125'
+                }`}
               style={{
                 backgroundColor: idx === currentIndex ? '#472160' : 'rgba(122, 127, 131, 0.3)'
               }}

@@ -6,9 +6,7 @@ import { Link } from "react-router-dom";
 
 // Import images
 import forgeBanner from "../assets/Forge/ForgeBanner.png";
-import forgePicture from "../assets/ForgePicture.jpg";
 import XslimbarImage from "../assets/Slimbar/Xslimbar.jpg";
-import productHeroBanner4 from "../assets/Alpha/Product Hero Banner 4.png";
 import AmzBanner from "../assets/Amz/AmzBanner.png";
 import UltraPhoto from "../assets/Ultra/UltraPhoto.webp";
 import AmzPhoto from "../assets/Amz/amz photo.jpg";
@@ -30,14 +28,11 @@ const Products = () => {
       image: "https://www-x-xvape-x-cc.img.addlink.cn/Templates/default/proImages/X-SLIMBAR-sub-brand.png"
     },
     {
-      image: productHeroBanner4
-    },
-    {
       image: "https://www.xvape.cc/Templates/default/proImages/X-ULTRA-sub-brand.png"
     }
   ];
 
-  const products = [ 
+  const products = [
     {
       id: 1,
       name: "FORGE",
@@ -50,19 +45,6 @@ const Products = () => {
       route: "/XForge",
       gradient: "from-[#472160] to-[#FF9BFF]",
       available: true
-    },
-    {
-      id: 2,
-      name: "ALPHA",
-      tagline: "The Alpha of all v1",
-      description: "A comprehensive vaping solution designed for experienced users. Streamline your vaping experience with advanced technology, monitoring, and premium build quality.",
-      features: ["Advanced Technology", "Premium Build", "Enhanced Performance", "User-Friendly"],
-      category: "B1G",
-      price: "Coming Soon",
-      image: forgePicture,
-      route: "/forgealpha",
-      gradient: "from-[#472160] to-[#7A7f83]",
-      available: false
     },
     {
       id: 3,
@@ -105,10 +87,10 @@ const Products = () => {
     }
   ];
 
-  const categories = ["All", "B1G","X-Vape", "AMZ"];
+  const categories = ["All", "B1G", "X-Vape", "AMZ"];
 
-  const filteredProducts = currentCategory === "All" 
-    ? products 
+  const filteredProducts = currentCategory === "All"
+    ? products
     : products.filter(product => product.category === currentCategory);
 
   useEffect(() => {
@@ -131,7 +113,7 @@ const Products = () => {
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#F4FBFE' }}>
       <Header alwaysShowBg={true} />
-      
+
       <main style={{ paddingTop: 'var(--app-header-offset, 120px)' }}>
         {/* Hero Section with Advanced Slideshow */}
         <section
@@ -143,9 +125,8 @@ const Products = () => {
             {heroSlides.map((slide, index) => (
               <div
                 key={index}
-                className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
-                  index === currentSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
-                }`}
+                className={`absolute inset-0 transition-all duration-1000 ease-in-out ${index === currentSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
+                  }`}
               >
                 <img
                   src={slide.image}
@@ -166,7 +147,7 @@ const Products = () => {
           >
             <ChevronLeft className="w-6 h-6 mx-auto text-white group-hover:text-[#FF9BFF] transition-colors duration-300" />
           </button>
-          
+
           <button
             onClick={nextSlide}
             className="absolute right-8 top-1/2 -translate-y-1/2 z-30 w-14 h-14 rounded-full transition-all duration-300 hover:scale-110 group backdrop-blur-sm border border-white/20"
@@ -181,16 +162,15 @@ const Products = () => {
               <button
                 key={index}
                 onClick={() => setCurrentSlide(index)}
-                className={`transition-all duration-300 rounded-full ${
-                  index === currentSlide 
-                    ? 'w-8 h-3 bg-[#FF9BFF]' 
-                    : 'w-3 h-3 bg-white/50 hover:bg-white/70'
-                }`}
+                className={`transition-all duration-300 rounded-full ${index === currentSlide
+                  ? 'w-8 h-3 bg-[#FF9BFF]'
+                  : 'w-3 h-3 bg-white/50 hover:bg-white/70'
+                  }`}
               />
             ))}
           </div>
         </section>
-        
+
 
         {/* Products Section */}
         <section className="py-24">
@@ -218,11 +198,10 @@ const Products = () => {
                 <button
                   key={category}
                   onClick={() => setCurrentCategory(category)}
-                  className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
-                    currentCategory === category
-                      ? 'text-white shadow-lg scale-105'
-                      : 'text-[#472160] hover:scale-105 border-2 border-[#472160]/20 hover:border-[#472160]/40'
-                  }`}
+                  className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${currentCategory === category
+                    ? 'text-white shadow-lg scale-105'
+                    : 'text-[#472160] hover:scale-105 border-2 border-[#472160]/20 hover:border-[#472160]/40'
+                    }`}
                   style={{
                     backgroundColor: currentCategory === category ? '#472160' : 'transparent'
                   }}
@@ -250,13 +229,12 @@ const Products = () => {
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
                     <div className={`absolute inset-0 bg-gradient-to-br ${product.gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-500`}></div>
-                    
+
                     {/* Status Badge */}
-                    <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-semibold ${
-                      product.available 
-                        ? 'bg-green-500 text-white' 
-                        : 'bg-gray-500 text-white'
-                    }`}>
+                    <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-semibold ${product.available
+                      ? 'bg-green-500 text-white'
+                      : 'bg-gray-500 text-white'
+                      }`}>
                       {product.available ? 'Available' : 'Coming Soon'}
                     </div>
 
@@ -273,11 +251,11 @@ const Products = () => {
                         {product.name}
                       </h3>
                     </div>
-                    
+
                     <p className="text-lg font-medium mb-4" style={{ color: '#FF9BFF' }}>
                       {product.tagline}
                     </p>
-                    
+
                     <p className="text-sm leading-relaxed mb-6" style={{ color: '#7A7f83' }}>
                       {product.description}
                     </p>
@@ -297,7 +275,7 @@ const Products = () => {
                       <div className="text-lg font-semibold" style={{ color: '#472160' }}>
                         {product.price}
                       </div>
-                      
+
                       {product.available ? (
                         <Link to={product.route}>
                           <button
@@ -310,8 +288,8 @@ const Products = () => {
                             </span>
                             <ArrowRight className="w-4 h-4 transition-transform duration-400 ease-out group-hover:translate-x-2" />
                           </button>
-                         </Link>
-                       ) : (
+                        </Link>
+                      ) : (
                         <button className="flex items-center gap-2 px-6 py-3 rounded-full font-medium opacity-50 cursor-not-allowed" style={{ backgroundColor: '#7A7f83', color: '#F4FBFE' }}>
                           Coming Soon
                         </button>
@@ -327,8 +305,8 @@ const Products = () => {
         {/* CTA Section */}
         <section className="py-24 relative">
           <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, #472160 0%, #FF9BFF 100%)' }}></div>
-          <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.1"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")'}}></div>
-          
+          <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.1"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")' }}></div>
+
           <div className="max-w-4xl mx-auto px-8 text-center relative z-10">
             <h2 className="text-4xl md:text-5xl font-thin text-white mb-8" style={{ letterSpacing: '-0.02em' }}>
               Ready to Experience Excellence?
@@ -336,7 +314,7 @@ const Products = () => {
             <p className="text-xl text-white/90 mb-12 leading-relaxed">
               Join thousands of satisfied customers who have made the switch to premium vaping with B1G Corporation's exceptional product line.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Link to="/contact">
                 <button className="group flex items-center gap-3 px-8 py-4 rounded-full font-medium transition-all duration-300 hover:scale-105 hover:shadow-xl bg-white text-[#472160]">
@@ -354,7 +332,7 @@ const Products = () => {
           </div>
         </section>
       </main>
-      
+
       <Footer />
     </div>
   );
