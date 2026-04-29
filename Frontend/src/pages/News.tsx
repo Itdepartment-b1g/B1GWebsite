@@ -50,7 +50,6 @@ const News = () => {
       date: "2025-09-30",
       readTime: "",
       image: TownhallPic,
-      video: TownhallVideo,
       featured: true,
       author: "B1G Marketing Team",
       tags: ["Townhall Meeting"]
